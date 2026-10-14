@@ -163,6 +163,7 @@ def render(name, links):
     body = (body.replace("{{SHEET}}", label_sheet())
                 .replace("{{SHEETS_TABLE}}", sheets_table())
                 .replace("{{ENVELOPES}}", envelopes())
+                .replace("{{CODE_DEMO}}", (SRC / "partials" / "code-demo.html").read_text())
                 .replace("{{EMAIL}}", EMAIL))
     for k, v in sorted(links.items(), key=lambda kv: -len(kv[0])):
         body = body.replace("{{" + k + "}}", v)

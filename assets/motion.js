@@ -57,7 +57,7 @@
     onScroll();
 
     /* 4. Reveals */
-    var groups = ['.steps', '.plans', '.extras', '.more-apps', '.guide-list', '.app-grid'];
+    var groups = ['.steps', '.plans', '.extras', '.more-apps', '.guide-list', '.app-grid', '.code-demo'];
     var singles = ['.section-head', '.shot', '.wide-shot', '.table-scroll', '.data', '.contact', '.envelopes', '.sheets-note', '.fine', '.doc h1', '.doc .intro', '.doc section'];
     var targets = [];
     groups.forEach(function (sel) {

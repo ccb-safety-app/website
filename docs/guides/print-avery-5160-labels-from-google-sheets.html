@@ -366,6 +366,24 @@ html { scroll-behavior: smooth; }
 @media (prefers-reduced-motion: reduce) { .icon-stack img { animation: none; } }
 .icon-stack { transform: translateY(var(--lift, 0px)); }
 .app-badge { width: 72px; height: 72px; filter: drop-shadow(0 14px 22px rgba(0,0,0,.35)); }
+
+/* QR code and barcode examples */
+.code-demo { display: grid; gap: 20px; }
+@media (min-width: 900px) { .code-demo { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+.code-label { margin: 0; display: grid; gap: 14px; align-content: start; }
+.cl-body { background: #fff; color: #1a1a1a; border-radius: 12px; padding: 18px 20px; min-height: 150px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  box-shadow: inset 0 0 0 1px var(--paper-edge), var(--shot-shadow); font: 400 .9rem/1.35 var(--font-label); }
+.cl-body.col { flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px; }
+.cl-text { display: grid; min-width: 0; }
+.cl-text b { font-weight: 700; }
+.cl-text span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cl-body .qr { flex: none; width: 76px; height: 76px; }
+.cl-body .bar { display: block; max-width: 100%; }
+.cl-body .ean { flex: none; display: grid; justify-items: center; gap: 2px; }
+.cl-body .hr { font: 400 .78rem/1 var(--font-label); letter-spacing: .08em; color: #1a1a1a; }
+.cl-body.col .hr { margin-left: 10px; }
+.code-label figcaption { color: var(--muted); font-size: .97rem; display: grid; gap: 2px; }
+.code-label figcaption strong { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--heading); }
 </style>
 <script defer src="/assets/motion.js"></script>
 <script defer src="/assets/seasonal.js"></script>
