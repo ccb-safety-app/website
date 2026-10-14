@@ -29,7 +29,7 @@
     '.spider svg{display:block;width:20px;height:auto;margin-top:-1px}',
     '@keyframes dangle{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(3deg)}}',
     '@keyframes drop{0%,100%{height:var(--h,54px)}50%{height:calc(var(--h,54px) + 18px)}}',
-    '@media (max-width:640px){.spooky .moon{top:3%;right:4%}.spooky .bat:nth-child(n+3){display:none}}',
+    '@media (max-width:640px){.spooky .moon{width:84px;top:10px;right:10px;opacity:.55!important;animation:none}.spooky .bat:nth-child(n+3){display:none}}',
     '@media (prefers-reduced-motion:reduce){.spooky .bat{animation:none;transform:translate(60vw,40px)}.spooky .bat svg,.spider,.spider .thread{animation:none}.spooky .moon{animation:none;opacity:.9}}'
   ].join('');
   var style = document.createElement('style');
