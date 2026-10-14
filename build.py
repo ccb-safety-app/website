@@ -126,6 +126,7 @@ def footer(links):
 
 GUIDES = sorted((SRC / "guides").glob("*.html"))
 APPS = sorted((SRC / "apps").glob("*.html"))
+LEGAL = sorted((SRC / "legal").glob("*.html"))
 
 
 def guide_meta(path):
@@ -184,7 +185,7 @@ def full(head, page, canonical=None):
 
 
 def page_list():
-    return ["index", "support", "privacy", "terms"] + ["guides/" + g.stem for g in GUIDES] + ["apps/" + a.stem for a in APPS]
+    return ["index", "support", "privacy", "terms"] + ["guides/" + g.stem for g in GUIDES] + ["apps/" + a.stem for a in APPS] + ["legal/" + l.stem for l in LEGAL]
 
 
 def build():
@@ -197,6 +198,8 @@ def build():
     for a in APPS:
         if a.stem != "index":
             live["app:" + a.stem] = "/apps/" + a.stem
+    for l in LEGAL:
+        live["legal:" + l.stem] = "/legal/" + l.stem
     dist = ROOT / "docs"
     shutil.rmtree(dist, ignore_errors=True)
     shutil.copytree(ROOT / "assets", dist / "assets")
@@ -229,6 +232,8 @@ def build():
     for a in APPS:
         if a.stem != "index":
             rel["app:" + a.stem] = "apps/" + a.stem + ".html"
+    for l in LEGAL:
+        rel["legal:" + l.stem] = "legal/" + l.stem + ".html"
     prev = ROOT / "preview"
     shutil.rmtree(prev, ignore_errors=True)
     shutil.copytree(ROOT / "assets", prev / "assets")
