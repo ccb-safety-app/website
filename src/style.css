@@ -269,3 +269,18 @@ td.code { font-weight: 600; color: var(--heading); white-space: nowrap; }
 .cta strong { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); }
 .cta p { color: var(--ink); }
 .tip { border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; color: var(--ink); }
+
+/* App pages: the add-on panel rises out of the hero like the label sheet does. */
+.app-shot { justify-self: center; width: min(100%, 330px); border-radius: 14px 14px 0 0; overflow: hidden; background: #fff;
+  box-shadow: 0 30px 60px rgba(0,0,0,.35); transform: translateY(4%); aspect-ratio: 600 / 1100; }
+.app-shot img { width: 100%; }
+@media (min-width: 900px) { .app-shot { justify-self: end; margin-right: 24px; } }
+.wide-shot { margin: 0; max-width: 820px; border-radius: 12px; overflow: hidden; box-shadow: var(--shot-shadow); border: 1px solid var(--line); }
+.email-shot { max-width: 520px; }
+.more-apps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border-top: 2px solid var(--heading); }
+@media (min-width: 760px) { .more-apps { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.more-apps li { padding: 24px 0; border-bottom: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
+@media (min-width: 760px) { .more-apps li { padding: 28px 28px 28px 0; border-bottom: 0; } .more-apps li + li { border-left: 1px solid var(--line); padding-left: 28px; } }
+.more-apps a { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--heading); text-decoration: none; }
+.more-apps a:hover { text-decoration: underline; }
+.more-apps span { color: var(--muted); }

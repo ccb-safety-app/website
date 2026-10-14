@@ -110,14 +110,14 @@ def header(active, links, on_hero=False):
     cls = "site-head on-hero" if on_hero else "site-head"
     return (f'<header class="{cls}"><div class="wrap">'
             f'<a class="brand" href="{links["home"]}">{TREE}<span class="word">Northpine <span>Apps</span></span></a>'
-            f'<nav class="nav" aria-label="Site">{a("pricing", "Pricing")}{a("guides", "Guides")}{a("support", "Support")}{a("privacy", "Privacy")}{a("terms", "Terms")}</nav>'
+            f'<nav class="nav" aria-label="Site">{a("apps", "Apps")}{a("pricing", "Pricing")}{a("guides", "Guides")}{a("support", "Support")}{a("privacy", "Privacy")}{a("terms", "Terms")}</nav>'
             f'</div></header>')
 
 
 def footer(links):
     return (f'<footer class="site-foot"><div class="wrap">'
             f'<div class="foot-row"><span>© 2026 Northpine Apps</span>'
-            f'<span class="foot-links"><a href="{links["guides"]}">Guides</a><a href="{links["support"]}">Support</a><a href="{links["privacy"]}">Privacy policy</a><a href="{links["terms"]}">Terms of service</a>'
+            f'<span class="foot-links"><a href="{links["apps"]}">Apps</a><a href="{links["guides"]}">Guides</a><a href="{links["support"]}">Support</a><a href="{links["privacy"]}">Privacy policy</a><a href="{links["terms"]}">Terms of service</a>'
             f'<a href="mailto:{EMAIL}">{EMAIL}</a></span></div>'
             f'<p>Label Maker is not affiliated with or endorsed by Avery or Google. Avery and Google Sheets are trademarks of their owners; '
             f'product numbers are used only to describe compatible sheets.</p>'
@@ -125,6 +125,7 @@ def footer(links):
 
 
 GUIDES = sorted((SRC / "guides").glob("*.html"))
+APPS = sorted((SRC / "apps").glob("*.html"))
 
 
 def guide_meta(path):
@@ -143,8 +144,20 @@ def guides_list(links):
     return '<ul class="guide-list">' + "".join(items) + "</ul>"
 
 
+def apps_list(links):
+    items = []
+    for a in APPS:
+        if a.stem == "index":
+            continue
+        m = guide_meta(a)
+        items.append(f'<li><a href="{links["app:" + a.stem]}"><strong>{html.escape(m["heading"])}</strong></a>'
+                     f'<span>{html.escape(m["blurb"])}</span></li>')
+    return "".join(items)
+
+
 def render(name, links):
     body = (SRC / f"{name}.html").read_text()
+    body = body.replace("{{APPS_LIST}}", apps_list(links) if "{{APPS_LIST}}" in body else "")
     body = body.replace("{{GUIDES_LIST}}", guides_list(links) if "{{GUIDES_LIST}}" in body else "")
     body = (body.replace("{{SHEET}}", label_sheet())
                 .replace("{{SHEETS_TABLE}}", sheets_table())
@@ -171,16 +184,19 @@ def full(head, page, canonical=None):
 
 
 def page_list():
-    return ["index", "support", "privacy", "terms"] + ["guides/" + g.stem for g in GUIDES]
+    return ["index", "support", "privacy", "terms"] + ["guides/" + g.stem for g in GUIDES] + ["apps/" + a.stem for a in APPS]
 
 
 def build():
     pages = page_list()
     # Real site: clean URLs on GitHub Pages.
-    live = {"home": "/", "pricing": "/#pricing", "guides": "/guides/", "support": "/support", "privacy": "/privacy", "terms": "/terms", "assets": "/assets/"}
+    live = {"home": "/", "pricing": "/#pricing", "guides": "/guides/", "apps": "/apps/", "support": "/support", "privacy": "/privacy", "terms": "/terms", "assets": "/assets/"}
     for g in GUIDES:
         if g.stem != "index":
             live["guide:" + g.stem] = "/guides/" + g.stem
+    for a in APPS:
+        if a.stem != "index":
+            live["app:" + a.stem] = "/apps/" + a.stem
     dist = ROOT / "docs"
     shutil.rmtree(dist, ignore_errors=True)
     shutil.copytree(ROOT / "assets", dist / "assets")
@@ -191,6 +207,8 @@ def build():
             url = f"https://{DOMAIN}/"
         elif p == "guides/index":
             url = f"https://{DOMAIN}/guides/"
+        elif p == "apps/index":
+            url = f"https://{DOMAIN}/apps/"
         else:
             url = f"https://{DOMAIN}/" + p
         urls.append(url)
@@ -204,10 +222,13 @@ def build():
     (dist / ".nojekyll").write_text("")
 
     # Preview: relative links between the published files.
-    rel = {"home": "./", "pricing": "./#pricing", "guides": "guides/index.html", "support": "support.html", "privacy": "privacy.html", "terms": "terms.html", "assets": "assets/"}
+    rel = {"home": "./", "pricing": "./#pricing", "guides": "guides/index.html", "apps": "apps/index.html", "support": "support.html", "privacy": "privacy.html", "terms": "terms.html", "assets": "assets/"}
     for g in GUIDES:
         if g.stem != "index":
             rel["guide:" + g.stem] = "guides/" + g.stem + ".html"
+    for a in APPS:
+        if a.stem != "index":
+            rel["app:" + a.stem] = "apps/" + a.stem + ".html"
     prev = ROOT / "preview"
     shutil.rmtree(prev, ignore_errors=True)
     shutil.copytree(ROOT / "assets", prev / "assets")
