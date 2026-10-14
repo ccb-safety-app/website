@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="canonical" href="https://northpineapps.com/">
+<title>Label Maker for Google Sheets</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Label Maker is a Google Sheets add-on from Northpine Apps that turns a list of names and addresses into print-ready Avery labels.">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: a pine-green hero holding a real Avery 5160 sheet, then quiet white sections that read like the add-on itself. */
+:root {
+  --bg: #ffffff;
+  --band: #eef4f0;
+  --ink: #1b2a24;
+  --heading: #143d30;
+  --muted: #56695f;
+  --line: #d3e1d8;
+  --accent: #1e5a45;
+  --accent-ink: #ffffff;
+  --gold: #e3b341;
+  --hero-bg: #173f31;
+  --hero-fg: #ffffff;
+  --hero-muted: #cfe3d9;
+  --hero-line: #2f6a54;
+  --paper: #fcfdfc;
+  --paper-ink: #1a1a1a;
+  --paper-edge: #c9d6cf;
+  --shot-shadow: 0 1px 2px rgba(20, 61, 48, .08), 0 8px 24px rgba(20, 61, 48, .08);
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-label: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --measure: 66ch;
+  --wide: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1c17; --band: #15261f; --ink: #d9e6df; --heading: #eef6f1; --muted: #9fb5aa;
+    --line: #29453a; --accent: #8fd0b2; --accent-ink: #0f1c17; --gold: #e9c15a;
+    --hero-bg: #0d2a20; --hero-fg: #ffffff; --hero-muted: #b9d6c8; --hero-line: #24523f;
+    --paper-edge: #3c5a4d; --shot-shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1c17; --band: #15261f; --ink: #d9e6df; --heading: #eef6f1; --muted: #9fb5aa;
+  --line: #29453a; --accent: #8fd0b2; --accent-ink: #0f1c17; --gold: #e9c15a;
+  --hero-bg: #0d2a20; --hero-fg: #ffffff; --hero-muted: #b9d6c8; --hero-line: #24523f;
+  --paper-edge: #3c5a4d; --shot-shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--font-body);
+  font-feature-settings: "cv11", "ss01";
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--heading); text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.75rem, 3.2vw, 2.4rem); font-weight: 700; line-height: 1.1; letter-spacing: -.015em; }
+h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.25; }
+p { margin: 0; }
+
+.wrap {
+  max-width: var(--wide);
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+}
+
+/* Header */
+.site-head { border-bottom: 1px solid var(--line); background: var(--bg); }
+.site-head.on-hero { background: var(--hero-bg); border-bottom-color: var(--hero-line); }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--heading); }
+.on-hero .brand { color: var(--hero-fg); }
+.brand svg { width: 30px; height: 30px; flex: none; }
+.brand .word { font-family: var(--font-body); font-weight: 600; font-size: 1.15rem; letter-spacing: -.02em; }
+.brand .word span { font-weight: 400; opacity: .78; }
+.nav { display: flex; gap: 4px 20px; flex-wrap: wrap; font-size: .95rem; }
+.nav a { color: var(--ink); text-decoration: none; padding-block: 6px; }
+.on-hero .nav a { color: var(--hero-muted); }
+.nav a:hover, .nav a[aria-current="page"] { text-decoration: underline; color: var(--heading); }
+.on-hero .nav a:hover { color: var(--hero-fg); }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); overflow: hidden; }
+.hero .wrap { display: grid; gap: 40px; padding-block: 48px 0; align-items: end; }
+@media (min-width: 900px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; padding-block: 72px 0; }
+}
+.hero-copy { display: grid; gap: 22px; align-content: start; padding-bottom: 8px; min-width: 0; }
+@media (min-width: 900px) { .hero-copy { padding-bottom: 88px; align-self: center; } }
+.hero h1 {
+  color: var(--hero-fg);
+  font-size: clamp(2.5rem, 6vw, 4.4rem);
+  font-weight: 800;
+  line-height: .98;
+  letter-spacing: -.03em;
+  font-variation-settings: "opsz" 96;
+}
+.hero .lede { color: var(--hero-muted); font-size: 1.15rem; max-width: 34em; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 1rem/1 var(--font-body);
+  padding: 14px 20px; border-radius: 8px; text-decoration: none;
+  background: var(--gold); color: #1d2a20;
+}
+.btn:hover { text-decoration: none; filter: brightness(1.05); }
+.hero .soon { color: var(--hero-muted); font-size: .95rem; }
+.hero .soon a { color: var(--hero-fg); }
+
+/* The label sheet */
+.sheet-stage { position: relative; min-width: 0; display: grid; justify-items: center; }
+.sheet-clip { width: 100%; display: grid; justify-items: center; }
+.sheet {
+  container-type: inline-size;
+  position: relative;
+  width: min(100%, 470px);
+  aspect-ratio: 8.5 / 11;
+  background: var(--paper);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 30px 60px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.4) inset;
+  transform: rotate(-1.5deg) translateY(6%);
+  transform-origin: 50% 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  column-gap: 1.4706%;
+  padding: 5.8824% 2.2059%;
+}
+.sheet .lbl {
+  border-radius: 1.4cqi;
+  box-shadow: inset 0 0 0 .25cqi var(--paper-edge);
+  font: 400 2.05cqi/1.22 var(--font-label);
+  color: var(--paper-ink);
+  padding: .9cqi 3.4cqi;
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden; white-space: nowrap;
+  min-width: 0;
+}
+.sheet .lbl b { font-weight: 700; }
+.sheet .lbl.used { box-shadow: none; background: repeating-linear-gradient(135deg, transparent 0 1.2cqi, rgba(20,61,48,.07) 1.2cqi 2.1cqi); outline: .25cqi dashed var(--paper-edge); outline-offset: -.25cqi; }
+.sheet .lbl.next { box-shadow: inset 0 0 0 .5cqi var(--gold); }
+.sheet::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(227,179,65,.0) 44%, rgba(227,179,65,.28) 50%, rgba(227,179,65,0) 56%, transparent 100%);
+  background-size: 100% 220%;
+  background-position: 0 120%;
+  animation: printpass 2.2s .3s cubic-bezier(.45,0,.25,1) 1 both;
+}
+@keyframes printpass { from { background-position: 0 120%; } to { background-position: 0 -20%; } }
+@media (prefers-reduced-motion: reduce) { .sheet::after { animation: none; display: none; } }
+.sheet-caption { color: var(--hero-muted); font-size: .85rem; margin: 0; padding: 14px 0 18px; text-align: center; position: relative; z-index: 1; background: var(--hero-bg); width: 100%; }
+@media (max-width: 899px) {
+  .sheet { width: min(100%, 420px); }
+  .sheet-clip { max-height: 440px; overflow: hidden; }
+}
+
+/* Sections */
+.section { padding-block: 72px; }
+.section.band { background: var(--band); }
+.section-head { display: grid; gap: 12px; max-width: 46rem; margin-bottom: 40px; }
+.section-head p { color: var(--muted); font-size: 1.1rem; }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 48px; }
+@media (min-width: 900px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; } }
+.step { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.step-title { display: flex; gap: 12px; align-items: center; }
+.num {
+  flex: none; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-ink);
+  font: 700 .95rem/1 var(--font-body);
+}
+.step p { color: var(--muted); max-width: 32em; }
+.shot {
+  margin: 6px 0 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  background: #fff; box-shadow: var(--shot-shadow); max-width: 340px;
+}
+
+/* Sheets table */
+.table-scroll { overflow-x: auto; border-top: 2px solid var(--heading); }
+table { width: 100%; border-collapse: collapse; font-size: 1rem; min-width: 560px; }
+th, td { text-align: left; padding: 12px 16px 12px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { font-weight: 600; color: var(--muted); font-size: .9rem; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; padding-right: 0; }
+td .also { display: block; color: var(--muted); font-size: .85rem; }
+td.code { font-weight: 600; color: var(--heading); white-space: nowrap; }
+.mini {
+  display: inline-grid; width: 26px; aspect-ratio: 8.5 / 11; gap: 1px; padding: 2px;
+  border: 1px solid var(--muted); border-radius: 2px; vertical-align: middle; margin-right: 12px;
+}
+.mini i { background: var(--accent); opacity: .55; border-radius: 1px; }
+.sheets-note { margin-top: 20px; color: var(--muted); max-width: var(--measure); font-size: .95rem; }
+.envelopes { margin-top: 32px; display: grid; gap: 8px; }
+.envelopes ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.envelopes li { border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; font-size: .95rem; background: var(--bg); }
+.envelopes li span { color: var(--muted); }
+
+/* Extras */
+.split { display: grid; gap: 48px; align-items: start; }
+@media (min-width: 900px) { .split { grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 72px; } }
+.extras { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.extras li { display: grid; gap: 4px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.extras li:first-child { padding-top: 0; }
+.extras li strong { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); font-weight: 700; }
+.extras li span { color: var(--muted); }
+
+/* Pricing */
+.plans { display: grid; gap: 0; border-top: 2px solid var(--heading); }
+@media (min-width: 760px) { .plans { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.plan { display: grid; gap: 10px; align-content: start; padding: 24px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+@media (min-width: 760px) {
+  .plan { padding: 28px 28px 28px 0; border-bottom: 0; }
+  .plan + .plan { border-left: 1px solid var(--line); padding-left: 28px; }
+}
+.plan h3 { font-size: 1.1rem; }
+.price { font-family: var(--font-display); font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--heading); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.price small { font: 500 1rem/1 var(--font-body); color: var(--muted); letter-spacing: 0; }
+.plan p { color: var(--muted); }
+.fine { margin-top: 24px; color: var(--muted); font-size: .95rem; max-width: var(--measure); display: grid; gap: 8px; }
+
+/* Data + contact */
+.data { display: grid; gap: 16px; }
+.data > * { max-width: var(--measure); }
+.data p { color: var(--ink); }
+.contact { display: grid; gap: 10px; }
+.email { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 4vw, 2rem); color: var(--heading); word-break: break-word; user-select: all; }
+.contact p { color: var(--muted); }
+
+/* Footer */
+.site-foot { border-top: 1px solid var(--line); padding-block: 32px; font-size: .9rem; color: var(--muted); }
+.site-foot .wrap { display: grid; gap: 14px; }
+.foot-row { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; }
+.foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.foot-links a { color: var(--ink); }
+
+/* Legal pages */
+.doc { padding-block: 56px 80px; }
+.doc .wrap > * { max-width: var(--measure); }
+.doc h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.05; }
+.doc .updated { color: var(--muted); margin-top: 12px; }
+.doc .intro { font-size: 1.15rem; margin-top: 28px; }
+.doc section { margin-top: 40px; display: grid; gap: 12px; }
+.doc h2 { font-size: 1.45rem; }
+.doc ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+.doc li::marker { color: var(--accent); }
+</style>
+</head>
+<body>
+<header class="site-head on-hero"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/><path d="M28 6 L38 19 H33.5 L42 31 H36.5 L46 44 H39.5 L49 56 H7 L16.5 44 H10 L19.5 31 H14 L22.5 19 H18 Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="25.5" y="55" width="5" height="6" rx="1.2" fill="currentColor"/></svg><span class="word">Northpine <span>Apps</span></span></a><nav class="nav" aria-label="Site"><a href="/#pricing">Pricing</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></header><main>
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-copy">
+      <h1>Print mailing labels straight from your Google Sheet.</h1>
+      <p class="lede">Label Maker is a Google Sheets add-on that turns a list of names and addresses into a print-ready label document in seconds. Choose your label sheet, check the preview, and print. No mail-merge setup, no copying into Word.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#how">See how it works</a>
+        <span class="soon">Coming soon to the Google Workspace Marketplace.</span>
+      </div>
+    </div>
+    <div class="sheet-stage">
+      <div class="sheet-clip"><div class="sheet" role="img" aria-label="A sheet of Avery 5160 address labels printed by Label Maker, starting at label 5.">
+<div class="lbl used"></div>
+<div class="lbl used"></div>
+<div class="lbl used"></div>
+<div class="lbl used"></div>
+<div class="lbl next"><b>Priya Raman</b><span>218 Alder Street, Unit 4B</span><span>Portland, OR 97214</span></div>
+<div class="lbl"><b>Marcus Whitfield</b><span>1905 N Lake Shore Dr</span><span>Chicago, IL 60614</span></div>
+<div class="lbl"><b>Hannah O&#x27;Connell</b><span>12 Maple Court</span><span>Burlington, VT 05401</span></div>
+<div class="lbl"><b>Diego Alvarez</b><span>480 Mission Bay Blvd</span><span>San Francisco, CA 94158</span></div>
+<div class="lbl"><b>Grace Liu</b><span>77 Orchard Lane</span><span>Ithaca, NY 14850</span></div>
+<div class="lbl"><b>Samuel Okafor</b><span>3301 Elm Avenue</span><span>Dallas, TX 75226</span></div>
+<div class="lbl"><b>Ruth Bergstrom</b><span>9 Harbor View Rd</span><span>Duluth, MN 55802</span></div>
+<div class="lbl"><b>Tomás Ferreira</b><span>1420 Ocean Pkwy, Apt 2</span><span>Brooklyn, NY 11230</span></div>
+<div class="lbl"><b>Aisha Karim</b><span>56 Willow Bend</span><span>Ann Arbor, MI 48104</span></div>
+<div class="lbl"><b>Ben Takahashi</b><span>2207 Pine Ridge Dr</span><span>Boulder, CO 80302</span></div>
+<div class="lbl"><b>Clara Novak</b><span>814 Chestnut St</span><span>Philadelphia, PA 19107</span></div>
+<div class="lbl"><b>Owen Gallagher</b><span>45 Birch Hollow</span><span>Asheville, NC 28801</span></div>
+<div class="lbl"><b>Mei Chen</b><span>600 Cedar Lane</span><span>Madison, WI 53703</span></div>
+<div class="lbl"><b>Luis Romero</b><span>1018 Desert Sage Way</span><span>Tucson, AZ 85719</span></div>
+<div class="lbl"><b>Fatima Haddad</b><span>33 Spruce Terrace</span><span>Seattle, WA 98103</span></div>
+<div class="lbl"><b>Jonah Weiss</b><span>250 Riverside Dr</span><span>Austin, TX 78704</span></div>
+<div class="lbl"><b>Elena Petrova</b><span>71 Magnolia Ave</span><span>Savannah, GA 31401</span></div>
+<div class="lbl"><b>Kwame Mensah</b><span>1500 Prairie St</span><span>Omaha, NE 68102</span></div>
+<div class="lbl"><b>Sofia Rossi</b><span>8 Lighthouse Way</span><span>Portland, ME 04101</span></div>
+<div class="lbl"><b>Noah Bennett</b><span>402 Aspen Circle</span><span>Salt Lake City, UT 84102</span></div>
+<div class="lbl"><b>Yuki Tanaka</b><span>19 Juniper Row</span><span>Honolulu, HI 96813</span></div>
+<div class="lbl"><b>Amara Diallo</b><span>620 Linden Blvd</span><span>St. Louis, MO 63108</span></div>
+<div class="lbl"><b>Henry Lowell</b><span>5 Cranberry Rd</span><span>Plymouth, MA 02360</span></div>
+<div class="lbl"><b>Isabel Moreno</b><span>2900 Redwood Hwy</span><span>Eureka, CA 95501</span></div>
+<div class="lbl"><b>Arjun Mehta</b><span>140 Laurel St</span><span>Raleigh, NC 27601</span></div>
+<div class="lbl"><b>Nora Fitzgerald</b><span>36 Hemlock Path</span><span>Bend, OR 97701</span></div>
+      </div></div>
+      <p class="sheet-caption">Avery 5160, 30 address labels per sheet. This one starts at label 5 because the first four were already used.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Three steps, without leaving your sheet</h2>
+      <p>Label Maker opens in a panel beside your spreadsheet, from the Extensions menu.</p>
+    </div>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-title"><span class="num">1</span><h3>Choose your label sheet</h3></div>
+        <p>Pick the Avery number printed on your package of labels, or add your own size.</p>
+        <figure class="shot"><img src="/assets/step-sheet.png" width="600" height="935" loading="lazy" alt="Label Maker's list of label sheets, with Avery 5160 address labels selected."></figure>
+      </li>
+      <li class="step">
+        <div class="step-title"><span class="num">2</span><h3>Arrange the text</h3></div>
+        <p>Label Maker finds the name and address columns for you. Click a column to add it to the label, and check every row in the preview.</p>
+        <figure class="shot"><img src="/assets/step-text.png" width="600" height="1225" loading="lazy" alt="Columns arranged into label lines, with a preview of one address label."></figure>
+      </li>
+      <li class="step">
+        <div class="step-title"><span class="num">3</span><h3>Create labels and print</h3></div>
+        <p>You get a Google Doc and a PDF. Print a test page on plain paper first, then print on your labels at actual size.</p>
+        <figure class="shot"><img src="/assets/step-print.png" width="600" height="650" loading="lazy" alt="Your labels are ready: 5 labels on 1 page of Avery 5160, with buttons to download the PDF or open the document."></figure>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="section band" id="sheets">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Label sheets it prints</h2>
+      <p>Each layout follows the sheet's published measurements. The same layouts work for the compatible product numbers listed under each one.</p>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th scope="col">Sheet</th><th scope="col">Used for</th><th scope="col">Label size</th><th scope="col" class="n">Per sheet</th></tr></thead>
+        <tbody>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(10,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5160<span class="also">also 8160, 5260, 18160</span></td><td>Address</td><td>2-5/8" × 1"</td><td class="n">30</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(10,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5161<span class="also">also 8161, 5261</span></td><td>Address</td><td>4" × 1"</td><td class="n">20</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(7,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5162<span class="also">also 8162, 5262</span></td><td>Address</td><td>4" × 1-1/3"</td><td class="n">14</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5163<span class="also">also 8163, 5263</span></td><td>Shipping</td><td>4" × 2"</td><td class="n">10</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5164<span class="also">also 8164, 5264</span></td><td>Large shipping</td><td>4" × 3-1/3"</td><td class="n">6</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Avery 5168<span class="also">also 8168</span></td><td>Large shipping</td><td>3-1/2" × 5"</td><td class="n">4</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(20,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5167<span class="also">also 8167, 5267</span></td><td>Return address</td><td>1-3/4" × 1/2"</td><td class="n">80</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(15,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5195<span class="also">also 8195</span></td><td>Return address</td><td>1-3/4" × 2/3"</td><td class="n">60</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(15,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5366<span class="also">also 8366</span></td><td>File folder</td><td>3-7/16" × 2/3"</td><td class="n">30</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5371<span class="also">also 8371</span></td><td>Business card</td><td>3-1/2" × 2"</td><td class="n">10</td></tr>
+<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5395<span class="also">also 8395</span></td><td>Name badge</td><td>3-3/8" × 2-1/3"</td><td class="n">8</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="envelopes">
+      <h3>Envelopes</h3>
+      <ul><li>#10 <span>9-1/2" × 4-1/8"</span></li><li>#9 <span>8-7/8" × 3-7/8"</span></li><li>A7 <span>7-1/4" × 5-1/4"</span></li><li>DL <span>220 × 110 mm</span></li><li>C5 <span>229 × 162 mm</span></li><li>C6 <span>162 × 114 mm</span></li></ul>
+    </div>
+    <p class="sheets-note">Don't see your sheet? Add your own size in Label Maker, or email us the product number.</p>
+  </div>
+</section>
+
+<section class="section" id="features">
+  <div class="wrap split">
+    <div>
+      <div class="section-head">
+        <h2>Help before you print</h2>
+      </div>
+      <ul class="extras">
+        <li><strong>Check addresses</strong><span>Looks up each address with Google Maps and suggests fixes before you print. Nothing changes unless you accept a suggestion.</span></li>
+        <li><strong>QR codes, barcodes and logos</strong><span>Add them to your labels, along with a return address and cut lines for plain paper.</span></li>
+        <li><strong>Partly used sheets</strong><span>Start at any label on the sheet, and print several copies of each label.</span></li>
+        <li><strong>Printer alignment test page</strong><span>Print outlines on plain paper, hold them against your label sheet, and shift the layout if your printer is off.</span></li>
+      </ul>
+    </div>
+    <figure class="shot"><img src="/assets/check.png" width="600" height="1250" loading="lazy" alt="Address check results: two suggested fixes from Google Maps and one address that could not be found."></figure>
+  </div>
+</section>
+
+<section class="section band" id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Pricing</h2>
+      <p>Start free. Upgrade from inside Label Maker when you need more pages.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <h3>Free</h3>
+        <div class="price">$0</div>
+        <p>Documents of up to 3 pages, which is 90 labels on Avery 5160. No account needed.</p>
+      </div>
+      <div class="plan">
+        <h3>Pro yearly</h3>
+        <div class="price">$19.99 <small>per year</small></div>
+        <p>No page limit. Renews each year. Cancel anytime.</p>
+      </div>
+      <div class="plan">
+        <h3>Pro lifetime</h3>
+        <div class="price">$49 <small>once</small></div>
+        <p>No page limit. One payment.</p>
+      </div>
+    </div>
+    <div class="fine">
+      <p>Payments are processed by Lemon Squeezy, our reseller and merchant of record. After you buy, your licence key arrives by email.</p>
+      <p>Not happy? Email us within 7 days of purchase for a full refund.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="data">
+  <div class="wrap data">
+    <h2>Your addresses stay in your Google account</h2>
+    <p>Label Maker runs inside your own Google account. It reads only the sheet you open it in and the label documents it creates. We don't run a server that receives your sheet, and we don't copy, store, sell or share your addresses.</p>
+    <p><a href="/privacy">Read the privacy policy</a></p>
+  </div>
+</section>
+
+<section class="section band" id="contact">
+  <div class="wrap contact">
+    <h2>Questions?</h2>
+    <p>Questions, or a label size we don't support yet? Write to us. We reply within 2 business days.</p>
+    <a class="email" href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a>
+  </div>
+</section>
+</main>
+<footer class="site-foot"><div class="wrap"><div class="foot-row"><span>© 2026 Northpine Apps</span><span class="foot-links"><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a><a href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a></span></div><p>Label Maker is not affiliated with or endorsed by Avery or Google. Avery and Google Sheets are trademarks of their owners; product numbers are used only to describe compatible sheets.</p></div></footer>
+</body>
+</html>
