@@ -238,7 +238,12 @@ def build():
     shutil.rmtree(prev, ignore_errors=True)
     shutil.copytree(ROOT / "assets", prev / "assets")
     for p in pages:
-        head, page = render(p, rel)
+        up = "../" * p.count("/")
+        here = {k: (up + v[2:] if v.startswith("./") else up + v) if up else v for k, v in rel.items()}
+        if up:
+            here["home"] = up + "index.html"
+            here["pricing"] = up + "index.html#pricing"
+        head, page = render(p, here)
         if p == "index":
             (prev / "index.html").write_text(head + page)  # the artifact adds the skeleton to the main page
         else:
