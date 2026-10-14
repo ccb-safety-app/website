@@ -110,14 +110,14 @@ def header(active, links, on_hero=False):
     cls = "site-head on-hero" if on_hero else "site-head"
     return (f'<header class="{cls}"><div class="wrap">'
             f'<a class="brand" href="{links["home"]}">{TREE}<span class="word">Northpine <span>Apps</span></span></a>'
-            f'<nav class="nav" aria-label="Site">{a("pricing", "Pricing")}{a("privacy", "Privacy")}{a("terms", "Terms")}</nav>'
+            f'<nav class="nav" aria-label="Site">{a("pricing", "Pricing")}{a("support", "Support")}{a("privacy", "Privacy")}{a("terms", "Terms")}</nav>'
             f'</div></header>')
 
 
 def footer(links):
     return (f'<footer class="site-foot"><div class="wrap">'
             f'<div class="foot-row"><span>© 2026 Northpine Apps</span>'
-            f'<span class="foot-links"><a href="{links["privacy"]}">Privacy policy</a><a href="{links["terms"]}">Terms of service</a>'
+            f'<span class="foot-links"><a href="{links["support"]}">Support</a><a href="{links["privacy"]}">Privacy policy</a><a href="{links["terms"]}">Terms of service</a>'
             f'<a href="mailto:{EMAIL}">{EMAIL}</a></span></div>'
             f'<p>Label Maker is not affiliated with or endorsed by Avery or Google. Avery and Google Sheets are trademarks of their owners; '
             f'product numbers are used only to describe compatible sheets.</p>'
@@ -151,9 +151,9 @@ def full(head, page, canonical=None):
 
 
 def build():
-    pages = ["index", "privacy", "terms"]
+    pages = ["index", "support", "privacy", "terms"]
     # Real site: clean URLs on GitHub Pages.
-    live = {"home": "/", "pricing": "/#pricing", "privacy": "/privacy", "terms": "/terms", "assets": "/assets/"}
+    live = {"home": "/", "pricing": "/#pricing", "support": "/support", "privacy": "/privacy", "terms": "/terms", "assets": "/assets/"}
     dist = ROOT / "docs"
     shutil.rmtree(dist, ignore_errors=True)
     shutil.copytree(ROOT / "assets", dist / "assets")
@@ -165,7 +165,7 @@ def build():
     (dist / ".nojekyll").write_text("")
 
     # Preview: relative links between the published files.
-    rel = {"home": "./", "pricing": "./#pricing", "privacy": "privacy.html", "terms": "terms.html", "assets": "assets/"}
+    rel = {"home": "./", "pricing": "./#pricing", "support": "support.html", "privacy": "privacy.html", "terms": "terms.html", "assets": "assets/"}
     prev = ROOT / "preview"
     shutil.rmtree(prev, ignore_errors=True)
     shutil.copytree(ROOT / "assets", prev / "assets")
