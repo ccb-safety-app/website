@@ -315,6 +315,24 @@ html { scroll-behavior: smooth; }
 }
 .on-hero .nav a[aria-current="page"] { color: var(--hero-fg); }
 @media (max-width: 719px) { .site-head { position: relative; } }
+
+/* QR code and barcode examples */
+.code-demo { display: grid; gap: 20px; }
+@media (min-width: 900px) { .code-demo { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+.code-label { margin: 0; display: grid; gap: 14px; align-content: start; }
+.cl-body { background: #fff; color: #1a1a1a; border-radius: 12px; padding: 18px 20px; min-height: 150px; display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  box-shadow: inset 0 0 0 1px var(--paper-edge), var(--shot-shadow); font: 400 .9rem/1.35 var(--font-label); }
+.cl-body.col { flex-direction: column; align-items: flex-start; justify-content: center; gap: 8px; }
+.cl-text { display: grid; min-width: 0; }
+.cl-text b { font-weight: 700; }
+.cl-text span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.cl-body .qr { flex: none; width: 76px; height: 76px; }
+.cl-body .bar { display: block; max-width: 100%; }
+.cl-body .ean { flex: none; display: grid; justify-items: center; gap: 2px; }
+.cl-body .hr { font: 400 .78rem/1 var(--font-label); letter-spacing: .08em; color: #1a1a1a; }
+.cl-body.col .hr { margin-left: 10px; }
+.code-label figcaption { color: var(--muted); font-size: .97rem; display: grid; gap: 2px; }
+.code-label figcaption strong { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--heading); }
 </style>
 <script defer src="/assets/motion.js"></script>
 <script defer src="/assets/seasonal.js"></script>
@@ -445,7 +463,25 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
-<section class="section band" id="pricing">
+<section class="section band" id="codes">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>QR codes and barcodes on every label</h2>
+      <p>Label Maker makes them itself, from a column in your sheet (a different code on each label) or the same code on every label. Choose the size, and whether the code sits beside or below the address.</p>
+    </div>
+    <div class="code-demo">
+  <figure class="code-label wide"><div class="cl-body"><div class="cl-text"><b>Priya Raman</b><span>218 Alder Street, Unit 4B</span><span>Portland, OR 97214</span></div><svg class="qr" viewBox="0 0 29 29" width="64" height="64" shape-rendering="crispEdges" role="img" aria-label="QR code for https://northpineapps.com/"><rect width="29" height="29" fill="#fff"/><path d="M2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM7 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM13 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM23 2h1v1h-1zM24 2h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM14 3h1v1h-1zM15 3h1v1h-1zM16 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM26 3h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM14 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM17 4h1v1h-1zM20 4h1v1h-1zM22 4h1v1h-1zM23 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM15 5h1v1h-1zM18 5h1v1h-1zM20 5h1v1h-1zM22 5h1v1h-1zM23 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM14 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM13 7h1v1h-1zM18 7h1v1h-1zM20 7h1v1h-1zM26 7h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM21 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM25 8h1v1h-1zM26 8h1v1h-1zM12 9h1v1h-1zM13 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM13 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM25 10h1v1h-1zM26 10h1v1h-1zM4 11h1v1h-1zM9 11h1v1h-1zM11 11h1v1h-1zM17 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM2 12h1v1h-1zM4 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM12 12h1v1h-1zM13 12h1v1h-1zM16 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM23 12h1v1h-1zM26 12h1v1h-1zM2 13h1v1h-1zM3 13h1v1h-1zM5 13h1v1h-1zM10 13h1v1h-1zM14 13h1v1h-1zM18 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM23 13h1v1h-1zM24 13h1v1h-1zM25 13h1v1h-1zM26 13h1v1h-1zM4 14h1v1h-1zM5 14h1v1h-1zM7 14h1v1h-1zM8 14h1v1h-1zM11 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM18 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM26 14h1v1h-1zM2 15h1v1h-1zM4 15h1v1h-1zM7 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM15 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM22 15h1v1h-1zM25 15h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM8 16h1v1h-1zM12 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM12 17h1v1h-1zM13 17h1v1h-1zM18 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM24 17h1v1h-1zM26 17h1v1h-1zM2 18h1v1h-1zM4 18h1v1h-1zM6 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM11 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM17 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM20 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM25 18h1v1h-1zM10 19h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM17 19h1v1h-1zM18 19h1v1h-1zM22 19h1v1h-1zM24 19h1v1h-1zM25 19h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM5 20h1v1h-1zM6 20h1v1h-1zM7 20h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM2 21h1v1h-1zM8 21h1v1h-1zM10 21h1v1h-1zM15 21h1v1h-1zM16 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM22 21h1v1h-1zM2 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM8 22h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM13 22h1v1h-1zM14 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM2 23h1v1h-1zM4 23h1v1h-1zM5 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM13 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM25 23h1v1h-1zM26 23h1v1h-1zM2 24h1v1h-1zM4 24h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM11 24h1v1h-1zM12 24h1v1h-1zM13 24h1v1h-1zM15 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM18 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM11 25h1v1h-1zM12 25h1v1h-1zM16 25h1v1h-1zM20 25h1v1h-1zM21 25h1v1h-1zM22 25h1v1h-1zM24 25h1v1h-1zM25 25h1v1h-1zM26 25h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM7 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM14 26h1v1h-1zM18 26h1v1h-1zM19 26h1v1h-1zM20 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1z" fill="#111"/></svg></div>
+    <figcaption><strong>QR code from a column</strong>Each label gets its own link, such as a guest's RSVP page. Try scanning this one.</figcaption></figure>
+  <figure class="code-label wide"><div class="cl-body col"><div class="cl-text"><b>Ship to: Marcus Whitfield</b><span>1905 N Lake Shore Dr, Chicago, IL 60614</span></div><svg class="bar" viewBox="0 0 154 40" width="210" height="55" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Barcode ORD-20417"><rect width="154" height="40" fill="#fff"/><path d="M10 0h1v40h-1zM11 0h1v40h-1zM13 0h1v40h-1zM16 0h1v40h-1zM21 0h1v40h-1zM25 0h1v40h-1zM26 0h1v40h-1zM27 0h1v40h-1zM29 0h1v40h-1zM30 0h1v40h-1zM32 0h1v40h-1zM33 0h1v40h-1zM37 0h1v40h-1zM39 0h1v40h-1zM40 0h1v40h-1zM41 0h1v40h-1zM43 0h1v40h-1zM45 0h1v40h-1zM46 0h1v40h-1zM50 0h1v40h-1zM54 0h1v40h-1zM57 0h1v40h-1zM58 0h1v40h-1zM60 0h1v40h-1zM61 0h1v40h-1zM62 0h1v40h-1zM65 0h1v40h-1zM67 0h1v40h-1zM68 0h1v40h-1zM69 0h1v40h-1zM71 0h1v40h-1zM72 0h1v40h-1zM73 0h1v40h-1zM74 0h1v40h-1zM76 0h1v40h-1zM77 0h1v40h-1zM80 0h1v40h-1zM83 0h1v40h-1zM84 0h1v40h-1zM85 0h1v40h-1zM87 0h1v40h-1zM88 0h1v40h-1zM92 0h1v40h-1zM96 0h1v40h-1zM98 0h1v40h-1zM100 0h1v40h-1zM101 0h1v40h-1zM102 0h1v40h-1zM103 0h1v40h-1zM105 0h1v40h-1zM106 0h1v40h-1zM107 0h1v40h-1zM109 0h1v40h-1zM110 0h1v40h-1zM111 0h1v40h-1zM113 0h1v40h-1zM114 0h1v40h-1zM116 0h1v40h-1zM117 0h1v40h-1zM118 0h1v40h-1zM120 0h1v40h-1zM121 0h1v40h-1zM122 0h1v40h-1zM124 0h1v40h-1zM126 0h1v40h-1zM127 0h1v40h-1zM131 0h1v40h-1zM132 0h1v40h-1zM136 0h1v40h-1zM137 0h1v40h-1zM138 0h1v40h-1zM140 0h1v40h-1zM142 0h1v40h-1zM143 0h1v40h-1z" fill="#111"/></svg><span class="hr">ORD-20417</span></div>
+    <figcaption><strong>Code 128 barcode</strong>Order numbers, member IDs, asset tags. Any letters and numbers.</figcaption></figure>
+  <figure class="code-label wide"><div class="cl-body"><div class="cl-text"><b>Hand-poured candle</b><span>Pine and cedar, 8 oz</span><span>Northside Candle Co.</span></div><div class="ean"><svg class="bar" viewBox="0 0 115 60" width="104" height="54" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Barcode 4006381333931"><rect width="115" height="60" fill="#fff"/><path d="M10 0h1v60h-1zM12 0h1v60h-1zM16 0h1v60h-1zM17 0h1v60h-1zM19 0h1v60h-1zM21 0h1v60h-1zM24 0h1v60h-1zM25 0h1v60h-1zM26 0h1v60h-1zM28 0h1v60h-1zM30 0h1v60h-1zM31 0h1v60h-1zM32 0h1v60h-1zM33 0h1v60h-1zM35 0h1v60h-1zM36 0h1v60h-1zM37 0h1v60h-1zM38 0h1v60h-1zM40 0h1v60h-1zM44 0h1v60h-1zM47 0h1v60h-1zM49 0h1v60h-1zM50 0h1v60h-1zM53 0h1v60h-1zM54 0h1v60h-1zM56 0h1v60h-1zM58 0h1v60h-1zM60 0h1v60h-1zM65 0h1v60h-1zM67 0h1v60h-1zM72 0h1v60h-1zM74 0h1v60h-1zM79 0h1v60h-1zM81 0h1v60h-1zM82 0h1v60h-1zM83 0h1v60h-1zM85 0h1v60h-1zM88 0h1v60h-1zM93 0h1v60h-1zM95 0h1v60h-1zM96 0h1v60h-1zM99 0h1v60h-1zM100 0h1v60h-1zM102 0h1v60h-1zM104 0h1v60h-1z" fill="#111"/></svg><span class="hr">4 006381 333931</span></div></div>
+    <figcaption><strong>EAN-13 product barcode</strong>The standard shop barcode, from a 12 or 13 digit number.</figcaption></figure>
+</div>
+
+  </div>
+</section>
+
+<section class="section" id="pricing">
   <div class="wrap">
     <div class="section-head">
       <h2>Pricing</h2>
@@ -475,7 +511,7 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
-<section class="section" id="data">
+<section class="section band" id="data">
   <div class="wrap data">
     <h2>Your addresses stay in your Google account</h2>
     <p>Label Maker runs inside your own Google account. It reads only the sheet you open it in and the label documents it creates. We don't run a server that receives your sheet, and we don't copy, store, sell or share your addresses.</p>
@@ -483,7 +519,7 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
-<section class="section band" id="contact">
+<section class="section" id="contact">
   <div class="wrap contact">
     <h2>Questions?</h2>
     <p>Questions, or a label size we don't support yet? Write to us. We reply within 2 business days.</p>
