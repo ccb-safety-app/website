@@ -110,27 +110,47 @@ def header(active, links, on_hero=False):
     cls = "site-head on-hero" if on_hero else "site-head"
     return (f'<header class="{cls}"><div class="wrap">'
             f'<a class="brand" href="{links["home"]}">{TREE}<span class="word">Northpine <span>Apps</span></span></a>'
-            f'<nav class="nav" aria-label="Site">{a("pricing", "Pricing")}{a("support", "Support")}{a("privacy", "Privacy")}{a("terms", "Terms")}</nav>'
+            f'<nav class="nav" aria-label="Site">{a("pricing", "Pricing")}{a("guides", "Guides")}{a("support", "Support")}{a("privacy", "Privacy")}{a("terms", "Terms")}</nav>'
             f'</div></header>')
 
 
 def footer(links):
     return (f'<footer class="site-foot"><div class="wrap">'
             f'<div class="foot-row"><span>© 2026 Northpine Apps</span>'
-            f'<span class="foot-links"><a href="{links["support"]}">Support</a><a href="{links["privacy"]}">Privacy policy</a><a href="{links["terms"]}">Terms of service</a>'
+            f'<span class="foot-links"><a href="{links["guides"]}">Guides</a><a href="{links["support"]}">Support</a><a href="{links["privacy"]}">Privacy policy</a><a href="{links["terms"]}">Terms of service</a>'
             f'<a href="mailto:{EMAIL}">{EMAIL}</a></span></div>'
             f'<p>Label Maker is not affiliated with or endorsed by Avery or Google. Avery and Google Sheets are trademarks of their owners; '
             f'product numbers are used only to describe compatible sheets.</p>'
             f'</div></footer>')
 
 
+GUIDES = sorted((SRC / "guides").glob("*.html"))
+
+
+def guide_meta(path):
+    meta = path.read_text().partition("\n---\n")[0]
+    return dict(line.split(": ", 1) for line in meta.strip().splitlines())
+
+
+def guides_list(links):
+    items = []
+    for g in GUIDES:
+        if g.stem == "index":
+            continue
+        m = guide_meta(g)
+        items.append(f'<li><a href="{links["guide:" + g.stem]}"><strong>{html.escape(m["heading"])}</strong></a>'
+                     f'<span>{html.escape(m["description"])}</span></li>')
+    return '<ul class="guide-list">' + "".join(items) + "</ul>"
+
+
 def render(name, links):
     body = (SRC / f"{name}.html").read_text()
+    body = body.replace("{{GUIDES_LIST}}", guides_list(links) if "{{GUIDES_LIST}}" in body else "")
     body = (body.replace("{{SHEET}}", label_sheet())
                 .replace("{{SHEETS_TABLE}}", sheets_table())
                 .replace("{{ENVELOPES}}", envelopes())
                 .replace("{{EMAIL}}", EMAIL))
-    for k, v in links.items():
+    for k, v in sorted(links.items(), key=lambda kv: -len(kv[0])):
         body = body.replace("{{" + k + "}}", v)
     meta, _, content = body.partition("\n---\n")
     info = dict(line.split(": ", 1) for line in meta.strip().splitlines())
@@ -150,22 +170,44 @@ def full(head, page, canonical=None):
             f'{can}{head}</head>\n<body>\n{page}\n</body>\n</html>\n')
 
 
+def page_list():
+    return ["index", "support", "privacy", "terms"] + ["guides/" + g.stem for g in GUIDES]
+
+
 def build():
-    pages = ["index", "support", "privacy", "terms"]
+    pages = page_list()
     # Real site: clean URLs on GitHub Pages.
-    live = {"home": "/", "pricing": "/#pricing", "support": "/support", "privacy": "/privacy", "terms": "/terms", "assets": "/assets/"}
+    live = {"home": "/", "pricing": "/#pricing", "guides": "/guides/", "support": "/support", "privacy": "/privacy", "terms": "/terms", "assets": "/assets/"}
+    for g in GUIDES:
+        if g.stem != "index":
+            live["guide:" + g.stem] = "/guides/" + g.stem
     dist = ROOT / "docs"
     shutil.rmtree(dist, ignore_errors=True)
     shutil.copytree(ROOT / "assets", dist / "assets")
+    urls = []
     for p in pages:
         head, page = render(p, live)
-        url = f"https://{DOMAIN}/" + ("" if p == "index" else p)
-        (dist / f"{p}.html").write_text(full(head, page, url))
+        if p == "index":
+            url = f"https://{DOMAIN}/"
+        elif p == "guides/index":
+            url = f"https://{DOMAIN}/guides/"
+        else:
+            url = f"https://{DOMAIN}/" + p
+        urls.append(url)
+        out = dist / f"{p}.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(full(head, page, url))
+    (dist / "sitemap.xml").write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+                                      + "".join(f"  <url><loc>{u}</loc></url>\n" for u in urls) + "</urlset>\n")
+    (dist / "robots.txt").write_text(f"User-agent: *\nAllow: /\nSitemap: https://{DOMAIN}/sitemap.xml\n")
     (dist / "CNAME").write_text(DOMAIN + "\n")
     (dist / ".nojekyll").write_text("")
 
     # Preview: relative links between the published files.
-    rel = {"home": "./", "pricing": "./#pricing", "support": "support.html", "privacy": "privacy.html", "terms": "terms.html", "assets": "assets/"}
+    rel = {"home": "./", "pricing": "./#pricing", "guides": "guides/index.html", "support": "support.html", "privacy": "privacy.html", "terms": "terms.html", "assets": "assets/"}
+    for g in GUIDES:
+        if g.stem != "index":
+            rel["guide:" + g.stem] = "guides/" + g.stem + ".html"
     prev = ROOT / "preview"
     shutil.rmtree(prev, ignore_errors=True)
     shutil.copytree(ROOT / "assets", prev / "assets")
@@ -174,7 +216,9 @@ def build():
         if p == "index":
             (prev / "index.html").write_text(head + page)  # the artifact adds the skeleton to the main page
         else:
-            (prev / f"{p}.html").write_text(full(head, page))
+            out = prev / f"{p}.html"
+            out.parent.mkdir(parents=True, exist_ok=True)
+            out.write_text(full(head, page))
     print("built", [str(x.relative_to(ROOT)) for x in sorted(dist.rglob("*")) if x.is_file()])
 
 

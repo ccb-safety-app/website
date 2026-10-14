@@ -260,10 +260,31 @@ td.code { font-weight: 600; color: var(--heading); white-space: nowrap; }
 .doc h2 { font-size: 1.45rem; }
 .doc ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
 .doc li::marker { color: var(--accent); }
+
+/* Guides */
+.doc .guide-list, .guide-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; border-top: 2px solid var(--heading); }
+.guide-list li { display: grid; gap: 4px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.guide-list a { text-decoration: none; }
+.guide-list a strong { font-family: var(--font-display); font-size: 1.2rem; color: var(--heading); }
+.guide-list a:hover strong { text-decoration: underline; }
+.guide-list span { color: var(--muted); }
+.doc .table-scroll { margin-top: 4px; }
+.doc table { min-width: 420px; font-size: .95rem; }
+.doc ol { margin: 0; padding-left: 1.3em; display: grid; gap: 10px; }
+.doc ol li::marker { color: var(--accent); font-weight: 600; }
+.doc .crumbs { font-size: .9rem; color: var(--muted); margin-bottom: 14px; }
+.doc .crumbs a { color: var(--muted); }
+.cta {
+  margin-top: 40px; padding: 22px 24px; border-radius: 12px;
+  background: var(--band); border: 1px solid var(--line); display: grid; gap: 8px;
+}
+.cta strong { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); }
+.cta p { color: var(--ink); }
+.tip { border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; color: var(--ink); }
 </style>
 </head>
 <body>
-<header class="site-head on-hero"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/><path d="M28 6 L38 19 H33.5 L42 31 H36.5 L46 44 H39.5 L49 56 H7 L16.5 44 H10 L19.5 31 H14 L22.5 19 H18 Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="25.5" y="55" width="5" height="6" rx="1.2" fill="currentColor"/></svg><span class="word">Northpine <span>Apps</span></span></a><nav class="nav" aria-label="Site"><a href="/#pricing">Pricing</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></header><main>
+<header class="site-head on-hero"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/><path d="M28 6 L38 19 H33.5 L42 31 H36.5 L46 44 H39.5 L49 56 H7 L16.5 44 H10 L19.5 31 H14 L22.5 19 H18 Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="25.5" y="55" width="5" height="6" rx="1.2" fill="currentColor"/></svg><span class="word">Northpine <span>Apps</span></span></a><nav class="nav" aria-label="Site"><a href="/#pricing">Pricing</a><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></header><main>
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
@@ -433,6 +454,6 @@ td.code { font-weight: 600; color: var(--heading); white-space: nowrap; }
   </div>
 </section>
 </main>
-<footer class="site-foot"><div class="wrap"><div class="foot-row"><span>© 2026 Northpine Apps</span><span class="foot-links"><a href="/support">Support</a><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a><a href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a></span></div><p>Label Maker is not affiliated with or endorsed by Avery or Google. Avery and Google Sheets are trademarks of their owners; product numbers are used only to describe compatible sheets.</p></div></footer>
+<footer class="site-foot"><div class="wrap"><div class="foot-row"><span>© 2026 Northpine Apps</span><span class="foot-links"><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a><a href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a></span></div><p>Label Maker is not affiliated with or endorsed by Avery or Google. Avery and Google Sheets are trademarks of their owners; product numbers are used only to describe compatible sheets.</p></div></footer>
 </body>
 </html>

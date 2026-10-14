@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="canonical" href="https://northpineapps.com/guides/return-address-labels-google-sheets">
+<title>Return address labels from Google Sheets (Avery 5167 and 5195)</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Print a full sheet of the same return address on Avery 5167 or 5195 labels, or a different return address per row, from Google Sheets.">
+<link rel="icon" type="image/png" href="/assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600..800&family=Inter:wght@400;500;600&display=swap">
+<style>
+/* Layout: a pine-green hero holding a real Avery 5160 sheet, then quiet white sections that read like the add-on itself. */
+:root {
+  --bg: #ffffff;
+  --band: #eef4f0;
+  --ink: #1b2a24;
+  --heading: #143d30;
+  --muted: #56695f;
+  --line: #d3e1d8;
+  --accent: #1e5a45;
+  --accent-ink: #ffffff;
+  --gold: #e3b341;
+  --hero-bg: #173f31;
+  --hero-fg: #ffffff;
+  --hero-muted: #cfe3d9;
+  --hero-line: #2f6a54;
+  --paper: #fcfdfc;
+  --paper-ink: #1a1a1a;
+  --paper-edge: #c9d6cf;
+  --shot-shadow: 0 1px 2px rgba(20, 61, 48, .08), 0 8px 24px rgba(20, 61, 48, .08);
+  --font-display: "Bricolage Grotesque", "Avenir Next", "Segoe UI", system-ui, sans-serif;
+  --font-body: "Inter", "Helvetica Neue", Arial, system-ui, sans-serif;
+  --font-label: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  --measure: 66ch;
+  --wide: 1120px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1c17; --band: #15261f; --ink: #d9e6df; --heading: #eef6f1; --muted: #9fb5aa;
+    --line: #29453a; --accent: #8fd0b2; --accent-ink: #0f1c17; --gold: #e9c15a;
+    --hero-bg: #0d2a20; --hero-fg: #ffffff; --hero-muted: #b9d6c8; --hero-line: #24523f;
+    --paper-edge: #3c5a4d; --shot-shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1c17; --band: #15261f; --ink: #d9e6df; --heading: #eef6f1; --muted: #9fb5aa;
+  --line: #29453a; --accent: #8fd0b2; --accent-ink: #0f1c17; --gold: #e9c15a;
+  --hero-bg: #0d2a20; --hero-fg: #ffffff; --hero-muted: #b9d6c8; --hero-line: #24523f;
+  --paper-edge: #3c5a4d; --shot-shadow: 0 1px 2px rgba(0,0,0,.4), 0 8px 24px rgba(0,0,0,.35);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 1.0625rem/1.6 var(--font-body);
+  font-feature-settings: "cv11", "ss01";
+}
+img { max-width: 100%; height: auto; display: block; }
+a { color: var(--accent); text-underline-offset: .18em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3 { font-family: var(--font-display); color: var(--heading); text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.75rem, 3.2vw, 2.4rem); font-weight: 700; line-height: 1.1; letter-spacing: -.015em; }
+h3 { font-size: 1.25rem; font-weight: 700; line-height: 1.25; }
+p { margin: 0; }
+
+.wrap {
+  max-width: var(--wide);
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+@media (min-width: 720px) {
+  .wrap { padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+}
+
+/* Header */
+.site-head { border-bottom: 1px solid var(--line); background: var(--bg); }
+.site-head.on-hero { background: var(--hero-bg); border-bottom-color: var(--hero-line); }
+.site-head .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 14px; flex-wrap: wrap; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--heading); }
+.on-hero .brand { color: var(--hero-fg); }
+.brand svg { width: 30px; height: 30px; flex: none; }
+.brand .word { font-family: var(--font-body); font-weight: 600; font-size: 1.15rem; letter-spacing: -.02em; }
+.brand .word span { font-weight: 400; opacity: .78; }
+.nav { display: flex; gap: 4px 20px; flex-wrap: wrap; font-size: .95rem; }
+.nav a { color: var(--ink); text-decoration: none; padding-block: 6px; }
+.on-hero .nav a { color: var(--hero-muted); }
+.nav a:hover, .nav a[aria-current="page"] { text-decoration: underline; color: var(--heading); }
+.on-hero .nav a:hover { color: var(--hero-fg); }
+
+/* Hero */
+.hero { background: var(--hero-bg); color: var(--hero-fg); overflow: hidden; }
+.hero .wrap { display: grid; gap: 40px; padding-block: 48px 0; align-items: end; }
+@media (min-width: 900px) {
+  .hero .wrap { grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: 56px; padding-block: 72px 0; }
+}
+.hero-copy { display: grid; gap: 22px; align-content: start; padding-bottom: 8px; min-width: 0; }
+@media (min-width: 900px) { .hero-copy { padding-bottom: 88px; align-self: center; } }
+.hero h1 {
+  color: var(--hero-fg);
+  font-size: clamp(2.5rem, 6vw, 4.4rem);
+  font-weight: 800;
+  line-height: .98;
+  letter-spacing: -.03em;
+  font-variation-settings: "opsz" 96;
+}
+.hero .lede { color: var(--hero-muted); font-size: 1.15rem; max-width: 34em; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font: 600 1rem/1 var(--font-body);
+  padding: 14px 20px; border-radius: 8px; text-decoration: none;
+  background: var(--gold); color: #1d2a20;
+}
+.btn:hover { text-decoration: none; filter: brightness(1.05); }
+.hero .soon { color: var(--hero-muted); font-size: .95rem; }
+.hero .soon a { color: var(--hero-fg); }
+
+/* The label sheet */
+.sheet-stage { position: relative; min-width: 0; display: grid; justify-items: center; }
+.sheet-clip { width: 100%; display: grid; justify-items: center; }
+.sheet {
+  container-type: inline-size;
+  position: relative;
+  width: min(100%, 470px);
+  aspect-ratio: 8.5 / 11;
+  background: var(--paper);
+  border-radius: 3px 3px 0 0;
+  box-shadow: 0 30px 60px rgba(0,0,0,.35), 0 2px 0 rgba(255,255,255,.4) inset;
+  transform: rotate(-1.5deg) translateY(6%);
+  transform-origin: 50% 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  column-gap: 1.4706%;
+  padding: 5.8824% 2.2059%;
+}
+.sheet .lbl {
+  border-radius: 1.4cqi;
+  box-shadow: inset 0 0 0 .25cqi var(--paper-edge);
+  font: 400 2.05cqi/1.22 var(--font-label);
+  color: var(--paper-ink);
+  padding: .9cqi 3.4cqi;
+  display: flex; flex-direction: column; justify-content: center;
+  overflow: hidden; white-space: nowrap;
+  min-width: 0;
+}
+.sheet .lbl b { font-weight: 700; }
+.sheet .lbl.used { box-shadow: none; background: repeating-linear-gradient(135deg, transparent 0 1.2cqi, rgba(20,61,48,.07) 1.2cqi 2.1cqi); outline: .25cqi dashed var(--paper-edge); outline-offset: -.25cqi; }
+.sheet .lbl.next { box-shadow: inset 0 0 0 .5cqi var(--gold); }
+.sheet::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, transparent 0%, rgba(227,179,65,.0) 44%, rgba(227,179,65,.28) 50%, rgba(227,179,65,0) 56%, transparent 100%);
+  background-size: 100% 220%;
+  background-position: 0 120%;
+  animation: printpass 2.2s .3s cubic-bezier(.45,0,.25,1) 1 both;
+}
+@keyframes printpass { from { background-position: 0 120%; } to { background-position: 0 -20%; } }
+@media (prefers-reduced-motion: reduce) { .sheet::after { animation: none; display: none; } }
+.sheet-caption { color: var(--hero-muted); font-size: .85rem; margin: 0; padding: 14px 0 18px; text-align: center; position: relative; z-index: 1; background: var(--hero-bg); width: 100%; }
+@media (max-width: 899px) {
+  .sheet { width: min(100%, 420px); }
+  .sheet-clip { max-height: 440px; overflow: hidden; }
+}
+
+/* Sections */
+.section { padding-block: 72px; }
+.section.band { background: var(--band); }
+.section-head { display: grid; gap: 12px; max-width: 46rem; margin-bottom: 40px; }
+.section-head p { color: var(--muted); font-size: 1.1rem; }
+
+/* Steps */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 48px; }
+@media (min-width: 900px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; } }
+.step { display: grid; gap: 14px; align-content: start; min-width: 0; }
+.step-title { display: flex; gap: 12px; align-items: center; }
+.num {
+  flex: none; width: 30px; height: 30px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: var(--accent); color: var(--accent-ink);
+  font: 700 .95rem/1 var(--font-body);
+}
+.step p { color: var(--muted); max-width: 32em; }
+.shot {
+  margin: 6px 0 0; border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+  background: #fff; box-shadow: var(--shot-shadow); max-width: 340px;
+}
+
+/* Sheets table */
+.table-scroll { overflow-x: auto; border-top: 2px solid var(--heading); }
+table { width: 100%; border-collapse: collapse; font-size: 1rem; min-width: 560px; }
+th, td { text-align: left; padding: 12px 16px 12px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+th { font-weight: 600; color: var(--muted); font-size: .9rem; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; padding-right: 0; }
+td .also { display: block; color: var(--muted); font-size: .85rem; }
+td.code { font-weight: 600; color: var(--heading); white-space: nowrap; }
+.mini {
+  display: inline-grid; width: 26px; aspect-ratio: 8.5 / 11; gap: 1px; padding: 2px;
+  border: 1px solid var(--muted); border-radius: 2px; vertical-align: middle; margin-right: 12px;
+}
+.mini i { background: var(--accent); opacity: .55; border-radius: 1px; }
+.sheets-note { margin-top: 20px; color: var(--muted); max-width: var(--measure); font-size: .95rem; }
+.envelopes { margin-top: 32px; display: grid; gap: 8px; }
+.envelopes ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 10px; }
+.envelopes li { border: 1px solid var(--line); border-radius: 6px; padding: 6px 12px; font-size: .95rem; background: var(--bg); }
+.envelopes li span { color: var(--muted); }
+
+/* Extras */
+.split { display: grid; gap: 48px; align-items: start; }
+@media (min-width: 900px) { .split { grid-template-columns: minmax(0, 1fr) minmax(0, 360px); gap: 72px; } }
+.extras { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.extras li { display: grid; gap: 4px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.extras li:first-child { padding-top: 0; }
+.extras li strong { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); font-weight: 700; }
+.extras li span { color: var(--muted); }
+
+/* Pricing */
+.plans { display: grid; gap: 0; border-top: 2px solid var(--heading); }
+@media (min-width: 760px) { .plans { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.plan { display: grid; gap: 10px; align-content: start; padding: 24px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+@media (min-width: 760px) {
+  .plan { padding: 28px 28px 28px 0; border-bottom: 0; }
+  .plan + .plan { border-left: 1px solid var(--line); padding-left: 28px; }
+}
+.plan h3 { font-size: 1.1rem; }
+.price { font-family: var(--font-display); font-weight: 800; font-size: 2.6rem; line-height: 1; color: var(--heading); letter-spacing: -.02em; font-variant-numeric: tabular-nums; }
+.price small { font: 500 1rem/1 var(--font-body); color: var(--muted); letter-spacing: 0; }
+.plan p { color: var(--muted); }
+.fine { margin-top: 24px; color: var(--muted); font-size: .95rem; max-width: var(--measure); display: grid; gap: 8px; }
+
+/* Data + contact */
+.data { display: grid; gap: 16px; }
+.data > * { max-width: var(--measure); }
+.data p { color: var(--ink); }
+.contact { display: grid; gap: 10px; }
+.email { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.4rem, 4vw, 2rem); color: var(--heading); word-break: break-word; user-select: all; }
+.contact p { color: var(--muted); }
+
+/* Footer */
+.site-foot { border-top: 1px solid var(--line); padding-block: 32px; font-size: .9rem; color: var(--muted); }
+.site-foot .wrap { display: grid; gap: 14px; }
+.foot-row { display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; }
+.foot-links { display: flex; gap: 20px; flex-wrap: wrap; }
+.foot-links a { color: var(--ink); }
+
+/* Legal pages */
+.doc { padding-block: 56px 80px; }
+.doc .wrap > * { max-width: var(--measure); }
+.doc h1 { font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 800; letter-spacing: -.025em; line-height: 1.05; }
+.doc .updated { color: var(--muted); margin-top: 12px; }
+.doc .intro { font-size: 1.15rem; margin-top: 28px; }
+.doc section { margin-top: 40px; display: grid; gap: 12px; }
+.doc h2 { font-size: 1.45rem; }
+.doc ul { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+.doc li::marker { color: var(--accent); }
+
+/* Guides */
+.doc .guide-list, .guide-list { list-style: none; margin: 8px 0 0; padding: 0; display: grid; gap: 0; border-top: 2px solid var(--heading); }
+.guide-list li { display: grid; gap: 4px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.guide-list a { text-decoration: none; }
+.guide-list a strong { font-family: var(--font-display); font-size: 1.2rem; color: var(--heading); }
+.guide-list a:hover strong { text-decoration: underline; }
+.guide-list span { color: var(--muted); }
+.doc .table-scroll { margin-top: 4px; }
+.doc table { min-width: 420px; font-size: .95rem; }
+.doc ol { margin: 0; padding-left: 1.3em; display: grid; gap: 10px; }
+.doc ol li::marker { color: var(--accent); font-weight: 600; }
+.doc .crumbs { font-size: .9rem; color: var(--muted); margin-bottom: 14px; }
+.doc .crumbs a { color: var(--muted); }
+.cta {
+  margin-top: 40px; padding: 22px 24px; border-radius: 12px;
+  background: var(--band); border: 1px solid var(--line); display: grid; gap: 8px;
+}
+.cta strong { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); }
+.cta p { color: var(--ink); }
+.tip { border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; color: var(--ink); }
+</style>
+</head>
+<body>
+<header class="site-head"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/><path d="M28 6 L38 19 H33.5 L42 31 H36.5 L46 44 H39.5 L49 56 H7 L16.5 44 H10 L19.5 31 H14 L22.5 19 H18 Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="25.5" y="55" width="5" height="6" rx="1.2" fill="currentColor"/></svg><span class="word">Northpine <span>Apps</span></span></a><nav class="nav" aria-label="Site"><a href="/#pricing">Pricing</a><a href="/guides/" aria-current="page">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></header><main class="doc">
+  <div class="wrap">
+    <p class="crumbs"><a href="/guides/">Guides</a></p>
+    <h1>Return address labels from Google Sheets</h1>
+    <p class="intro">Return address labels are small, so a sheet holds 60 or 80 of them. Usually you want the same address on every label, which is the one thing a normal mail merge is bad at. Here's how to do it either way.</p>
+
+    <section>
+      <h2>Which label sheet?</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Sheet</th><th scope="col">Label size</th><th scope="col" class="n">Per sheet</th><th scope="col">Good for</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Avery 5167</strong> (also 8167, 5267)</td><td>1-3/4" × 1/2"</td><td class="n">80</td><td>Three short lines</td></tr>
+            <tr><td><strong>Avery 5195</strong> (also 8195)</td><td>1-3/4" × 2/3"</td><td class="n">60</td><td>Three or four lines, or a small logo</td></tr>
+            <tr><td><strong>Avery 5160</strong> (also 8160)</td><td>2-5/8" × 1"</td><td class="n">30</td><td>Long addresses or a larger logo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The product number is printed on the label package. 5167 labels are only half an inch tall, so keep to a name, street and city line at 7–8 pt.</p>
+    </section>
+
+    <section>
+      <h2>The same address on every label</h2>
+      <ol>
+        <li>In Label Maker, choose the sheet (for example <strong>Avery 5167</strong>) and pick <strong>One label</strong> as the source.</li>
+        <li>Type your return address once.</li>
+        <li>Under <strong>Copies</strong>, enter a full sheet (80 for 5167, 60 for 5195), then click <strong>Create labels</strong>.</li>
+      </ol>
+      <p>Without an add-on, make one label in a Google Docs table cell, then copy and paste it into every cell. It works, but it takes a while for 80 labels, and the table needs the exact measurements for that sheet.</p>
+    </section>
+
+    <section>
+      <h2>A different return address per row</h2>
+      <p>Useful when you mail for several people or businesses from one list. Keep each sender's address in its own row in Google Sheets, then choose <strong>Sheet rows</strong> as the source and set how many copies of each row you need under <strong>Copies</strong>.</p>
+    </section>
+
+    <section>
+      <h2>Add a small logo or picture</h2>
+      <p>On 5195 and 5160 labels there's room for a small logo next to or above the text. In Label Maker, open <strong>Pictures and codes</strong>, click <strong>Choose picture</strong> and pick a PNG, JPG or GIF; a square logo with a transparent background looks best.</p>
+    </section>
+
+    <section>
+      <h2>Printing tips for small labels</h2>
+      <ol>
+        <li>Print at <strong>Actual size / 100%</strong>. On half-inch labels even a 3% shrink pushes the last rows off their labels.</li>
+        <li>Test on plain paper and hold it against the label sheet before printing the real thing.</li>
+        <li>Partly used sheet? Start at the first free label instead of wasting the sheet (Label Maker's <strong>Start position</strong> setting).</li>
+      </ol>
+    </section>
+
+    <aside class="cta">
+      <strong>Label Maker for Google Sheets</strong>
+      <p>Return address labels, address labels and envelopes from one add-on, with 80-up and 60-up sheets included. Coming soon to the Google Workspace Marketplace.</p>
+    </aside>
+  </div>
+</main>
+<footer class="site-foot"><div class="wrap"><div class="foot-row"><span>© 2026 Northpine Apps</span><span class="foot-links"><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a><a href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a></span></div><p>Label Maker is not affiliated with or endorsed by Avery or Google. Avery and Google Sheets are trademarks of their owners; product numbers are used only to describe compatible sheets.</p></div></footer>
+</body>
+</html>

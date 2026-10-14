@@ -1,0 +1,75 @@
+title: How to print Avery 5160 labels from Google Sheets
+description: Turn a Google Sheet of names and addresses into Avery 5160 address labels (30 per sheet) that line up, without Microsoft Word.
+active: guides
+heading: Print Avery 5160 labels from Google Sheets
+---
+<main class="doc">
+  <div class="wrap">
+    <p class="crumbs"><a href="{{guides}}">Guides</a></p>
+    <h1>How to print Avery 5160 labels from Google Sheets</h1>
+    <p class="intro">Avery 5160 is the standard US address label: 30 labels on a letter-size sheet. Google Sheets can't print onto it directly, because it prints a grid of cells, not label-sized boxes. Here are the two ways that work, and how to make sure the print lines up.</p>
+
+    <section>
+      <h2>Avery 5160 measurements</h2>
+      <p>These are the numbers any template or add-on needs to match. The same layout fits Avery 8160, 5260 and 18160.</p>
+      <div class="table-scroll">
+        <table>
+          <tbody>
+            <tr><th scope="row">Sheet</th><td>US Letter, 8-1/2" × 11"</td></tr>
+            <tr><th scope="row">Labels per sheet</th><td class="n">30 (3 across, 10 down)</td></tr>
+            <tr><th scope="row">Label size</th><td>2-5/8" × 1"</td></tr>
+            <tr><th scope="row">Top and bottom margin</th><td>1/2"</td></tr>
+            <tr><th scope="row">Left and right margin</th><td>3/16" (0.1875")</td></tr>
+            <tr><th scope="row">Gap between columns</th><td>1/8" (0.125")</td></tr>
+            <tr><th scope="row">Gap between rows</th><td>None</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Step 1: get your sheet ready</h2>
+      <ol>
+        <li>Put one person per row, with titles in row 1: <strong>First Name, Last Name, Address 1, Address 2, City, State, Zip</strong>.</li>
+        <li>Format the Zip column as plain text (Format → Number → Plain text) so zip codes that start with 0, like 02903, keep their leading zero.</li>
+        <li>Leave Address 2 empty when there's no apartment or suite. A good label tool skips the empty line instead of leaving a gap.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Step 2, option A: use Label Maker (fastest)</h2>
+      <ol>
+        <li>Open your sheet and click <strong>Extensions → Label Maker → Create labels</strong>.</li>
+        <li>Choose <strong>Avery 5160 / 8160</strong>. Label Maker finds the name and address columns for you and shows a preview of each label.</li>
+        <li>Click <strong>Create labels</strong>. You get a Google Doc and a PDF laid out to the measurements above.</li>
+      </ol>
+      <p>It also handles the awkward cases: starting on a partly used sheet, printing several copies of each label, and shifting the print if your printer is slightly off.</p>
+    </section>
+
+    <section>
+      <h2>Step 2, option B: free, with Avery's own website</h2>
+      <ol>
+        <li>In Google Sheets, click <strong>File → Download → Comma-separated values (.csv)</strong>.</li>
+        <li>Go to Avery's free Design &amp; Print Online, choose product 5160, pick a design and use its mail-merge option to import the CSV file.</li>
+        <li>Download the PDF it makes.</li>
+      </ol>
+      <p>This works well for a one-off job. The trade-off is that your list leaves Google Sheets, so any change means downloading and uploading again.</p>
+    </section>
+
+    <section>
+      <h2>Step 3: print so it lines up</h2>
+      <ol>
+        <li>Open the PDF and print one page on <strong>plain paper</strong> first.</li>
+        <li>In the print window, set the scale to <strong>Actual size</strong> or <strong>100%</strong>. "Fit to page" shrinks the page and every label drifts.</li>
+        <li>Hold the test page against a label sheet in front of a window or lamp. If the text sits inside every label, print on the labels.</li>
+        <li>If everything is off by the same amount, your printer is shifting the page. Move the layout the opposite way (Label Maker has a Printer alignment setting for this), then test again.</li>
+      </ol>
+      <p class="tip">Feed label sheets one at a time if your printer tends to grab two, and use the tray your printer manual recommends for labels.</p>
+    </section>
+
+    <aside class="cta">
+      <strong>Label Maker for Google Sheets</strong>
+      <p>Free for up to 3 pages per document (90 labels on Avery 5160). Label Maker is in Google's review and will be on the Google Workspace Marketplace soon. Questions: <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>.</p>
+    </aside>
+  </div>
+</main>

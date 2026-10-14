@@ -1,0 +1,61 @@
+title: How to print envelopes from Google Sheets
+description: Print addresses directly onto #10, #9, A7 and other envelopes from a Google Sheet, with a return address, one envelope per page.
+active: guides
+heading: Print envelopes from Google Sheets
+---
+<main class="doc">
+  <div class="wrap">
+    <p class="crumbs"><a href="{{guides}}">Guides</a></p>
+    <h1>How to print envelopes from Google Sheets</h1>
+    <p class="intro">Printing straight onto envelopes looks better than labels for invitations and letters. It needs a document with one envelope-sized page per address, and a printer set up to feed envelopes.</p>
+
+    <section>
+      <h2>Common envelope sizes</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Envelope</th><th scope="col">Size</th><th scope="col">Typical use</th></tr></thead>
+          <tbody>
+            <tr><td><strong>#10</strong></td><td>9-1/2" × 4-1/8"</td><td>Business letters, bills</td></tr>
+            <tr><td><strong>#9</strong></td><td>8-7/8" × 3-7/8"</td><td>Reply envelopes</td></tr>
+            <tr><td><strong>A7</strong></td><td>7-1/4" × 5-1/4"</td><td>Invitations, 5" × 7" cards</td></tr>
+            <tr><td><strong>DL</strong></td><td>220 × 110 mm</td><td>International letters (A4 folded in three)</td></tr>
+            <tr><td><strong>C5</strong></td><td>229 × 162 mm</td><td>A5 cards, A4 folded once</td></tr>
+            <tr><td><strong>C6</strong></td><td>162 × 114 mm</td><td>A6 cards, postcards</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Measure your envelope if you aren't sure: greeting card envelopes are often A7 or A2 rather than a business size.</p>
+    </section>
+
+    <section>
+      <h2>Make the envelope document</h2>
+      <ol>
+        <li>Keep your list in Google Sheets with Name, Address 1, Address 2, City, State and Zip columns.</li>
+        <li>In Label Maker, choose the envelope size under <strong>Choose label sheet</strong> (filter <strong>Use</strong> by Envelope).</li>
+        <li>Add your return address once; it prints in the top-left corner of every envelope. Leave it empty if your envelopes already have one printed.</li>
+        <li>Click <strong>Create labels</strong>. You get one landscape page per address, with the recipient placed where the post office expects it.</li>
+      </ol>
+      <p>Without an add-on, Google Docs can do one envelope at a time: set <strong>File → Page setup</strong> to a custom size matching the envelope, landscape, and type the address in a text box. That's fine for a handful, slow for fifty.</p>
+    </section>
+
+    <section>
+      <h2>Set up the printer</h2>
+      <ol>
+        <li>Check your printer's manual for which way envelopes go in (flap up or down, left or right edge first). Most home printers take envelopes in the rear or manual feed tray.</li>
+        <li>In the print window, choose the envelope size as the paper size and set the scale to <strong>Actual size / 100%</strong>.</li>
+        <li>Print the first envelope on a sheet of paper cut to the same size, or on one spare envelope, before printing the rest.</li>
+      </ol>
+      <p class="tip">If the address lands in the wrong place, the most common cause is the printer treating the envelope as letter paper. Setting the paper size in the print window usually fixes it.</p>
+    </section>
+
+    <section>
+      <h2>When labels are the better choice</h2>
+      <p>Thick, padded or textured envelopes jam many printers. For those, print on <a href="{{guide:print-avery-5160-labels-from-google-sheets}}">Avery 5160 address labels</a> instead and stick them on.</p>
+    </section>
+
+    <aside class="cta">
+      <strong>Label Maker for Google Sheets</strong>
+      <p>Envelopes, address labels and return address labels from the same list. Coming soon to the Google Workspace Marketplace.</p>
+    </aside>
+  </div>
+</main>

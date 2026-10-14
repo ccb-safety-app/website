@@ -1,0 +1,61 @@
+title: Return address labels from Google Sheets (Avery 5167 and 5195)
+description: Print a full sheet of the same return address on Avery 5167 or 5195 labels, or a different return address per row, from Google Sheets.
+active: guides
+heading: Print return address labels
+---
+<main class="doc">
+  <div class="wrap">
+    <p class="crumbs"><a href="{{guides}}">Guides</a></p>
+    <h1>Return address labels from Google Sheets</h1>
+    <p class="intro">Return address labels are small, so a sheet holds 60 or 80 of them. Usually you want the same address on every label, which is the one thing a normal mail merge is bad at. Here's how to do it either way.</p>
+
+    <section>
+      <h2>Which label sheet?</h2>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th scope="col">Sheet</th><th scope="col">Label size</th><th scope="col" class="n">Per sheet</th><th scope="col">Good for</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Avery 5167</strong> (also 8167, 5267)</td><td>1-3/4" × 1/2"</td><td class="n">80</td><td>Three short lines</td></tr>
+            <tr><td><strong>Avery 5195</strong> (also 8195)</td><td>1-3/4" × 2/3"</td><td class="n">60</td><td>Three or four lines, or a small logo</td></tr>
+            <tr><td><strong>Avery 5160</strong> (also 8160)</td><td>2-5/8" × 1"</td><td class="n">30</td><td>Long addresses or a larger logo</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>The product number is printed on the label package. 5167 labels are only half an inch tall, so keep to a name, street and city line at 7–8 pt.</p>
+    </section>
+
+    <section>
+      <h2>The same address on every label</h2>
+      <ol>
+        <li>In Label Maker, choose the sheet (for example <strong>Avery 5167</strong>) and pick <strong>One label</strong> as the source.</li>
+        <li>Type your return address once.</li>
+        <li>Under <strong>Copies</strong>, enter a full sheet (80 for 5167, 60 for 5195), then click <strong>Create labels</strong>.</li>
+      </ol>
+      <p>Without an add-on, make one label in a Google Docs table cell, then copy and paste it into every cell. It works, but it takes a while for 80 labels, and the table needs the exact measurements for that sheet.</p>
+    </section>
+
+    <section>
+      <h2>A different return address per row</h2>
+      <p>Useful when you mail for several people or businesses from one list. Keep each sender's address in its own row in Google Sheets, then choose <strong>Sheet rows</strong> as the source and set how many copies of each row you need under <strong>Copies</strong>.</p>
+    </section>
+
+    <section>
+      <h2>Add a small logo or picture</h2>
+      <p>On 5195 and 5160 labels there's room for a small logo next to or above the text. In Label Maker, open <strong>Pictures and codes</strong>, click <strong>Choose picture</strong> and pick a PNG, JPG or GIF; a square logo with a transparent background looks best.</p>
+    </section>
+
+    <section>
+      <h2>Printing tips for small labels</h2>
+      <ol>
+        <li>Print at <strong>Actual size / 100%</strong>. On half-inch labels even a 3% shrink pushes the last rows off their labels.</li>
+        <li>Test on plain paper and hold it against the label sheet before printing the real thing.</li>
+        <li>Partly used sheet? Start at the first free label instead of wasting the sheet (Label Maker's <strong>Start position</strong> setting).</li>
+      </ol>
+    </section>
+
+    <aside class="cta">
+      <strong>Label Maker for Google Sheets</strong>
+      <p>Return address labels, address labels and envelopes from one add-on, with 80-up and 60-up sheets included. Coming soon to the Google Workspace Marketplace.</p>
+    </aside>
+  </div>
+</main>
