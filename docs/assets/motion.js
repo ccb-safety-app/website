@@ -36,7 +36,7 @@
     };
 
     /* 3. Depth */
-    var sheet = document.querySelector('.sheet-stage, .app-shot');
+    var sheet = document.querySelector('.sheet-stage, .app-shot, .icon-stack');
     var hero = document.querySelector('.hero');
     var ticking = false;
     function depth(y) {
@@ -57,7 +57,7 @@
     onScroll();
 
     /* 4. Reveals */
-    var groups = ['.steps', '.plans', '.extras', '.more-apps', '.guide-list'];
+    var groups = ['.steps', '.plans', '.extras', '.more-apps', '.guide-list', '.app-grid'];
     var singles = ['.section-head', '.shot', '.wide-shot', '.table-scroll', '.data', '.contact', '.envelopes', '.sheets-note', '.fine', '.doc h1', '.doc .intro', '.doc section'];
     var targets = [];
     groups.forEach(function (sel) {
@@ -69,7 +69,14 @@
       document.querySelectorAll(sel).forEach(function (el) { if (!el.closest('.hero') && !el.classList.contains('rv')) { el.classList.add('rv'); targets.push(el); } });
     });
     var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var t = e.target;
+        t.classList.add('in');
+        io.unobserve(t);
+        // Once it has arrived, hand the element back to its normal styles (hover effects etc.).
+        setTimeout(function () { t.classList.remove('rv', 'in'); t.style.removeProperty('--i'); }, 1300 + 90 * (parseInt(t.style.getPropertyValue('--i'), 10) || 0));
+      });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     targets.forEach(function (t) { io.observe(t); });
   });

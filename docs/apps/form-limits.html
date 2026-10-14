@@ -330,6 +330,42 @@ html { scroll-behavior: smooth; }
 }
 .on-hero .nav a[aria-current="page"] { color: var(--hero-fg); }
 @media (max-width: 719px) { .site-head { position: relative; } }
+
+/* Apps page */
+.apps-hero .wrap { padding-bottom: 56px; align-items: center; }
+@media (min-width: 900px) { .apps-hero .wrap { padding-bottom: 80px; } .apps-hero .hero-copy { padding-bottom: 0; } }
+.icon-stack { display: grid; grid-template-columns: repeat(2, minmax(0, 120px)); gap: 22px; justify-content: center; }
+.icon-stack img { width: 100%; height: auto; filter: drop-shadow(0 18px 28px rgba(0,0,0,.35)); animation: bob 6s ease-in-out infinite; }
+.icon-stack img:nth-child(1) { transform: rotate(-6deg); }
+.icon-stack img:nth-child(2) { transform: rotate(4deg) translateY(18px); animation-delay: -1.5s; }
+.icon-stack img:nth-child(3) { transform: rotate(3deg); animation-delay: -3s; }
+.icon-stack img:nth-child(4) { transform: rotate(-4deg) translateY(18px); animation-delay: -4.5s; }
+@keyframes bob { 0%, 100% { translate: 0 0; } 50% { translate: 0 -10px; } }
+@media (min-width: 900px) { .icon-stack { grid-template-columns: repeat(2, 140px); gap: 28px; justify-content: end; margin-right: 24px; } }
+.app-grid { display: grid; gap: 20px; }
+@media (min-width: 760px) { .app-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; } }
+.app-card { display: grid; gap: 12px; align-content: start; padding: 28px; border: 1px solid var(--line); border-radius: 18px; background: var(--bg); color: var(--ink); text-decoration: none;
+  transition: transform .35s cubic-bezier(.2, .7, 0, 1), box-shadow .35s ease, border-color .35s ease; }
+.app-card:hover { transform: translateY(-4px); border-color: color-mix(in srgb, var(--accent) 35%, var(--line)); box-shadow: 0 24px 48px -28px rgba(20, 61, 48, .45); }
+.app-card:focus-visible { outline: 3px solid var(--gold); outline-offset: 3px; }
+.app-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.app-top img { width: 64px; height: 64px; }
+.app-for { font-size: .85rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
+.app-card h2 { font-size: 1.9rem; margin-top: 6px; }
+.app-line { color: var(--ink); font-size: 1.05rem; }
+.app-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; color: var(--muted); font-size: .97rem; }
+.app-points li { padding-left: 24px; position: relative; }
+.app-points li::before { content: ""; position: absolute; left: 2px; top: .45em; width: 12px; height: 7px; border: 2px solid var(--accent); border-top: 0; border-right: 0; transform: rotate(-45deg); }
+.app-foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 8px; padding-top: 16px; border-top: 1px solid var(--line); font-size: .95rem; color: var(--muted); flex-wrap: wrap; }
+.app-foot .go { color: var(--accent); font-weight: 600; }
+.app-foot .go::after { content: ""; display: inline-block; width: 7px; height: 7px; border: 2px solid currentColor; border-left: 0; border-bottom: 0; transform: rotate(45deg); margin-left: 8px; transition: transform .3s cubic-bezier(.2, .7, 0, 1); vertical-align: 1px; }
+.app-card:hover .go::after { transform: translateX(4px) rotate(45deg); }
+.apps-note { margin-top: 28px; color: var(--muted); }
+.more-apps li { grid-template-columns: 48px 1fr; column-gap: 14px; }
+.more-apps li img { grid-row: span 2; width: 48px; height: 48px; }
+@media (prefers-reduced-motion: reduce) { .icon-stack img { animation: none; } }
+.icon-stack { transform: translateY(var(--lift, 0px)); }
+.app-badge { width: 72px; height: 72px; filter: drop-shadow(0 14px 22px rgba(0,0,0,.35)); }
 </style>
 <script defer src="/assets/motion.js"></script>
 <script defer src="/assets/seasonal.js"></script>
@@ -339,6 +375,7 @@ html { scroll-behavior: smooth; }
 <section class="hero">
   <div class="wrap">
     <div class="hero-copy">
+      <img class="app-badge" src="/assets/apps/icons/form-limits.svg" width="72" height="72" alt="">
       <h1>Sign-up forms that never overbook.</h1>
       <p class="lede">Form Limits gives each choice in your Google Form a number of places: sessions, time slots, seats. Full choices close themselves, people see "3 left", and anyone who gets in a second too late goes on a waitlist.</p>
       <div class="hero-actions">
