@@ -178,7 +178,14 @@ p { margin: 0; }
 
 /* Steps */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 48px; }
-@media (min-width: 900px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; } }
+@media (min-width: 900px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto 1fr; column-gap: 40px; row-gap: 0; }
+  /* Titles, text and screenshots line up across the three steps, and the three screenshot cards are the same height. */
+  .step { grid-row: span 3; grid-template-rows: subgrid; }
+  .step .shot { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  .step .shot img { width: 100%; height: auto; }
+  .step .shot.top { justify-content: flex-start; }
+}
 .step { display: grid; gap: 14px; align-content: start; min-width: 0; }
 .step-title { display: flex; gap: 12px; align-items: center; }
 .num {
@@ -448,12 +455,12 @@ html { scroll-behavior: smooth; }
       <li class="step">
         <div class="step-title"><span class="num">1</span><h3>Choose your label sheet</h3></div>
         <p>Pick the Avery number printed on your package of labels, or add your own size.</p>
-        <figure class="shot"><img src="/assets/step-sheet.png" width="600" height="935" loading="lazy" alt="Label Maker's list of label sheets, with Avery 5160 address labels selected."></figure>
+        <figure class="shot top"><img src="/assets/step-sheet.png" width="600" height="935" loading="lazy" alt="Label Maker's list of label sheets, with Avery 5160 address labels selected."></figure>
       </li>
       <li class="step">
         <div class="step-title"><span class="num">2</span><h3>Arrange the text</h3></div>
         <p>Label Maker finds the name and address columns for you. Click a column to add it to the label, and check every row in the preview.</p>
-        <figure class="shot"><img src="/assets/step-text.png" width="600" height="1225" loading="lazy" alt="Columns arranged into label lines, with a preview of one address label."></figure>
+        <figure class="shot top"><img src="/assets/step-text.png" width="600" height="874" loading="lazy" alt="Columns arranged into label lines, with a preview of one address label."></figure>
       </li>
       <li class="step">
         <div class="step-title"><span class="num">3</span><h3>Create labels and print</h3></div>
@@ -570,7 +577,7 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
-<section class="section" id="more">
+<section class="section band" id="more">
   <div class="wrap">
     <div class="section-head"><h2>More from Northpine</h2><p>The same care, for Google Forms and certificates. Coming soon to the Google Workspace Marketplace.</p></div>
     <ul class="more-apps">
@@ -581,7 +588,7 @@ html { scroll-behavior: smooth; }
   </div>
 </section>
 
-<section class="section band" id="contact">
+<section class="section" id="contact">
   <div class="wrap contact">
     <h2>Questions?</h2>
     <p>Questions, or a label size we don't support yet? Write to us. We reply within 2 business days.</p>

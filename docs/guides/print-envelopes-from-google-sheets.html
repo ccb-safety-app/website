@@ -178,7 +178,14 @@ p { margin: 0; }
 
 /* Steps */
 .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 48px; }
-@media (min-width: 900px) { .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; } }
+@media (min-width: 900px) {
+  .steps { grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: auto auto 1fr; column-gap: 40px; row-gap: 0; }
+  /* Titles, text and screenshots line up across the three steps, and the three screenshot cards are the same height. */
+  .step { grid-row: span 3; grid-template-rows: subgrid; }
+  .step .shot { height: 100%; display: flex; flex-direction: column; justify-content: center; }
+  .step .shot img { width: 100%; height: auto; }
+  .step .shot.top { justify-content: flex-start; }
+}
 .step { display: grid; gap: 14px; align-content: start; min-width: 0; }
 .step-title { display: flex; gap: 12px; align-items: center; }
 .num {
