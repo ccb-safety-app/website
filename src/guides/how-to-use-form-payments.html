@@ -1,0 +1,132 @@
+title: How to use Form Payments for Google Forms: step-by-step guide | Northpine Apps
+description: Step-by-step guide to Form Payments for Google Forms, with pictures of every step and fixes for common problems.
+active: guides
+heading: How to use Form Payments
+---
+<main class="howto">
+<section class="howto-hero">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb"><a href="{{guides}}">Guides</a><span aria-hidden="true">/</span><span>Form Payments</span></nav>
+    <div class="howto-title">
+      <img src="{{assets}}apps/icons/form-payments.svg" width="64" height="64" alt="">
+      <div>
+        <h1>How to use Form Payments</h1>
+        <p class="lede">Ask for payment with every Google Form response. Each person gets an email with an itemized total and buttons to pay by card or PayPal, and you see who's paid.</p>
+      </div>
+    </div>
+    <ul class="facts">
+      <li><span>Works in</span><b>Google Forms</b></li>
+      <li><span>Set-up time</span><b>About 10 minutes</b></li>
+      <li><span>Free plan</span><b>10 payment requests a month</b></li>
+    </ul>
+  </div>
+</section>
+<div class="wrap howto-grid">
+  <nav class="toc" aria-label="Steps">
+    <p class="toc-head">On this page</p>
+    <ol>
+      <li><a href="#step-1"><span class="n">1</span>Open Form Payments in your form</a></li>
+      <li><a href="#step-2"><span class="n">2</span>Connect how you get paid</a></li>
+      <li><a href="#step-3"><span class="n">3</span>Set your prices</a></li>
+      <li><a href="#step-4"><span class="n">4</span>Tax, fees and discount codes (optional)</a></li>
+      <li><a href="#step-5"><span class="n">5</span>Write the emails</a></li>
+      <li><a href="#step-6"><span class="n">6</span>Show prices on the form</a></li>
+      <li><a href="#step-7"><span class="n">7</span>See who&#x27;s paid</a></li>
+      <li class="toc-extra"><a href="#help">Still stuck?</a></li>
+    </ol>
+  </nav>
+  <div class="howto-steps">
+    <section class="step" id="step-1">
+      <div class="step-text">
+        <p class="step-n">Step 1 of 7</p>
+        <h2>Open Form Payments in your form</h2>
+        <p>Open your form in edit mode. Your form needs a way to know each person's email: turn on <b>Collect email addresses</b> in the form's Settings, or ask for it in a question.</p>
+        <ol class="do"><li><span>Click the <b>puzzle piece</b> (Add-ons) at the top of the form.</span></li><li><span>Choose <b>Form Payments</b>, then <b>Open Form Payments</b>.</span></li><li><span>Go to the <b>Setup</b> tab.</span></li></ol>
+        <details class="fix"><summary>If it doesn't work</summary><ul><li><b>The panel says "Signed in to more than one Google account?"</b> Google add-ons can mix up accounts when several are signed in to the same browser. Open the file in a private window signed in to only one account, or sign out of the others, then open the add-on again.</li></ul></details>
+      </div>
+      <figure class="frame"><img src="{{assets}}howto/form-payments-track.png" alt="Form Payments open beside a form, showing money collected and who is waiting." loading="lazy"></figure>
+    </section>
+    <section class="step" id="step-2">
+      <div class="step-text">
+        <p class="step-n">Step 2 of 7</p>
+        <h2>Connect how you get paid</h2>
+        <p>Money goes straight to your own Stripe or PayPal account. Form Payments never takes a cut.</p>
+        <ol class="do"><li><span><b>Stripe:</b> create a restricted key in your Stripe dashboard with write access to Products, Prices and Payment Links and read access to Checkout Sessions, then paste it.</span></li><li><span><b>PayPal:</b> paste your PayPal app's Client ID and Secret.</span></li><li><span><b>Other Ways to Pay</b> (optional): add your Cash App, Venmo or Zelle details, or say "pay at the door".</span></li></ol>
+        <details class="fix"><summary>If it doesn't work</summary><ul><li><b>"Couldn't Reach Stripe".</b> Check the key has the permissions above, and that it's a live key (rk_live…) if you want real payments. Test keys (rk_test…) only take test cards.</li></ul></details>
+      </div>
+      <figure class="frame"><img src="{{assets}}howto/form-payments-connect.png" alt="Step 1: Stripe and PayPal connected, and Other Ways to Pay." loading="lazy"></figure>
+    </section>
+    <section class="step" id="step-3">
+      <div class="step-text">
+        <p class="step-n">Step 3 of 7</p>
+        <h2>Set your prices</h2>
+        <p>Prices come from the answers: a price for each choice, multiplied by a quantity question if you have one.</p>
+        <ol class="do"><li><span>Pick the question and type a price next to each choice.</span></li><li><span>Optional: <b>Everyone Pays a Fixed Amount</b>, <b>Quantity From</b> a question, add-ons, or <b>Let People Choose the Amount</b> for donations.</span></li></ol>
+        <details class="fix"><summary>If it doesn't work</summary><ul><li><b>A question isn't listed.</b> Prices work with multiple-choice, checkbox, dropdown, scale and short-answer (number) questions.</li></ul></details>
+      </div>
+      <figure class="frame"><img src="{{assets}}howto/form-payments-prices.png" alt="Step 2: a price for each choice, a quantity question and add-ons." loading="lazy"></figure>
+    </section>
+    <section class="step" id="step-4">
+      <div class="step-text">
+        <p class="step-n">Step 4 of 7</p>
+        <h2>Tax, fees and discount codes (optional)</h2>
+        <p>Add tax, pass the card fee on to the payer, or create discount codes with limits.</p>
+        <ol class="do"><li><span>Turn on <b>Add Tax</b> and type the rate.</span></li><li><span>Turn on <b>Payer Covers the Card Fee</b> if you want.</span></li><li><span>Under <b>Discount Codes</b>, pick the question with the code and add codes.</span></li></ol>
+        
+      </div>
+      <figure class="frame"><img src="{{assets}}howto/form-payments-fees.png" alt="Step 3: tax, card fee passed on and discount codes." loading="lazy"></figure>
+    </section>
+    <section class="step" id="step-5">
+      <div class="step-text">
+        <p class="step-n">Step 5 of 7</p>
+        <h2>Write the emails</h2>
+        <p>Each person gets a payment request with an itemized total. Unpaid people can get gentle reminders, and everyone gets a receipt when they pay.</p>
+        <ol class="do"><li><span>Set the <b>Sender Name</b>, <b>Replies Go To</b> and <b>Subject</b>.</span></li><li><span>Edit the message. Tags like <b>Name</b> and <b>Total</b> are filled in for each person.</span></li><li><span>Click <b>Send Me a Test</b> to see it in your inbox.</span></li><li><span>Turn on <b>Remind People Who Haven't Paid</b> and choose how often.</span></li></ol>
+        <details class="fix"><summary>If it doesn't work</summary><ul><li><b>Emails aren't arriving.</b> Check the person's spam folder, and that your form collects email addresses.</li></ul></details>
+      </div>
+      <figure class="frame"><img src="{{assets}}howto/form-payments-emails.png" alt="Step 4: sender name, subject, message, reminders and receipts." loading="lazy"></figure>
+    </section>
+    <section class="step" id="step-6">
+      <div class="step-text">
+        <p class="step-n">Step 6 of 7</p>
+        <h2>Show prices on the form</h2>
+        <p>Let people see prices while they fill in the form, and tell them to watch for the payment email.</p>
+        <ol class="do"><li><span>Turn on <b>Show Prices Under Priced Questions</b>.</span></li><li><span>Keep <b>Tell People to Check Their Email</b> on.</span></li><li><span>Click <b>Save Changes</b>.</span></li></ol>
+        
+      </div>
+      <figure class="frame"><img src="{{assets}}howto/form-payments-on-form.png" alt="Step 5: show prices under priced questions and tell people to check their email." loading="lazy"></figure>
+    </section>
+    <section class="step" id="step-7">
+      <div class="step-text">
+        <p class="step-n">Step 7 of 7</p>
+        <h2>See who&#x27;s paid</h2>
+        <p>The <b>Payments</b> tab shows what's been collected and who's still waiting. Everything is also kept in a spreadsheet called <b>Payments: (your form)</b> in your Drive.</p>
+        <ol class="do"><li><span>Click <b>Check Now</b> to look for new payments. Form Payments also checks every hour.</span></li><li><span>Paid in cash or check? Open the person and choose <b>Mark as Paid</b>. They get a receipt.</span></li><li><span>Click <b>Open Sheet</b> for the full record.</span></li></ol>
+        <details class="fix"><summary>If it doesn't work</summary><ul><li><b>Someone paid but still shows as waiting.</b> Click <b>Check Now</b>. Card payments can take a minute to show.</li><li><b>I need to stop one request.</b> Open it and choose <b>Cancel</b>. Its payment links stop working.</li></ul></details>
+      </div>
+      <figure class="frame"><img src="{{assets}}howto/form-payments-track.png" alt="The Payments tab: amount collected, waiting and paid lists." loading="lazy"></figure>
+    </section>
+    <section class="help" id="help">
+      <h2>Still stuck?</h2>
+      <p>Email <a href="mailto:{{EMAIL}}">{{EMAIL}}</a> with a screenshot of the panel and what you expected to happen. We usually reply within a day.</p>
+      <p class="help-links"><a href="{{app:form-payments}}">About Form Payments</a><a href="{{support}}">Support</a><a href="{{guides}}">All guides</a></p>
+    </section>
+  </div>
+</div>
+</main>
+<script>
+(function () {
+  var links = [].slice.call(document.querySelectorAll('.toc a'));
+  var map = {};
+  links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+  if (!('IntersectionObserver' in window)) return;
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      if (!e.isIntersecting) return;
+      links.forEach(function (a) { a.removeAttribute('aria-current'); });
+      var a = map[e.target.id]; if (a) a.setAttribute('aria-current', 'step');
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  document.querySelectorAll('.step, .help').forEach(function (s) { io.observe(s); });
+})();
+</script>

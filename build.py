@@ -124,6 +124,8 @@ def footer(links):
             f'</div></footer>')
 
 
+import howto  # writes src/guides/how-to-use-*.html from howto.py
+howto.write()
 GUIDES = sorted((SRC / "guides").glob("*.html"))
 APPS = sorted((SRC / "apps").glob("*.html"))
 LEGAL = sorted((SRC / "legal").glob("*.html"))
