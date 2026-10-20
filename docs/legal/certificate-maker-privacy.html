@@ -425,6 +425,20 @@ html { scroll-behavior: smooth; }
       </ul>
     </section>
     <section>
+      <h2>Permissions Certificate Maker asks for, and why</h2>
+      <p>These are the 8 permissions Google shows when you install Certificate Maker. It asks for exactly these and nothing else; each is used only for the purpose below.</p>
+      <ul>
+        <li><strong>See and edit this spreadsheet only</strong> (<code>spreadsheets.currentonly</code>): reads the people in the spreadsheet you open Certificate Maker in and writes each certificate's link, number and status back into it.</li>
+        <li><strong>See, edit, create and delete only the specific Google Drive files you use with this app</strong> (<code>drive.file</code>): creates and manages only the files Certificate Maker makes itself: the logos folder, the certificate folder, PDFs, PNGs and temporary slides. It cannot see any of your other Drive files.</li>
+        <li><strong>See, edit, create and delete your Google Slides presentations</strong> (<code>presentations</code>): builds each certificate in Google Slides from a built-in design or from a Slides design you paste in, places logos, signatures and QR codes, and exports the PDF. It works only on the presentations it creates and the design you choose.</li>
+        <li><strong>Display and run the add-on in Google Sheets</strong> (<code>script.container.ui</code>): shows the sidebar, the large window and the Extensions menu entry.</li>
+        <li><strong>Create and manage triggers</strong> (<code>script.scriptapp</code>): sets up the automatic certificate for new Google Form responses and the follow-up that sends emails held back by Google's daily limit.</li>
+        <li><strong>Send email as you</strong> (<code>script.send_mail</code>): emails each certificate to the person, only when you turn emailing on. It cannot read your inbox.</li>
+        <li><strong>Connect to an external service</strong> (<code>script.external_request</code>): checks your Pro license with Lemon Squeezy (license key and account email only) and fetches Google's own Slides thumbnails and Drive file contents.</li>
+        <li><strong>See your email address</strong> (<code>userinfo.email</code>): used for the "send me a copy" option and to tie a Pro license to your account.</li>
+      </ul>
+    </section>
+    <section>
       <h2>Google user data</h2>
       <p>Certificate Maker's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. We do not use Google user data for advertising, and we do not allow humans to read it except with your permission, for security reasons, or where required by law.</p>
     </section>

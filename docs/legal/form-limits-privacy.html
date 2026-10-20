@@ -422,6 +422,18 @@ html { scroll-behavior: smooth; }
       </ul>
     </section>
     <section>
+      <h2>Permissions Form Limits asks for, and why</h2>
+      <p>These are the 6 permissions Google shows when you install Form Limits. It asks for exactly these and nothing else; each is used only for the purpose below.</p>
+      <ul>
+        <li><strong>See and edit this form only</strong> (<code>forms.currentonly</code>): reads the one form you open Form Limits in (questions, choices, responses) to count places, and changes only that form: choice labels such as "(3 left)", the live line in the description, the closed-form message and whether it accepts responses. It cannot open any other form.</li>
+        <li><strong>Display and run the add-on in Google Forms</strong> (<code>script.container.ui</code>): shows the sidebar, the large window and the Extensions menu entry.</li>
+        <li><strong>Create and manage triggers</strong> (<code>script.scriptapp</code>): sets up the timers that open and close the form, update the counts when a response arrives and run the hourly check. It removes them when you switch limits off.</li>
+        <li><strong>Send email as you</strong> (<code>script.send_mail</code>): sends only the emails you turn on: the waitlist email to a respondent and alerts to you. It cannot read your inbox.</li>
+        <li><strong>Connect to an external service</strong> (<code>script.external_request</code>): checks your Pro license with Lemon Squeezy, our payment provider. Only the license key and your account email are sent.</li>
+        <li><strong>See your email address</strong> (<code>userinfo.email</code>): used for your alerts and to tie a Pro license to your account.</li>
+      </ul>
+    </section>
+    <section>
       <h2>Google user data</h2>
       <p>Form Limits' use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. We do not use Google user data for advertising, and we do not allow humans to read it except with your permission, for security reasons, or where required by law.</p>
     </section>

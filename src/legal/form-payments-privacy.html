@@ -11,7 +11,7 @@ active: apps
       <h2>What Form Payments can access</h2>
       <ul>
         <li>The Google Form you open it in (and only that form): its questions and responses, to work out what each person owes and where to email them. With your permission it adds price lines to questions and changes the message shown after submitting.</li>
-        <li>The form's response spreadsheet, or a spreadsheet it creates, where it keeps a "Payments" tab with each response's amount and payment status.</li>
+        <li>A spreadsheet that Form Payments creates in your Google Drive ("Payments: your form name"), where it keeps a "Payments" tab with each response's amount and payment status. It cannot open your form's response spreadsheet or any other file.</li>
         <li>Your Google account email address, to send you payment summaries if you ask, and to check whether you have bought Pro.</li>
       </ul>
     </section>
@@ -33,6 +33,19 @@ active: apps
       </ul>
     </section>
     <section>
+      <h2>Permissions Form Payments asks for, and why</h2>
+      <p>These are the 7 permissions Google shows when you install Form Payments. It asks for exactly these and nothing else; each is used only for the purpose below.</p>
+      <ul>
+        <li><strong>See and edit this form only</strong> (<code>forms.currentonly</code>): reads the one form you open Form Payments in (questions, choices, responses) to work out what each person owes and where to email them, and changes only that form: price lines under questions and the confirmation message.</li>
+        <li><strong>See, edit, create and delete only the specific Google Drive files you use with this app</strong> (<code>drive.file</code>): creates one spreadsheet of its own ("Payments: your form name") and keeps your payment list in it through the Google Sheets API. It cannot open your form's response spreadsheet or any other file.</li>
+        <li><strong>Display and run the add-on in Google Forms</strong> (<code>script.container.ui</code>): shows the sidebar, the large window, the email preview and the Extensions menu entry.</li>
+        <li><strong>Create and manage triggers</strong> (<code>script.scriptapp</code>): sends a payment request when a response arrives and checks for payments every hour.</li>
+        <li><strong>Send email as you</strong> (<code>script.send_mail</code>): sends only the payment request, reminder and receipt emails you turn on, and an optional notice to you. It cannot read your inbox.</li>
+        <li><strong>Connect to an external service</strong> (<code>script.external_request</code>): talks to Stripe and PayPal with your own keys to create payment links and invoices and check whether they were paid, and checks your Pro license with Lemon Squeezy (license key and account email only).</li>
+        <li><strong>See your email address</strong> (<code>userinfo.email</code>): used for notices to you and to tie a Pro license to your account.</li>
+      </ul>
+    </section>
+    <section>
       <h2>Google user data</h2>
       <p>Form Payments' use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. We do not use Google user data for advertising, and we do not allow humans to read it except with your permission, for security reasons, or where required by law.</p>
     </section>
@@ -42,7 +55,7 @@ active: apps
         <li><strong>Your data stays in your Google account.</strong> Form Payments runs on Google Apps Script inside your own Google account. Your form, its responses and your payment list are stored and processed only by Google's own systems, which encrypt data in transit and at rest. Northpine Apps has no server that receives, copies or stores them.</li>
         <li><strong>Your Stripe and PayPal keys are protected.</strong> They are stored only in your own private Google user storage, which only your account can read, and they are sent only to Stripe and PayPal, over HTTPS, to create payment links and invoices and to check whether they were paid. We never receive them, and card numbers never reach Form Payments: payers enter them on Stripe's or PayPal's own pages. We recommend a Stripe restricted key with only the permissions Form Payments needs.</li>
         <li><strong>Encrypted connections only.</strong> Every request Form Payments makes outside Google (to Stripe, PayPal and the license check with Lemon Squeezy) uses HTTPS. Lemon Squeezy receives only your license key and account email.</li>
-        <li><strong>Least access.</strong> Form Payments asks for the narrowest permissions it can. Its form permission covers only the form you open it in. It uses its spreadsheet permission only to open the form's response spreadsheet, or the one it creates, to keep your Payments tab. It sends only the payment request, reminder and receipt emails you switch on, and it has no access to your Drive files, contacts or inbox.</li>
+        <li><strong>Least access.</strong> Form Payments asks for the narrowest permissions it can. Its form permission covers only the form you open it in. Its Drive permission (drive.file) covers only the spreadsheet it creates for your Payments tab, so it cannot see or change any other file in your Drive. It sends only the payment request, reminder and receipt emails you switch on, and it has no access to your Drive files, contacts or inbox.</li>
         <li><strong>Private settings.</strong> Your prices and settings are kept in the add-on's script storage for your form. Your license key, plan and payment keys are kept in Google's per-user script storage, which only your own account can read. Respondents cannot see them, and neither can we.</li>
         <li><strong>No human access.</strong> Nobody at Northpine Apps can see your Google data. We would only ever look at data you choose to send us yourself, for example in a support email.</li>
         <li><strong>Protected developer accounts.</strong> The accounts we use to build, sell and publish our add-ons are protected with strong, unique passwords and two-step verification wherever the service offers it.</li>

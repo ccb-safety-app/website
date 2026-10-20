@@ -406,7 +406,7 @@ html { scroll-behavior: smooth; }
       <h2>What Label Maker can access</h2>
       <ul>
         <li>The Google Sheet you open it in (and only that sheet), to read the names and addresses you want to print.</li>
-        <li>Google Docs that Label Maker creates for your labels. It does not open or change your other documents.</li>
+        <li>The label documents (Google Docs) that Label Maker creates in your Google Drive. It does not open or change any other file in your Drive.</li>
         <li>Your Google account email address, to show which account you are using and to check whether you have bought Pro.</li>
       </ul>
     </section>
@@ -427,6 +427,17 @@ html { scroll-behavior: smooth; }
     </section>
 
     <section>
+      <h2>Permissions Label Maker asks for, and why</h2>
+      <p>These are the 5 permissions Google shows when you install Label Maker. It asks for exactly these and nothing else; each is used only for the purpose below.</p>
+      <ul>
+        <li><strong>See and edit this spreadsheet only</strong> (<code>spreadsheets.currentonly</code>): reads the names and addresses in the spreadsheet you open Label Maker in, and adds a sample sheet when you ask.</li>
+        <li><strong>See, edit, create and delete only the specific Google Drive files you use with this app</strong> (<code>drive.file</code>): creates and fills in only the label documents Label Maker makes itself (through the Google Drive and Google Docs services), plus a small temporary working file that it moves to your trash when your labels are ready. It cannot see any of your other Drive files or documents.</li>
+        <li><strong>Display and run the add-on in Google Sheets</strong> (<code>script.container.ui</code>): shows the sidebar and the Extensions menu entry.</li>
+        <li><strong>Connect to an external service</strong> (<code>script.external_request</code>): downloads pictures from links you put in your sheet, and checks your Pro license with Lemon Squeezy (license key and account email only). The address check itself uses Google's own Maps service inside Apps Script.</li>
+        <li><strong>See your email address</strong> (<code>userinfo.email</code>): shows which account you are using and ties a Pro license to it.</li>
+      </ul>
+    </section>
+    <section>
       <h2>Google user data</h2>
       <p>Label Maker's use and transfer of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements. We do not use Google user data for advertising, and we do not allow humans to read it except with your permission, for security reasons, or where required by law.</p>
     </section>
@@ -436,7 +447,7 @@ html { scroll-behavior: smooth; }
       <ul>
         <li><strong>Your data stays in your Google account.</strong> Label Maker runs on Google Apps Script inside your own Google account. Your sheet, your addresses and the label documents are stored and processed only by Google's own systems, which encrypt data in transit and at rest. Northpine Apps has no server that receives, copies or stores them.</li>
         <li><strong>Encrypted connections only.</strong> Every request Label Maker makes outside Google (the license check with Lemon Squeezy, and picture links you add yourself) uses HTTPS, so it is encrypted in transit. No addresses or sheet contents are sent to Lemon Squeezy.</li>
-        <li><strong>Least access.</strong> Label Maker asks for the narrowest permissions it can. Its spreadsheet permission covers only the spreadsheet you are using it in. Its Google Docs permission is used only to create and fill in your label documents; it never opens your other documents. It has no access to your email, contacts or other Drive files.</li>
+        <li><strong>Least access.</strong> Label Maker asks for the narrowest permissions it can. Its spreadsheet permission covers only the spreadsheet you are using it in. Its Drive permission (drive.file) covers only the label documents and temporary working file that Label Maker creates itself, so it cannot see or change any other file in your Drive. It has no access to your email or contacts.</li>
         <li><strong>Private settings.</strong> Your settings and license key are kept in Google's per-user script storage, which only your own account can read. Other users of the same sheet or add-on cannot see them, and neither can we.</li>
         <li><strong>No human access.</strong> Nobody at Northpine Apps can see your Google data. We would only ever look at data you choose to send us yourself, for example in a support email.</li>
         <li><strong>Protected developer accounts.</strong> The accounts we use to build, sell and publish our add-ons are protected with strong, unique passwords and two-step verification wherever the service offers it.</li>
