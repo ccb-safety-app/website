@@ -100,10 +100,10 @@ APPS = [
             {"title": "Choose delivery and make them", "img": "certificate-maker-delivery.png",
              "alt": "The Delivery step: email, QR code, numbering, one combined PDF and file names.",
              "text": "Choose what happens to each certificate. They're always saved as PDFs in your Drive.",
-             "do": ["Turn on <b>Email Each Person Their Certificate</b> to send them out.", "Keep <b>QR Code to Check It's Genuine</b> on, so anyone can confirm a certificate is real.", "Turn on <b>Number Each Certificate</b> for an ID like CERT-2026-0001.", "Click <b>Preview</b> to see exactly how the first one looks, then <b>Make Certificates</b>."],
+             "do": ["Turn on <b>Email Each Person Their Certificate</b> to send them out.", "Keep <b>QR Code to Check It's Genuine</b> on, so anyone can confirm a certificate is real.", "Turn on <b>Number Each Certificate</b> for an ID like CERT-2026-0001.", "Click <b>Preview</b> to see exactly how the first one looks, then <b>Create Certificates</b>."],
              "fix": ["<b>\"Free Left This Month: 0\".</b> The free plan makes 5 certificates a month. They come back on the 1st, or Pro makes unlimited certificates.",
                      "<b>Emails stopped partway.</b> Google limits how many emails an account can send each day. The rest are sent when you run it again tomorrow.",
-                     "<b>\"Couldn't Save to Drive\".</b> Google had a short problem. Wait a minute and click Make Certificates again. Finished ones aren't made twice."]},
+                     "<b>\"Couldn't Save to Drive\".</b> Google had a short problem. Wait a minute and click Create Certificates again. Finished ones aren't made twice."]},
         ],
     },
     {
@@ -190,7 +190,7 @@ APPS = [
              "text": "The <b>Payments</b> tab shows what's been collected and who's still waiting. Everything is also kept in a spreadsheet called <b>Payments: (your form)</b> in your Drive.",
              "do": ["Click <b>Check Now</b> to look for new payments. Form Payments also checks every hour.", "Paid in cash or check? Open the person and choose <b>Mark as Paid</b>. They get a receipt.", "Click <b>Open Sheet</b> for the full record."],
              "fix": ["<b>Someone paid but still shows as waiting.</b> Click <b>Check Now</b>. Card payments can take a minute to show.",
-                     "<b>I need to stop one request.</b> Open it and choose <b>Cancel</b>. Its payment links stop working."]},
+                     "<b>I need to stop one request.</b> Open it and choose <b>Cancel Request</b>. Its payment links stop working."]},
         ],
     },
 ]
