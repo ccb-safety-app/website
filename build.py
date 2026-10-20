@@ -18,7 +18,7 @@ EMAIL = "northpineapps@gmail.com"
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">')
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">')
 
 TREE = ('<svg viewBox="0 0 64 64" aria-hidden="true">'
         '<path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/>'
@@ -175,7 +175,7 @@ def render(name, links):
             f'<meta name="claude:viewport-fit-sides" content="cover">\n'
             f'<meta name="description" content="{html.escape(info["description"])}">\n'
             f'<link rel="icon" type="image/png" href="{links["assets"]}favicon.png">\n'
-            f'{FONTS}\n<style>\n{CSS}</style>\n'
+            f'{FONTS}\n<style>\n{CSS.replace("{{assets}}", links["assets"])}</style>\n'
             f'<script defer src="{links["assets"]}motion.js"></script>\n'
             f'<script defer src="{links["assets"]}seasonal.js"></script>\n')
     page = header(info["active"], links, on_hero=info.get("hero") == "yes") + content.replace("{{assets}}", links["assets"]) + footer(links)

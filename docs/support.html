@@ -8,7 +8,7 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Help with Label Maker for Google Sheets: opening it, lining up labels, activating Pro, refunds and contact.">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: a pine-green hero holding a real Avery 5160 sheet, then quiet white sections that read like the add-on itself. */
 :root {
@@ -29,7 +29,7 @@
   --paper-ink: #1a1a1a;
   --paper-edge: #c9d6cf;
   --shot-shadow: 0 1px 2px rgba(20, 61, 48, .08), 0 8px 24px rgba(20, 61, 48, .08);
-  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-display: "Fraunces", "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-body: "Figtree", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-label: Arial, "Helvetica Neue", Helvetica, sans-serif;
   --measure: 66ch;
@@ -87,8 +87,8 @@ p { margin: 0; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--heading); }
 .on-hero .brand { color: var(--hero-fg); }
 .brand svg { width: 30px; height: 30px; flex: none; }
-.brand .word { font-family: var(--font-body); font-weight: 600; font-size: 1.15rem; letter-spacing: -.02em; }
-.brand .word span { font-weight: 400; opacity: .78; }
+.brand .word { font-family: var(--font-display); font-weight: 600; font-size: 1.32rem; letter-spacing: -.015em; font-variation-settings: "SOFT" 100, "opsz" 48; }
+.brand .word span { font-family: var(--font-body); font-weight: 700; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); opacity: 1; margin-left: 6px; vertical-align: .32em; }
 .nav { display: flex; gap: 4px 20px; flex-wrap: wrap; font-size: .95rem; }
 .nav a { color: var(--ink); text-decoration: none; padding-block: 6px; }
 .on-hero .nav a { color: var(--hero-muted); }
@@ -488,6 +488,95 @@ html { scroll-behavior: smooth; }
 .guide-cards img { width: 44px; height: 44px; border-radius: 10px; }
 .guide-cards b { display: block; color: var(--heading); }
 .guide-cards span { font-size: .92rem; color: var(--muted); }
+
+/* ---------- Northpine brand: signature gradient with contour lines ---------- */
+.hero, .howto-hero, .closing {
+  background:
+    radial-gradient(900px 560px at 88% 0%, rgba(227, 179, 65, .22), transparent 62%),
+    radial-gradient(800px 600px at 0% 100%, rgba(63, 163, 128, .30), transparent 60%),
+    url("/assets/brand/contours.svg") center / cover no-repeat,
+    linear-gradient(140deg, #0c251d 0%, #143a2d 42%, #1d5643 100%);
+}
+.eyebrow { display: flex; align-items: center; gap: 10px; font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.eyebrow img { width: 28px; height: 28px; border-radius: 8px; }
+.hero .eyebrow { color: var(--gold); }
+h1, h2 { font-variation-settings: "SOFT" 60, "opsz" 96; }
+
+/* Home hero: copy left, product showreel right */
+.np-hero .wrap { grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); align-items: center; padding-block: 72px 64px; gap: 48px; }
+.np-hero h1 { font-size: clamp(2.8rem, 5.6vw, 4.6rem); line-height: 1; letter-spacing: -.035em; font-weight: 500; }
+.showreel { display: grid; gap: 14px; min-width: 0; }
+.reel-frame { position: relative; aspect-ratio: 16 / 10; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 40px 80px -30px rgba(0,0,0,.6); }
+.reel-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.02); transition: opacity .8s ease, transform 1.2s ease; }
+.reel-frame img.on { opacity: 1; transform: none; }
+.reel-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.reel-tabs button { font: 600 .9rem/1 var(--font-body); color: var(--hero-muted); background: rgba(255,255,255,.06); border: 1px solid var(--hero-line);
+  border-radius: 999px; padding: 9px 14px; cursor: pointer; transition: background .2s, color .2s; }
+.reel-tabs button[aria-selected="true"] { background: var(--hero-fg); color: #143d30; border-color: transparent; }
+
+/* Trust strip */
+.trust { border-bottom: 1px solid var(--line); }
+.trust ul { list-style: none; margin: 0; padding: 22px 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.trust li { display: flex; gap: 12px; align-items: center; }
+.trust svg { width: 34px; height: 34px; flex: none; padding: 7px; border-radius: 10px; background: var(--band); fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.trust span { display: grid; font-size: .9rem; color: var(--muted); line-height: 1.35; }
+.trust b { color: var(--heading); font-size: .98rem; }
+
+/* App showcases: big picture, short words */
+.showcase { padding-block: 72px; }
+.showcase + .showcase { padding-top: 24px; }
+.showcase .wrap { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.showcase.flip .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+.showcase.flip .show-img { order: 2; }
+.show-img { margin: 0; border-radius: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(20,61,48,.1), 0 36px 70px -34px rgba(12,37,29,.55); }
+.show-img img { width: 100%; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.show-img:hover img { transform: scale(1.025); }
+.show-copy { display: grid; gap: 18px; align-content: center; }
+.show-copy h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ticks li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; }
+.ticks li::before { content: ""; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--band) no-repeat center / 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.5l2.5 2.5L10 3.5' fill='none' stroke='%231e5a45' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.show-links { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; font-weight: 600; }
+.btn.small { padding: 10px 18px; font-size: .95rem; }
+
+/* Three steps */
+.three { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.three li { display: grid; gap: 8px; padding: 26px; border-radius: 20px; background: var(--bg); border: 1px solid var(--line); align-content: start; }
+.three .big { font-family: var(--font-display); font-size: 3rem; line-height: 1; color: var(--gold); font-weight: 600; }
+.three b { font-family: var(--font-display); font-size: 1.35rem; color: var(--heading); font-weight: 600; }
+.three li > span:last-child { color: var(--muted); }
+
+/* Closing band */
+.closing { color: var(--hero-fg); text-align: center; }
+.closing .wrap { display: grid; gap: 16px; justify-items: center; padding-block: 80px; }
+.closing h2 { color: var(--hero-fg); }
+.closing p { color: var(--hero-muted); font-size: 1.1rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reel-frame { animation: np-float 9s ease-in-out infinite; }
+}
+@keyframes np-float { 50% { transform: translateY(-6px); } }
+
+@media (max-width: 960px) {
+  .np-hero .wrap, .showcase .wrap, .showcase.flip .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .showcase.flip .show-img { order: 0; }
+  .trust ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .three { grid-template-columns: minmax(0, 1fr); }
+  .np-hero .wrap { padding-block: 40px 48px; }
+}
+@media (max-width: 520px) {
+  .trust ul { grid-template-columns: minmax(0, 1fr); }
+  .reel-tabs button { padding: 8px 11px; font-size: .82rem; }
+}
+@media (max-width: 960px) {
+  .hero, .howto-hero, .closing {
+    background:
+      radial-gradient(600px 400px at 100% 0%, rgba(227, 179, 65, .20), transparent 62%),
+      url("/assets/brand/contours.svg") 70% 0 / 1500px auto no-repeat,
+      linear-gradient(160deg, #0c251d 0%, #143a2d 50%, #1d5643 100%);
+  }
+}
 </style>
 <script defer src="/assets/motion.js"></script>
 <script defer src="/assets/seasonal.js"></script>

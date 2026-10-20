@@ -6,9 +6,9 @@
 <link rel="canonical" href="https://northpineapps.com/">
 <title>Northpine Apps: Label Maker, Certificate Maker, Form Payments and Form Limits for Google Sheets and Forms</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Northpine Apps makes small, careful add-ons for Google Sheets and Google Forms: Label Maker, Certificate Maker, Form Payments and Form Limits. Free plans, fair prices, no sign-up.">
+<meta name="description" content="Northpine Apps makes careful add-ons for Google Sheets and Google Forms: Label Maker, Certificate Maker, Form Payments and Form Limits. Free plans, fair prices, no sign-up.">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: a pine-green hero holding a real Avery 5160 sheet, then quiet white sections that read like the add-on itself. */
 :root {
@@ -29,7 +29,7 @@
   --paper-ink: #1a1a1a;
   --paper-edge: #c9d6cf;
   --shot-shadow: 0 1px 2px rgba(20, 61, 48, .08), 0 8px 24px rgba(20, 61, 48, .08);
-  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-display: "Fraunces", "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-body: "Figtree", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-label: Arial, "Helvetica Neue", Helvetica, sans-serif;
   --measure: 66ch;
@@ -87,8 +87,8 @@ p { margin: 0; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--heading); }
 .on-hero .brand { color: var(--hero-fg); }
 .brand svg { width: 30px; height: 30px; flex: none; }
-.brand .word { font-family: var(--font-body); font-weight: 600; font-size: 1.15rem; letter-spacing: -.02em; }
-.brand .word span { font-weight: 400; opacity: .78; }
+.brand .word { font-family: var(--font-display); font-weight: 600; font-size: 1.32rem; letter-spacing: -.015em; font-variation-settings: "SOFT" 100, "opsz" 48; }
+.brand .word span { font-family: var(--font-body); font-weight: 700; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); opacity: 1; margin-left: 6px; vertical-align: .32em; }
 .nav { display: flex; gap: 4px 20px; flex-wrap: wrap; font-size: .95rem; }
 .nav a { color: var(--ink); text-decoration: none; padding-block: 6px; }
 .on-hero .nav a { color: var(--hero-muted); }
@@ -488,87 +488,203 @@ html { scroll-behavior: smooth; }
 .guide-cards img { width: 44px; height: 44px; border-radius: 10px; }
 .guide-cards b { display: block; color: var(--heading); }
 .guide-cards span { font-size: .92rem; color: var(--muted); }
+
+/* ---------- Northpine brand: signature gradient with contour lines ---------- */
+.hero, .howto-hero, .closing {
+  background:
+    radial-gradient(900px 560px at 88% 0%, rgba(227, 179, 65, .22), transparent 62%),
+    radial-gradient(800px 600px at 0% 100%, rgba(63, 163, 128, .30), transparent 60%),
+    url("/assets/brand/contours.svg") center / cover no-repeat,
+    linear-gradient(140deg, #0c251d 0%, #143a2d 42%, #1d5643 100%);
+}
+.eyebrow { display: flex; align-items: center; gap: 10px; font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.eyebrow img { width: 28px; height: 28px; border-radius: 8px; }
+.hero .eyebrow { color: var(--gold); }
+h1, h2 { font-variation-settings: "SOFT" 60, "opsz" 96; }
+
+/* Home hero: copy left, product showreel right */
+.np-hero .wrap { grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); align-items: center; padding-block: 72px 64px; gap: 48px; }
+.np-hero h1 { font-size: clamp(2.8rem, 5.6vw, 4.6rem); line-height: 1; letter-spacing: -.035em; font-weight: 500; }
+.showreel { display: grid; gap: 14px; min-width: 0; }
+.reel-frame { position: relative; aspect-ratio: 16 / 10; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 40px 80px -30px rgba(0,0,0,.6); }
+.reel-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.02); transition: opacity .8s ease, transform 1.2s ease; }
+.reel-frame img.on { opacity: 1; transform: none; }
+.reel-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.reel-tabs button { font: 600 .9rem/1 var(--font-body); color: var(--hero-muted); background: rgba(255,255,255,.06); border: 1px solid var(--hero-line);
+  border-radius: 999px; padding: 9px 14px; cursor: pointer; transition: background .2s, color .2s; }
+.reel-tabs button[aria-selected="true"] { background: var(--hero-fg); color: #143d30; border-color: transparent; }
+
+/* Trust strip */
+.trust { border-bottom: 1px solid var(--line); }
+.trust ul { list-style: none; margin: 0; padding: 22px 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.trust li { display: flex; gap: 12px; align-items: center; }
+.trust svg { width: 34px; height: 34px; flex: none; padding: 7px; border-radius: 10px; background: var(--band); fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.trust span { display: grid; font-size: .9rem; color: var(--muted); line-height: 1.35; }
+.trust b { color: var(--heading); font-size: .98rem; }
+
+/* App showcases: big picture, short words */
+.showcase { padding-block: 72px; }
+.showcase + .showcase { padding-top: 24px; }
+.showcase .wrap { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.showcase.flip .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+.showcase.flip .show-img { order: 2; }
+.show-img { margin: 0; border-radius: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(20,61,48,.1), 0 36px 70px -34px rgba(12,37,29,.55); }
+.show-img img { width: 100%; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.show-img:hover img { transform: scale(1.025); }
+.show-copy { display: grid; gap: 18px; align-content: center; }
+.show-copy h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ticks li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; }
+.ticks li::before { content: ""; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--band) no-repeat center / 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.5l2.5 2.5L10 3.5' fill='none' stroke='%231e5a45' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.show-links { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; font-weight: 600; }
+.btn.small { padding: 10px 18px; font-size: .95rem; }
+
+/* Three steps */
+.three { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.three li { display: grid; gap: 8px; padding: 26px; border-radius: 20px; background: var(--bg); border: 1px solid var(--line); align-content: start; }
+.three .big { font-family: var(--font-display); font-size: 3rem; line-height: 1; color: var(--gold); font-weight: 600; }
+.three b { font-family: var(--font-display); font-size: 1.35rem; color: var(--heading); font-weight: 600; }
+.three li > span:last-child { color: var(--muted); }
+
+/* Closing band */
+.closing { color: var(--hero-fg); text-align: center; }
+.closing .wrap { display: grid; gap: 16px; justify-items: center; padding-block: 80px; }
+.closing h2 { color: var(--hero-fg); }
+.closing p { color: var(--hero-muted); font-size: 1.1rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reel-frame { animation: np-float 9s ease-in-out infinite; }
+}
+@keyframes np-float { 50% { transform: translateY(-6px); } }
+
+@media (max-width: 960px) {
+  .np-hero .wrap, .showcase .wrap, .showcase.flip .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .showcase.flip .show-img { order: 0; }
+  .trust ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .three { grid-template-columns: minmax(0, 1fr); }
+  .np-hero .wrap { padding-block: 40px 48px; }
+}
+@media (max-width: 520px) {
+  .trust ul { grid-template-columns: minmax(0, 1fr); }
+  .reel-tabs button { padding: 8px 11px; font-size: .82rem; }
+}
+@media (max-width: 960px) {
+  .hero, .howto-hero, .closing {
+    background:
+      radial-gradient(600px 400px at 100% 0%, rgba(227, 179, 65, .20), transparent 62%),
+      url("/assets/brand/contours.svg") 70% 0 / 1500px auto no-repeat,
+      linear-gradient(160deg, #0c251d 0%, #143a2d 50%, #1d5643 100%);
+  }
+}
 </style>
 <script defer src="/assets/motion.js"></script>
 <script defer src="/assets/seasonal.js"></script>
 </head>
 <body>
-<header class="site-head on-hero"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/><path d="M28 6 L38 19 H33.5 L42 31 H36.5 L46 44 H39.5 L49 56 H7 L16.5 44 H10 L19.5 31 H14 L22.5 19 H18 Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="25.5" y="55" width="5" height="6" rx="1.2" fill="currentColor"/></svg><span class="word">Northpine <span>Apps</span></span></a><nav class="nav" aria-label="Site"><a href="/apps/">Apps</a><a href="/#pricing">Pricing</a><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></header><main>
-<section class="hero cover">
+<header class="site-head on-hero"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/><path d="M28 6 L38 19 H33.5 L42 31 H36.5 L46 44 H39.5 L49 56 H7 L16.5 44 H10 L19.5 31 H14 L22.5 19 H18 Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="25.5" y="55" width="5" height="6" rx="1.2" fill="currentColor"/></svg><span class="word">Northpine <span>Apps</span></span></a><nav class="nav" aria-label="Site"><a href="/apps/">Apps</a><a href="/#pricing">Pricing</a><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></header><main class="home">
+<section class="hero np-hero">
   <div class="wrap">
     <div class="hero-copy">
-      <h1>Small tools that make Google Sheets and Forms do more.</h1>
-      <p class="lede">Northpine Apps makes four add-ons that open beside the files you already use. Print labels, send certificates, take payments and stop overbooking, with no new account and nothing to install on your computer.</p>
+      <p class="eyebrow">Add-ons for Google Sheets and Forms</p>
+      <h1>Small tools. Real work done.</h1>
+      <p class="lede">Print labels, send certificates, take payments and stop overbooking, right inside the Google files you already use. No new account, nothing to install on your computer.</p>
       <div class="hero-actions">
-        <a class="btn" href="#apps">See the apps</a>
+        <a class="btn" href="#apps">Explore the apps</a>
         <a class="btn ghost" href="/guides/">How-to guides</a>
       </div>
     </div>
-    <div class="cover-icons" aria-hidden="true">
-      <img src="/assets/apps/icons/label-maker.svg" width="120" height="120" alt="">
-      <img src="/assets/apps/icons/certificate-maker.svg" width="120" height="120" alt="">
-      <img src="/assets/apps/icons/form-payments.svg" width="120" height="120" alt="">
-      <img src="/assets/apps/icons/form-limits.svg" width="120" height="120" alt="">
-    </div>
-  </div>
-</section>
-
-<section class="section" id="apps">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Four add-ons, one job each</h2>
-      <p>Each one has a free plan that stays free, and asks only for the Google permissions it needs.</p>
-    </div>
-    <div class="app-grid">
-      <div class="app-card">
-        <div class="app-top"><img src="/assets/apps/icons/label-maker.svg" width="64" height="64" alt=""><span class="app-for">Google Sheets</span></div>
-        <h3>Label Maker</h3>
-        <p class="app-line">Print Avery mailing labels and envelopes straight from a Google Sheet.</p>
-        <ul class="app-points"><li>17 Avery sheets, plus your own sizes</li><li>QR codes and barcodes on each label</li><li>Address check before you print</li></ul>
-        <div class="card-links"><a href="/apps/label-maker">About Label Maker</a><a href="/guides/how-to-use-label-maker">How to use it</a></div>
+    <div class="showreel" aria-label="The four add-ons">
+      <div class="reel-frame">
+        <img class="on" src="/assets/hero/label-maker.webp" width="1600" height="1000" alt="Label Maker: a sheet of Avery labels, the Label Maker panel and a Your labels are ready card.">
+        <img src="/assets/hero/certificate-maker.webp" width="1600" height="1000" alt="Certificate Maker: a finished certificate, the Certificate Maker panel and an emailed PDF." loading="lazy">
+        <img src="/assets/hero/form-payments.webp" width="1600" height="1000" alt="Form Payments: a payment email, the Form Payments panel and a paid notice." loading="lazy">
+        <img src="/assets/hero/form-limits.webp" width="1600" height="1000" alt="Form Limits: a Google Form showing places left, the Form Limits panel and a waitlist notice." loading="lazy">
       </div>
-      <div class="app-card">
-        <div class="app-top"><img src="/assets/apps/icons/certificate-maker.svg" width="64" height="64" alt=""><span class="app-for">Google Sheets</span></div>
-        <h3>Certificate Maker</h3>
-        <p class="app-line">A personalized PDF certificate for everyone on your list, emailed for you.</p>
-        <ul class="app-points"><li>51 designs, or your own Slides</li><li>QR code to check it's genuine</li><li>Automatic for quiz passes</li></ul>
-        <div class="card-links"><a href="/apps/certificate-maker">About Certificate Maker</a><a href="/guides/how-to-use-certificate-maker">How to use it</a></div>
-      </div>
-      <div class="app-card">
-        <div class="app-top"><img src="/assets/apps/icons/form-payments.svg" width="64" height="64" alt=""><span class="app-for">Google Forms</span></div>
-        <h3>Form Payments</h3>
-        <p class="app-line">Stripe and PayPal payments for every form response, with reminders.</p>
-        <ul class="app-points"><li>Prices from the answers</li><li>Automatic reminders and receipts</li><li>We never take a cut</li></ul>
-        <div class="card-links"><a href="/apps/form-payments">About Form Payments</a><a href="/guides/how-to-use-form-payments">How to use it</a></div>
-      </div>
-      <div class="app-card">
-        <div class="app-top"><img src="/assets/apps/icons/form-limits.svg" width="64" height="64" alt=""><span class="app-for">Google Forms</span></div>
-        <h3>Form Limits</h3>
-        <p class="app-line">Places per choice, a real waitlist and opening hours for sign-up forms.</p>
-        <ul class="app-points"><li>"3 left" shown on the form</li><li>Late arrivals go on a waitlist</li><li>Free forever on one form</li></ul>
-        <div class="card-links"><a href="/apps/form-limits">About Form Limits</a><a href="/guides/how-to-use-form-limits">How to use it</a></div>
+      <div class="reel-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true">Label Maker</button>
+        <button type="button" role="tab" aria-selected="false">Certificate Maker</button>
+        <button type="button" role="tab" aria-selected="false">Form Payments</button>
+        <button type="button" role="tab" aria-selected="false">Form Limits</button>
       </div>
     </div>
   </div>
 </section>
 
-<section class="section band" id="promise">
+<section class="trust" aria-label="Why people trust Northpine Apps">
   <div class="wrap">
-    <div class="section-head"><h2>How we build them</h2></div>
-    <div class="promise">
-      <div><strong>Your data stays in your Google account</strong><span>The add-ons run inside Google. We don't have a server that copies your sheets, forms or addresses.</span></div>
-      <div><strong>Only the access each one needs</strong><span>They can see the file they're opened in and the files they create, and nothing else in your Drive.</span></div>
-      <div><strong>A free plan that stays free</strong><span>Try everything first. Upgrade only if you need more, and cancel any time.</span></div>
-      <div><strong>Pay yearly or once</strong><span>Every Pro plan has a pay-once lifetime option, and a 7-day refund if it isn't right for you.</span></div>
+    <ul>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/></svg><span><b>Runs inside Google</b>Your data stays in your account</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0110 0v3M5 11h14v10H5z"/></svg><span><b>Least access</b>Only the file it's opened in</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12l-8 8-8-8 8-8 8 8z"/></svg><span><b>Free plan</b>That stays free</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1016 0 8 8 0 00-16 0zm4 0l3 3 5-6"/></svg><span><b>7-day refunds</b>Pay yearly or once</span></li>
+    </ul>
+  </div>
+</section>
+
+<div id="apps">
+<section class="showcase">
+  <div class="wrap">
+    <figure class="show-img"><img src="/assets/hero/label-maker.webp" width="1600" height="1000" loading="lazy" alt="Label Maker turning a sheet of addresses into Avery 5160 labels."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="/assets/apps/icons/label-maker.svg" alt="">Label Maker · Google Sheets</p>
+      <h2>Mailing labels from your sheet, lined up on the first try.</h2>
+      <ul class="ticks"><li>17 Avery sheets, plus your own sizes</li><li>Addresses checked before you print</li><li>QR codes, barcodes and pictures on each label</li></ul>
+      <div class="show-links"><a class="btn small" href="/guides/how-to-use-label-maker">See how it works</a><a href="/apps/label-maker">About Label Maker</a></div>
     </div>
+  </div>
+</section>
+<section class="showcase flip">
+  <div class="wrap">
+    <figure class="show-img"><img src="/assets/hero/certificate-maker.webp" width="1600" height="1000" loading="lazy" alt="Certificate Maker making a certificate of completion and emailing it."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="/assets/apps/icons/certificate-maker.svg" alt="">Certificate Maker · Google Sheets</p>
+      <h2>A certificate for everyone on your list, emailed for you.</h2>
+      <ul class="ticks"><li>51 designs, or your own Google Slides</li><li>A QR code proves each one is genuine</li><li>Names checked and fitted automatically</li></ul>
+      <div class="show-links"><a class="btn small" href="/guides/how-to-use-certificate-maker">See how it works</a><a href="/apps/certificate-maker">About Certificate Maker</a></div>
+    </div>
+  </div>
+</section>
+<section class="showcase">
+  <div class="wrap">
+    <figure class="show-img"><img src="/assets/hero/form-payments.webp" width="1600" height="1000" loading="lazy" alt="Form Payments sending a payment email and showing who has paid."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="/assets/apps/icons/form-payments.svg" alt="">Form Payments · Google Forms</p>
+      <h2>Every response gets a bill. You see who's paid.</h2>
+      <ul class="ticks"><li>Stripe and PayPal, straight to your account</li><li>Prices worked out from the answers</li><li>Reminders and receipts sent for you</li></ul>
+      <div class="show-links"><a class="btn small" href="/guides/how-to-use-form-payments">See how it works</a><a href="/apps/form-payments">About Form Payments</a></div>
+    </div>
+  </div>
+</section>
+<section class="showcase flip">
+  <div class="wrap">
+    <figure class="show-img"><img src="/assets/hero/form-limits.webp" width="1600" height="1000" loading="lazy" alt="Form Limits showing places left on a Google Form and a waitlist."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="/assets/apps/icons/form-limits.svg" alt="">Form Limits · Google Forms</p>
+      <h2>Sign-up forms that never overbook.</h2>
+      <ul class="ticks"><li>Places per choice, with "3 left" on the form</li><li>A real waitlist that fills freed places</li><li>Opens and closes on your schedule</li></ul>
+      <div class="show-links"><a class="btn small" href="/guides/how-to-use-form-limits">See how it works</a><a href="/apps/form-limits">About Form Limits</a></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="section band steps3">
+  <div class="wrap">
+    <div class="section-head"><h2>Up and running in a minute</h2></div>
+    <ol class="three">
+      <li><span class="big">1</span><b>Install</b><span>Add it from the Google Workspace Marketplace. One click, no sign-up.</span></li>
+      <li><span class="big">2</span><b>Open it</b><span>In your sheet or form, choose Extensions, then the add-on. It opens on the right.</span></li>
+      <li><span class="big">3</span><b>Follow the steps</b><span>The panel walks you through it. Every guide has pictures of each step.</span></li>
+    </ol>
   </div>
 </section>
 
 <section class="section" id="pricing">
   <div class="wrap">
     <div class="section-head">
-      <h2>Pricing</h2>
-      <p>Each add-on is bought on its own. Prices are in US dollars.</p>
+      <h2>Simple pricing</h2>
+      <p>Each add-on is bought on its own, in US dollars. Every one has a free plan.</p>
     </div>
     <div class="table-wrap">
       <table class="price-table">
@@ -598,7 +714,31 @@ html { scroll-behavior: smooth; }
     </div>
   </div>
 </section>
+
+<section class="closing">
+  <div class="wrap">
+    <h2>Questions before you install?</h2>
+    <p>Write to us. A real person answers, usually within a day.</p>
+    <a class="btn" href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a>
+  </div>
+</section>
 </main>
+<script>
+(function () {
+  var frame = document.querySelector('.reel-frame'); if (!frame) return;
+  var imgs = [].slice.call(frame.querySelectorAll('img')), tabs = [].slice.call(document.querySelectorAll('.reel-tabs button'));
+  var i = 0, timer = null, still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n) {
+    i = (n + imgs.length) % imgs.length;
+    imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); if (k === i) im.loading = 'eager'; });
+    tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+  }
+  function play() { if (!still) { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, 4500); } }
+  tabs.forEach(function (t, k) { t.addEventListener('click', function () { show(k); play(); }); });
+  imgs.slice(1).forEach(function (im) { var p = new Image(); p.src = im.src; });
+  play();
+})();
+</script>
 <footer class="site-foot"><div class="wrap"><div class="foot-row"><span>© 2026 Northpine Apps</span><span class="foot-links"><a href="/apps/">Apps</a><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a><a href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a></span></div><p>Label Maker is not affiliated with or endorsed by Avery or Google. Avery and Google Sheets are trademarks of their owners; product numbers are used only to describe compatible sheets.</p></div></footer>
 </body>
 </html>
