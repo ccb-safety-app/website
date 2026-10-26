@@ -1,56 +1,82 @@
-title: Label Maker support
-description: Help with Label Maker for Google Sheets: opening it, lining up labels, activating Pro, refunds and contact.
+title: Support
+description: Help with Northpine Apps add-ons: Label Maker, Form Limits, Form Payments and Certificate Maker. Opening them, activating Pro, refunds and contact.
 active: support
 ---
 <main class="doc">
   <div class="wrap">
     <h1>Support</h1>
-    <p class="intro">Answers to common questions about Label Maker. If yours isn't here, email <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>. We reply within 2 business days.</p>
+    <p class="intro">Help for all four Northpine Apps add-ons. If your question isn't here, email <a href="mailto:{{EMAIL}}">{{EMAIL}}</a> and say which add-on you're using. We reply within 2 business days.</p>
+    <p>Jump to: <a href="#label-maker">Label Maker</a> · <a href="#form-limits">Form Limits</a> · <a href="#form-payments">Form Payments</a> · <a href="#certificate-maker">Certificate Maker</a> · <a href="#all-apps">Pro, refunds and uninstalling (all add-ons)</a></p>
 
-    <section>
-      <h2>Open Label Maker</h2>
-      <p>In Google Sheets, click <strong>Extensions → Label Maker → Create labels</strong>. The panel opens beside your sheet.</p>
-      <p>To try it without your own data, click <strong>Extensions → Label Maker → Add a sample sheet</strong>.</p>
-    </section>
-
-    <section>
-      <h2>My labels don't line up</h2>
+    <section id="label-maker">
+      <h2>Label Maker (Google Sheets)</h2>
+      <h3>Open Label Maker</h3>
+      <p>In Google Sheets, click <strong>Extensions → Label Maker → Create labels</strong>. The panel opens beside your sheet. To try it without your own data, click <strong>Extensions → Label Maker → Add a sample sheet</strong>.</p>
+      <h3>My labels don't line up</h3>
       <ul>
         <li>Check that you chose the same product number as the one on your package of labels.</li>
         <li>In the print window, set the scale to <strong>Actual size (100%)</strong>, not "Fit to page".</li>
-        <li>Print the test page on plain paper, hold it against a label sheet, and use <strong>Printer alignment</strong> in the panel to shift the layout if your printer is off.</li>
+        <li>Print the test page on plain paper, hold it against a label sheet, and use <strong>Printer Alignment</strong> in the panel to shift the layout if your printer is off.</li>
       </ul>
+      <h3>Missing label size</h3>
+      <p>Add your own size in the panel under <strong>Choose Your Label Sheet → Add Your Own Size</strong>, or email us the product number and we'll look at adding it.</p>
+      <h3>Activate Pro</h3>
+      <p>After you buy Pro, your license key arrives by email. In the Label Maker panel, open <strong>Plan Details and Privacy</strong>, paste the key and click <strong>Activate</strong>.</p>
+      <p>Label Maker's own terms and privacy policy: <a href="/terms">Terms of service</a> · <a href="/privacy">Privacy policy</a>.</p>
     </section>
 
-    <section>
-      <h2>The panel shows an error as soon as it opens</h2>
-      <p>Signed in to more than one Google account? Open this sheet in a window signed in to only one account, then try again. Google can mix up accounts when several are signed in at once.</p>
+    <section id="form-limits">
+      <h2>Form Limits (Google Forms)</h2>
+      <h3>Open Form Limits</h3>
+      <p>Open your form in the Google Forms editor, click the <strong>Add-ons</strong> (puzzle piece) icon at the top, then <strong>Form Limits → Open Form Limits</strong>. The panel opens beside your form.</p>
+      <h3>My form didn't close or open on time</h3>
+      <ul>
+        <li>Check the time zone shown under <strong>Open and Close Times</strong>; the times you set use that time zone.</li>
+        <li>Opening and closing are done by Google in the background and can take a few minutes after the set time.</li>
+        <li>Close the form straight away with <strong>Close Now</strong> in the panel.</li>
+      </ul>
+      <h3>The places left look wrong</h3>
+      <p>Counts are rebuilt from the form's real responses each time, so deleted responses free up their places. If something still looks off, email us with the form's name and what you expected to see.</p>
+      <p>Privacy policy: <a href="/legal/form-limits-privacy">Form Limits privacy policy</a> · Terms: <a href="/legal/apps-terms">Terms of service</a>.</p>
     </section>
 
-    <section>
-      <h2>Activate Pro</h2>
-      <p>After you buy Pro, your license key arrives by email. In the Label Maker panel, open <strong>Plan details and privacy</strong>, paste the key and click <strong>Activate</strong>.</p>
-      <p>To use Pro on a different Google account, click <strong>Remove key</strong> on the old account first, then activate the key on the new one.</p>
+    <section id="form-payments">
+      <h2>Form Payments (Google Forms)</h2>
+      <h3>Open Form Payments</h3>
+      <p>Open your form in the Google Forms editor, click the <strong>Add-ons</strong> (puzzle piece) icon at the top, then <strong>Form Payments → Open Form Payments</strong>. Start on the <strong>Setup</strong> tab.</p>
+      <h3>Connect Stripe or PayPal</h3>
+      <p>Under <strong>Connect How You Get Paid</strong>, choose <strong>Connect Stripe</strong> and paste a restricted key from your Stripe dashboard, or <strong>Connect PayPal</strong> and paste your PayPal client ID and secret. Money goes straight to your own account; we never take a cut. To try it without real money, use Stripe's test mode and the test card 4242 4242 4242 4242.</p>
+      <h3>Someone paid but still shows as Waiting</h3>
+      <p>Paid status is checked every hour. To check right away, press <strong>Check Now</strong> on the <strong>Payments</strong> tab. For cash or check, open the person and choose <strong>Paid in Person</strong>.</p>
+      <h3>Stop taking payments</h3>
+      <p>On the <strong>Setup</strong> tab, press <strong>Stop Collecting Payments</strong>. The Payments spreadsheet stays in your Google Drive.</p>
+      <p>Privacy policy: <a href="/legal/form-payments-privacy">Form Payments privacy policy</a> · Terms: <a href="/legal/apps-terms">Terms of service</a>.</p>
     </section>
 
-    <section>
-      <h2>Manage or cancel Pro yearly</h2>
+    <section id="certificate-maker">
+      <h2>Certificate Maker (Google Sheets)</h2>
+      <h3>Open Certificate Maker</h3>
+      <p>In Google Sheets, click <strong>Extensions → Certificate Maker → Open Certificate Maker</strong>. To try it with sample names, click <strong>Extensions → Certificate Maker → Add a Sample Sheet</strong>. Then go through the five steps: <strong>Design, Details, Name Check, Logo &amp; Signatures, Delivery</strong>.</p>
+      <h3>Some emails haven't gone out yet</h3>
+      <p>Google limits how many emails an account can send each day. When the limit is reached, Certificate Maker sends the rest later by itself, as soon as Google allows. The certificates themselves are already in your Google Drive.</p>
+      <h3>Send certificates automatically after a Google Forms quiz</h3>
+      <p>Link the form to your sheet (in Google Forms: <strong>Responses → Link to Sheets</strong>), then in the <strong>Delivery</strong> step turn on <strong>Send Automatically When a Form Is Submitted</strong>. Turn on <strong>Only People Who Pass</strong> to send certificates only to people who reach the pass mark.</p>
+      <p>Privacy policy: <a href="/legal/certificate-maker-privacy">Certificate Maker privacy policy</a> · Terms: <a href="/legal/apps-terms">Terms of service</a>.</p>
+    </section>
+
+    <section id="all-apps">
+      <h2>All add-ons</h2>
+      <h3>The panel shows an error as soon as it opens</h3>
+      <p>Signed in to more than one Google account? Open the sheet or form in a window signed in to only one account, then try again. Google can mix up accounts when several are signed in at once.</p>
+      <h3>Activate Pro</h3>
+      <p>After you buy Pro, your license key arrives by email. In Form Limits, Form Payments or Certificate Maker, click <strong>Free Plan</strong> at the top of the panel, paste the key under <strong>Already Bought? Paste Your License Key</strong> and click <strong>Activate</strong>. For Label Maker, see above.</p>
+      <p>To use Pro on a different Google account, click <strong>Remove Key</strong> on the old account first, then activate the key on the new one.</p>
+      <h3>Manage or cancel Pro yearly</h3>
       <p>Change your card, download invoices or cancel at <a href="https://northpineapps.lemonsqueezy.com/billing">northpineapps.lemonsqueezy.com/billing</a>. If you cancel, Pro stays active until the end of the year you paid for.</p>
-    </section>
-
-    <section>
-      <h2>Refunds</h2>
+      <h3>Refunds</h3>
       <p>Email <a href="mailto:{{EMAIL}}">{{EMAIL}}</a> within 7 days of purchase for a full refund.</p>
-    </section>
-
-    <section>
-      <h2>Missing label size</h2>
-      <p>Add your own size in the panel under <strong>Choose label sheet → Add your own size</strong>, or email us the product number and we'll look at adding it.</p>
-    </section>
-
-    <section>
-      <h2>Uninstall</h2>
-      <p>In Google Sheets, click <strong>Extensions → Add-ons → Manage add-ons</strong>, find Label Maker, and choose <strong>Uninstall</strong>. Label documents you created stay in your Google Drive.</p>
+      <h3>Uninstall</h3>
+      <p>Remove an add-on's access at any time at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. In Google Sheets you can also click <strong>Extensions → Add-ons → Manage add-ons</strong>, find the add-on and choose <strong>Uninstall</strong>. Files the add-on created stay in your Google Drive until you delete them.</p>
     </section>
 
     <section>
