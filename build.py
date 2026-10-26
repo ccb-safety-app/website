@@ -8,6 +8,7 @@ Writes two folders:
 """
 import html
 import pathlib
+import re
 import shutil
 
 ROOT = pathlib.Path(__file__).parent
@@ -15,6 +16,21 @@ SRC = ROOT / "src"
 CSS = (SRC / "style.css").read_text()
 DOMAIN = "northpineapps.com"
 EMAIL = "northpineapps@gmail.com"
+# Google Workspace Marketplace listing links. Leave empty until Google approves that listing:
+# an empty link hides its Install buttons (never claim an add-on is available before approval).
+MARKETPLACE = {
+    "label-maker": "",
+    "form-limits": "",
+    "form-payments": "",
+    "certificate-maker": "",
+}
+
+
+def install_button(app, cls="btn"):
+    url = MARKETPLACE.get(app, "")
+    if not url:
+        return ""
+    return f'<a class="{cls}" href="{html.escape(url)}" rel="noopener">Install from Google Workspace Marketplace</a>'
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
@@ -167,6 +183,8 @@ def render(name, links):
                 .replace("{{ENVELOPES}}", envelopes())
                 .replace("{{CODE_DEMO}}", (SRC / "partials" / "code-demo.html").read_text())
                 .replace("{{EMAIL}}", EMAIL))
+    body = re.sub(r"\{\{INSTALL:([a-z-]+)(?::([a-z ]+))?\}\}",
+                  lambda m: install_button(m.group(1), m.group(2) or "btn"), body)
     for k, v in sorted(links.items(), key=lambda kv: -len(kv[0])):
         body = body.replace("{{" + k + "}}", v)
     meta, _, content = body.partition("\n---\n")

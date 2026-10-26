@@ -5,13 +5,13 @@ active: apps
 <main class="doc">
   <div class="wrap">
     <h1>Certificate Maker privacy policy</h1>
-    <p class="updated">Last updated: October 18, 2026</p>
+    <p class="updated">Last updated: October 24, 2026</p>
     <p class="intro">This policy explains what Certificate Maker for Google Sheets ("Certificate Maker", "we") does with your information. Certificate Maker is made by Northpine Apps.</p>
     <section>
       <h2>What Certificate Maker can access</h2>
       <ul>
         <li>The Google Sheet you open it in (and only that spreadsheet), to read the people and details you want on certificates, and to write each certificate's link, number and status back.</li>
-        <li>The Google Slides design you choose, to build certificates from it.</li>
+        <li>A Google Slides design of your own, only if you choose it with the Google file picker, to build certificates from it. Certificate Maker can open only that one file, not your other presentations.</li>
         <li>Files that Certificate Maker creates in your Google Drive: certificate designs, folders, PDFs and pictures. It does not open or change your other Drive files.</li>
         <li>Your Google account email address, to show which account you are using, to send you a copy of emails if you ask, and to check whether you have bought Pro.</li>
       </ul>
@@ -25,18 +25,18 @@ active: apps
     <section>
       <h2>Services Certificate Maker uses</h2>
       <ul>
-        <li>Google Slides, Drive and Gmail, through Google Apps Script, in your own account.</li>
+        <li>Google Drive, Google Slides and Gmail, through Google Apps Script, in your own account. Each certificate is written by the add-on as a PowerPoint file with its pictures inside, and Google Drive turns it into a Google Slides file that the add-on owns; the PDF is exported by Google Drive.</li>
+        <li>The Google file picker (Google Picker), so you can choose your own Slides design. It runs in your browser and gives Certificate Maker access only to the file you pick.</li>
         <li>Google's Slides thumbnail service, to show a picture of a certificate in the sidebar and to make PNG copies when you ask.</li>
         <li>Lemon Squeezy, our payment provider and reseller. If you buy Pro, Lemon Squeezy processes your payment and email address under its own privacy policy. We never see your card details. To confirm your plan, Certificate Maker sends your license key and account email to Lemon Squeezy.</li>
       </ul>
     </section>
     <section>
       <h2>Permissions Certificate Maker asks for, and why</h2>
-      <p>These are the 8 permissions Google shows when you install Certificate Maker. It asks for exactly these and nothing else; each is used only for the purpose below.</p>
+      <p>These are the 7 permissions Google shows when you install Certificate Maker. It asks for exactly these and nothing else; each is used only for the purpose below.</p>
       <ul>
         <li><strong>See and edit this spreadsheet only</strong> (<code>spreadsheets.currentonly</code>): reads the people in the spreadsheet you open Certificate Maker in and writes each certificate's link, number and status back into it.</li>
-        <li><strong>See, edit, create and delete only the specific Google Drive files you use with this app</strong> (<code>drive.file</code>): creates and manages only the files Certificate Maker makes itself: the logos folder, the certificate folder, PDFs, PNGs and temporary slides. It cannot see any of your other Drive files.</li>
-        <li><strong>See, edit, create and delete your Google Slides presentations</strong> (<code>presentations</code>): builds each certificate in Google Slides from a built-in design or from a Slides design you paste in, places logos, signatures and QR codes, and exports the PDF. It works only on the presentations it creates and the design you choose.</li>
+        <li><strong>See, edit, create and delete only the specific Google Drive files you use with this app</strong> (<code>drive.file</code>): creates and manages only the files Certificate Maker makes itself (the logos folder, the certificate folder, the certificates as Google Slides files, PDFs, PNGs and temporary files) and the one Slides design you choose with the Google file picker. It builds each certificate from those files, places logos, signatures and QR codes, and exports the PDF. It cannot see any of your other Drive files or presentations.</li>
         <li><strong>Display and run the add-on in Google Sheets</strong> (<code>script.container.ui</code>): shows the sidebar, the large window and the Extensions menu entry.</li>
         <li><strong>Create and manage triggers</strong> (<code>script.scriptapp</code>): sets up the automatic certificate for new Google Form responses and the follow-up that sends emails held back by Google's daily limit.</li>
         <li><strong>Send email as you</strong> (<code>script.send_mail</code>): emails each certificate to the person, only when you turn emailing on. It cannot read your inbox.</li>
@@ -53,7 +53,7 @@ active: apps
       <ul>
         <li><strong>Your data stays in your Google account.</strong> Certificate Maker runs on Google Apps Script inside your own Google account. Your sheet, the people on it and the certificates are stored and processed only by Google's own systems, which encrypt data in transit and at rest. Northpine Apps has no server that receives, copies or stores them. QR codes are drawn inside the add-on, not by an outside service.</li>
         <li><strong>Encrypted connections only.</strong> Every request Certificate Maker makes outside your sheet uses HTTPS: Google's own Slides and Drive services, and the license check with Lemon Squeezy. Only your license key and account email are sent to Lemon Squeezy, never names, emails or certificate contents.</li>
-        <li><strong>Least access.</strong> Certificate Maker asks for the narrowest permissions it can. Its spreadsheet permission covers only the spreadsheet you use it in. Its Drive permission (drive.file) covers only files Certificate Maker itself creates, so it cannot see or change your other Drive files. Its Slides permission is used to build certificates and to read a design you choose. It has no access to your inbox or contacts, and it sends email only when you turn emailing on.</li>
+        <li><strong>Least access.</strong> Certificate Maker asks for the narrowest permissions it can. Its spreadsheet permission covers only the spreadsheet you use it in. Its Drive permission (drive.file) covers only files Certificate Maker itself creates, so it cannot see or change your other Drive files. A Slides design of your own is opened only if you pick it with the Google file picker, and then only that one file. It has no access to your inbox or contacts, and it sends email only when you turn emailing on.</li>
         <li><strong>Private settings.</strong> Your settings are kept in the add-on's script storage for your spreadsheet. Your license key and plan are kept in Google's per-user script storage, which only your own account can read. Other people who open the sheet cannot see your key, and neither can we.</li>
         <li><strong>No human access.</strong> Nobody at Northpine Apps can see your Google data. We would only ever look at data you choose to send us yourself, for example in a support email.</li>
         <li><strong>Protected developer accounts.</strong> The accounts we use to build, sell and publish our add-ons are protected with strong, unique passwords and two-step verification wherever the service offers it.</li>
