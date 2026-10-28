@@ -8,6 +8,15 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Print a full sheet of the same return address on Avery 5167 or 5195 labels, or a different return address per row, from Google Sheets.">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Northpine Apps">
+<meta property="og:title" content="Return address labels from Google Sheets (Avery 5167 and 5195)">
+<meta property="og:description" content="Print a full sheet of the same return address on Avery 5167 or 5195 labels, or a different return address per row, from Google Sheets.">
+<meta property="og:url" content="https://northpineapps.com/guides/return-address-labels-google-sheets">
+<meta property="og:image" content="https://northpineapps.com/assets/og/label-maker.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: a pine-green hero holding a real Avery 5160 sheet, then quiet white sections that read like the add-on itself. */
@@ -289,6 +298,14 @@ td.code { font-weight: 600; color: var(--heading); white-space: nowrap; }
 }
 .cta strong { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); }
 .cta p { color: var(--ink); }
+.cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 6px; }
+.install-strip { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  margin-top: 24px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--band); max-width: var(--measure); }
+.install-strip img { width: 40px; height: 40px; border-radius: 10px; }
+.install-strip strong { display: block; color: var(--heading); font-weight: 600; }
+.install-strip span { display: block; color: var(--muted); font-size: .9rem; }
+.howto-hero .install-strip { margin-top: 28px; }
+@media (max-width: 520px) { .install-strip { grid-template-columns: 40px minmax(0, 1fr); } .install-strip .btn { grid-column: 1 / -1; justify-content: center; } }
 .tip { border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; color: var(--ink); }
 
 /* App pages: the add-on panel rises out of the hero like the label sheet does. */
@@ -603,6 +620,7 @@ h1, h2 { font-variation-settings: "SOFT" 60, "opsz" 96; }
     <p class="crumbs"><a href="/guides/">Guides</a></p>
     <h1>Return address labels from Google Sheets</h1>
     <p class="intro">Return address labels are small, so a sheet holds 60 or 80 of them. Usually you want the same address on every label, which is the one thing a normal mail merge is bad at. Here's how to do it either way.</p>
+    <aside class="install-strip"><img src="/assets/apps/icons/label-maker.svg" width="40" height="40" alt=""><div><strong>Spreadsheet Labels</strong><span>Google Sheets add-on · free for 3 pages per document</span></div><a class="btn small" href="https://workspace.google.com/marketplace/app/spreadsheet_labels/1076288421936" rel="noopener">Install free</a></aside>
 
     <section>
       <h2>Which label sheet?</h2>
@@ -651,6 +669,7 @@ h1, h2 { font-variation-settings: "SOFT" 60, "opsz" 96; }
     <aside class="cta">
       <strong>Spreadsheet Labels for Google Sheets</strong>
       <p>Return address labels, address labels and envelopes from one add-on, with 80-up and 60-up sheets included.</p>
+      <div class="cta-actions"><a class="btn small" href="https://workspace.google.com/marketplace/app/spreadsheet_labels/1076288421936" rel="noopener">Install from Google Workspace Marketplace</a><a href="/guides/how-to-use-label-maker">How to use it, step by step</a></div>
     </aside>
   </div>
 </main>

@@ -8,6 +8,15 @@
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="The terms for using Certificate Maker, Form Payments and Form Limits, made by Northpine Apps.">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Northpine Apps">
+<meta property="og:title" content="Terms of service for Certificate Maker, Form Payments and Form Limits">
+<meta property="og:description" content="The terms for using Certificate Maker, Form Payments and Form Limits, made by Northpine Apps.">
+<meta property="og:url" content="https://northpineapps.com/legal/apps-terms">
+<meta property="og:image" content="https://northpineapps.com/assets/og/northpine.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: a pine-green hero holding a real Avery 5160 sheet, then quiet white sections that read like the add-on itself. */
@@ -289,6 +298,14 @@ td.code { font-weight: 600; color: var(--heading); white-space: nowrap; }
 }
 .cta strong { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); }
 .cta p { color: var(--ink); }
+.cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 6px; }
+.install-strip { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  margin-top: 24px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--band); max-width: var(--measure); }
+.install-strip img { width: 40px; height: 40px; border-radius: 10px; }
+.install-strip strong { display: block; color: var(--heading); font-weight: 600; }
+.install-strip span { display: block; color: var(--muted); font-size: .9rem; }
+.howto-hero .install-strip { margin-top: 28px; }
+@media (max-width: 520px) { .install-strip { grid-template-columns: 40px minmax(0, 1fr); } .install-strip .btn { grid-column: 1 / -1; justify-content: center; } }
 .tip { border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; color: var(--ink); }
 
 /* App pages: the add-on panel rises out of the hero like the label sheet does. */

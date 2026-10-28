@@ -216,6 +216,7 @@ heading: How to use {name}
       <li><span>Set-up time</span><b>About {minutes}</b></li>
       <li><span>Free plan</span><b>{plan}</b></li>
     </ul>
+    {{{{INSTALL_STRIP:{slug}}}}}
   </div>
 </section>
 <div class="wrap howto-grid">
@@ -231,7 +232,7 @@ heading: How to use {name}
     <section class="help" id="help">
       <h2>Still stuck?</h2>
       <p>Email <a href="mailto:{{{{EMAIL}}}}">{{{{EMAIL}}}}</a> with a screenshot of the panel and what you expected to happen. We usually reply within a day.</p>
-      <p class="help-links"><a href="{{{{app:{slug}}}}}">About {name}</a><a href="{{{{support}}}}">Support</a><a href="{{{{guides}}}}">All guides</a></p>
+      <p class="help-links">{{{{INSTALL:{slug}:btn small}}}}<a href="{{{{app:{slug}}}}}">About {name}</a><a href="{{{{support}}}}">Support</a><a href="{{{{guides}}}}">All guides</a></p>
     </section>
   </div>
 </div>

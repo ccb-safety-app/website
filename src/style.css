@@ -277,6 +277,14 @@ td.code { font-weight: 600; color: var(--heading); white-space: nowrap; }
 }
 .cta strong { font-family: var(--font-display); font-size: 1.15rem; color: var(--heading); }
 .cta p { color: var(--ink); }
+.cta-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 6px; }
+.install-strip { display: grid; grid-template-columns: 40px minmax(0, 1fr) auto; align-items: center; gap: 14px;
+  margin-top: 24px; padding: 14px 16px; border-radius: 12px; border: 1px solid var(--line); background: var(--band); max-width: var(--measure); }
+.install-strip img { width: 40px; height: 40px; border-radius: 10px; }
+.install-strip strong { display: block; color: var(--heading); font-weight: 600; }
+.install-strip span { display: block; color: var(--muted); font-size: .9rem; }
+.howto-hero .install-strip { margin-top: 28px; }
+@media (max-width: 520px) { .install-strip { grid-template-columns: 40px minmax(0, 1fr); } .install-strip .btn { grid-column: 1 / -1; justify-content: center; } }
 .tip { border-left: 3px solid var(--gold); padding: 4px 0 4px 16px; color: var(--ink); }
 
 /* App pages: the add-on panel rises out of the hero like the label sheet does. */

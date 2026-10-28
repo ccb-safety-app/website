@@ -7,6 +7,7 @@ Writes two folders:
   preview/  the same pages for a claude.ai preview (home page without the document skeleton)
 """
 import html
+import json
 import pathlib
 import re
 import shutil
@@ -24,6 +25,25 @@ MARKETPLACE = {
     "form-payments": "",
     "certificate-maker": "",
 }
+
+
+APP_INFO = {
+    "label-maker": ("Spreadsheet Labels", "Google Sheets add-on · free for 3 pages per document"),
+    "certificate-maker": ("Certificate Maker", "Google Sheets add-on · free for 5 certificates a month"),
+    "form-payments": ("Form Payments", "Google Forms add-on · free for 10 payment requests a month"),
+    "form-limits": ("Form Limits", "Google Forms add-on · free on one form"),
+}
+
+
+def install_strip(app, assets):
+    """Compact install box for guides. Empty until the app's listing is approved."""
+    url = MARKETPLACE.get(app, "")
+    if not url:
+        return ""
+    name, line = APP_INFO[app]
+    return (f'<aside class="install-strip"><img src="{assets}apps/icons/{app}.svg" width="40" height="40" alt="">'
+            f'<div><strong>{name}</strong><span>{line}</span></div>'
+            f'<a class="btn small" href="{html.escape(url)}" rel="noopener">Install free</a></aside>')
 
 
 def install_button(app, cls="btn"):
@@ -174,6 +194,63 @@ def apps_list(links):
     return "".join(items)
 
 
+LABEL_GUIDES = {"avery-5160-template-google-docs", "holiday-card-address-labels", "print-avery-5160-labels-from-google-sheets",
+                "print-envelopes-from-google-sheets", "return-address-labels-google-sheets"}
+
+
+def page_url(name):
+    if name == "index":
+        return f"https://{DOMAIN}/"
+    if name.endswith("/index"):
+        return f"https://{DOMAIN}/" + name[:-5]
+    return f"https://{DOMAIN}/" + name
+
+
+def page_app(name):
+    """Which add-on a page is about (for its share picture), or None."""
+    kind, _, stem = name.partition("/")
+    if kind == "apps" and stem in APP_INFO:
+        return stem
+    if kind == "guides":
+        if stem.startswith("how-to-use-") and stem[11:] in APP_INFO:
+            return stem[11:]
+        if stem in LABEL_GUIDES or stem.startswith("wedding-") or stem.startswith("shipping-") or stem.startswith("name-badges"):
+            return "label-maker"
+    return None
+
+
+def social_head(name, info):
+    """Open Graph / X card tags and JSON-LD structured data."""
+    url = page_url(name)
+    app = page_app(name)
+    img = f"https://{DOMAIN}/assets/og/{app or 'northpine'}.jpg"
+    title = html.escape(info["title"])
+    desc = html.escape(info["description"])
+    out = (f'<meta property="og:type" content="website">\n<meta property="og:site_name" content="Northpine Apps">\n'
+           f'<meta property="og:title" content="{title}">\n<meta property="og:description" content="{desc}">\n'
+           f'<meta property="og:url" content="{url}">\n<meta property="og:image" content="{img}">\n'
+           f'<meta property="og:image:width" content="1200">\n<meta property="og:image:height" content="630">\n'
+           f'<meta name="twitter:card" content="summary_large_image">\n')
+    org = {"@type": "Organization", "name": "Northpine Apps", "url": f"https://{DOMAIN}/", "email": EMAIL,
+           "logo": f"https://{DOMAIN}/assets/favicon.png"}
+    data = None
+    if name == "index":
+        data = dict({"@context": "https://schema.org"}, **org)
+    elif name.startswith("apps/") and app:
+        app_name, line = APP_INFO[app]
+        data = {"@context": "https://schema.org", "@type": "SoftwareApplication", "name": app_name,
+                "description": info["description"], "url": url, "image": img,
+                "applicationCategory": "BusinessApplication", "applicationSubCategory": "Google Workspace add-on",
+                "operatingSystem": "Web browser (Google Workspace)",
+                "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD", "description": "Free plan; Pro available"},
+                "publisher": org}
+        if MARKETPLACE.get(app):
+            data["installUrl"] = MARKETPLACE[app]
+    if data:
+        out += '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False) + '</script>\n'
+    return out
+
+
 def render(name, links):
     body = (SRC / f"{name}.html").read_text()
     body = body.replace("{{APPS_LIST}}", apps_list(links) if "{{APPS_LIST}}" in body else "")
@@ -183,6 +260,7 @@ def render(name, links):
                 .replace("{{ENVELOPES}}", envelopes())
                 .replace("{{CODE_DEMO}}", (SRC / "partials" / "code-demo.html").read_text())
                 .replace("{{EMAIL}}", EMAIL))
+    body = re.sub(r"\{\{INSTALL_STRIP:([a-z-]+)\}\}", lambda m: install_strip(m.group(1), links["assets"]), body)
     body = re.sub(r"\{\{INSTALL:([a-z-]+)(?::([a-z ]+))?\}\}",
                   lambda m: install_button(m.group(1), m.group(2) or "btn"), body)
     for k, v in sorted(links.items(), key=lambda kv: -len(kv[0])):
@@ -193,6 +271,7 @@ def render(name, links):
             f'<meta name="claude:viewport-fit-sides" content="cover">\n'
             f'<meta name="description" content="{html.escape(info["description"])}">\n'
             f'<link rel="icon" type="image/png" href="{links["assets"]}favicon.png">\n'
+            f'{social_head(name, info)}'
             f'{FONTS}\n<style>\n{CSS.replace("{{assets}}", links["assets"])}</style>\n'
             f'<script defer src="{links["assets"]}motion.js"></script>\n'
             f'<script defer src="{links["assets"]}seasonal.js"></script>\n')
