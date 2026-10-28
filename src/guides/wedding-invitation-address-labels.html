@@ -1,0 +1,67 @@
+title: Wedding invitation address labels from a Google Sheet
+description: Print elegant, centered address labels for wedding invitations and save-the-dates from your guest list in Google Sheets, with an RSVP-friendly list you keep using.
+active: guides
+heading: Wedding invitation address labels
+---
+<main class="doc">
+  <div class="wrap">
+    <p class="crumbs"><a href="{{guides}}">Guides</a></p>
+    <h1>Wedding invitation address labels from a Google Sheet</h1>
+    <p class="intro">Most couples already keep the guest list in a spreadsheet, because it's shared with family and changes every week. The same sheet can print the address labels for save-the-dates, invitations and thank-you cards, so nobody copies addresses by hand three times.</p>
+    {{INSTALL_STRIP:label-maker}}
+
+    <section>
+      <h2>1. Set up the guest list</h2>
+      <ol>
+        <li>Put these titles in row 1: <strong>Envelope Name, Address 1, Address 2, City, State, Zip, Country, Save the Date, Invitation, Thank You</strong>.</li>
+        <li>Write <strong>Envelope Name</strong> exactly as it should be printed, for example "Mr. and Mrs. Samuel Okafor" or "Dr. Grace Liu and Mr. Ben Takahashi". Formal titles go here, not in a separate column.</li>
+        <li>Make the last three columns checkboxes (<strong>Insert → Checkbox</strong>). Tick a box when that mailing goes to the household.</li>
+        <li>Format the Zip column as plain text (<strong>Format → Number → Plain text</strong>) so codes like 05401 keep their leading zero.</li>
+      </ol>
+      <p class="tip">Share the sheet with whoever is collecting addresses from each side of the family. One shared list beats three versions in email.</p>
+    </section>
+
+    <section>
+      <h2>2. Pick a label that looks formal</h2>
+      <p>For invitations, a larger label reads as more deliberate than a small address label:</p>
+      <ul>
+        <li><strong>Avery 5163</strong> (4" × 2", 10 per sheet) for a roomy, centered address.</li>
+        <li><strong>Avery 5160</strong> (2-5/8" × 1", 30 per sheet) for save-the-dates and thank-you cards, where a tidy small label is fine.</li>
+        <li>Clear or kraft labels in the same sizes use the same layout. Check the product number on the box.</li>
+      </ul>
+      <p>Prefer no label at all? Print the address straight onto the envelope instead: see <a href="{{guide:print-envelopes-from-google-sheets}}">How to print envelopes from Google Sheets</a>.</p>
+    </section>
+
+    <section>
+      <h2>3. Style it for an invitation</h2>
+      <p>In Spreadsheet Labels, open <strong>Text Style</strong> and:</p>
+      <ol>
+        <li>Choose <strong>Centered</strong> alignment, so each line sits in the middle of the label.</li>
+        <li>Pick a serif font and a slightly larger size. Text that's too long for a line is made smaller automatically, so long names still fit.</li>
+        <li>Optionally turn on <strong>Bold First Line</strong> so the names stand out.</li>
+      </ol>
+      <p>Check every row in the preview before you print. Formal names are long, and the preview is where you catch a line that wraps.</p>
+    </section>
+
+    <section>
+      <h2>4. Print one mailing at a time</h2>
+      <ol>
+        <li>Open <strong>Rows to Print</strong> and choose <strong>Only rows where a column has a tick or text</strong>.</li>
+        <li>Pick the column for this mailing, for example <strong>Invitation</strong>. Unticked rows are skipped.</li>
+        <li>Print a test page on plain paper at <strong>Actual size</strong> (100%), hold it against the label sheet, then print the labels.</li>
+      </ol>
+      <p>After the wedding, tick <strong>Thank You</strong> as gifts arrive and print the thank-you labels from the same list.</p>
+    </section>
+
+    <section>
+      <h2>5. Return address labels</h2>
+      <p>For the back flap, print a sheet of your return address on <strong>Avery 5167</strong> (80 per sheet) or <strong>5195</strong> (60 per sheet). See <a href="{{guide:return-address-labels-google-sheets}}">Return address labels from Google Sheets</a>.</p>
+    </section>
+
+    <aside class="cta">
+      <strong>Spreadsheet Labels for Google Sheets</strong>
+      <p>Free for up to 3 pages per document: 30 invitation labels on Avery 5163, or 90 on Avery 5160.</p>
+      <div class="cta-actions">{{INSTALL:label-maker:btn small}}<a href="{{guide:how-to-use-label-maker}}">How to use it, step by step</a></div>
+    </aside>
+  </div>
+</main>

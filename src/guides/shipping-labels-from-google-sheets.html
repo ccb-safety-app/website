@@ -1,0 +1,60 @@
+title: Print shipping labels from a Google Sheet of orders
+description: For small shops and makers: turn the orders in a Google Sheet into Avery 5163, 5164 or 5168 shipping labels with your logo, only for the orders you're sending today.
+active: guides
+heading: Shipping labels from a sheet of orders
+---
+<main class="doc">
+  <div class="wrap">
+    <p class="crumbs"><a href="{{guides}}">Guides</a></p>
+    <h1>Print shipping labels from a Google Sheet of orders</h1>
+    <p class="intro">If you sell handmade goods, run a small online shop or send out school or club orders, the order list probably already lives in a spreadsheet. This guide turns today's orders into shipping address labels in a few minutes, with your logo on each one.</p>
+    {{INSTALL_STRIP:label-maker}}
+    <p class="tip">These are address labels. Postage still comes from your carrier: buy it online or at the counter and add it to the package separately.</p>
+
+    <section>
+      <h2>1. Keep orders in one sheet</h2>
+      <ol>
+        <li>Use titles like <strong>Order, Name, Address 1, Address 2, City, State, Zip, Country, Items, Ship Today</strong> in row 1.</li>
+        <li>Paste or export new orders into the sheet. Most shop platforms can export orders as a CSV file that opens in Google Sheets.</li>
+        <li>Add a <strong>Ship Today</strong> checkbox column (<strong>Insert → Checkbox</strong>) and tick the orders that are packed.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>2. Choose a shipping label size</h2>
+      <ul>
+        <li><strong>Avery 5163</strong>: 4" × 2", 10 per sheet. Fits padded mailers and small boxes.</li>
+        <li><strong>Avery 5164</strong>: 4" × 3-1/3", 6 per sheet. Room for a logo and a larger address.</li>
+        <li><strong>Avery 5168</strong>: 3-1/2" × 5", 4 per sheet. Big and easy to read on boxes.</li>
+      </ul>
+      <p>Using a different brand? Choose <strong>Add Your Own Size</strong> and type the label size and layout from the box.</p>
+    </section>
+
+    <section>
+      <h2>3. Add your logo and an order code</h2>
+      <p>In Spreadsheet Labels, open <strong>Pictures and Codes</strong>:</p>
+      <ol>
+        <li>Choose <strong>The Same Picture on Every Label</strong> and upload your shop logo.</li>
+        <li>Optionally add a <strong>QR Code</strong> or <strong>Barcode (Code 128)</strong> from the <strong>Order</strong> column, so you can scan which order a returned package belongs to.</li>
+      </ol>
+      <p>Then click the columns to build the label: Name on the first line, the address lines below. Turn on <strong>UPPERCASE (postal style)</strong> in <strong>Text Style</strong> if you like the post-office look.</p>
+    </section>
+
+    <section>
+      <h2>4. Print only today's orders</h2>
+      <ol>
+        <li>Open <strong>Rows to Print</strong> → <strong>Only rows where a column has a tick or text</strong> → <strong>Ship Today</strong>.</li>
+        <li>An order with several boxes? Open <strong>Copies</strong> → <strong>Take the Number from a Column</strong> and point it at a "Boxes" column.</li>
+        <li>Partly used sheet left from yesterday? Use <strong>Start Position</strong> to begin on the first empty label.</li>
+        <li>Print a test page at <strong>Actual size</strong> (100%) on plain paper first, then the labels.</li>
+      </ol>
+      <p>When the packages are out, untick <strong>Ship Today</strong> (or add a Shipped date) so tomorrow's print only has new orders.</p>
+    </section>
+
+    <aside class="cta">
+      <strong>Spreadsheet Labels for Google Sheets</strong>
+      <p>Free for up to 3 pages per document. Pro is $24.99 a year or $49.99 once, for unlimited pages.</p>
+      <div class="cta-actions">{{INSTALL:label-maker:btn small}}<a href="{{guide:how-to-use-label-maker}}">How to use it, step by step</a></div>
+    </aside>
+  </div>
+</main>
