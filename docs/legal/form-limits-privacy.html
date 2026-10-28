@@ -478,6 +478,16 @@ html { scroll-behavior: smooth; }
 .price-table td:first-child { font-weight: 600; color: var(--heading); white-space: nowrap; }
 .price-table .app-cell { display: flex; align-items: center; gap: 10px; }
 .price-table .app-cell img { width: 32px; height: 32px; border-radius: 8px; }
+@media (max-width: 640px) {
+  .price-table { min-width: 0; }
+  .price-table thead { display: none; }
+  .price-table, .price-table tbody, .price-table tr, .price-table td { display: block; }
+  .price-table tr { padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .price-table td { border: 0; padding: 4px 0; display: flex; justify-content: space-between; gap: 16px; }
+  .price-table td:first-child { padding-bottom: 10px; }
+  .price-table td[data-label]::before { content: attr(data-label); color: var(--muted); }
+  .price-table td[data-label] { text-align: right; }
+}
 .table-wrap { overflow-x: auto; }
 .promise { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
 .promise div { padding: 22px; border-radius: 18px; background: var(--bg); border: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
