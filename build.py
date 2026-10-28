@@ -19,7 +19,7 @@ EMAIL = "northpineapps@gmail.com"
 # Google Workspace Marketplace listing links. Leave empty until Google approves that listing:
 # an empty link hides its Install buttons (never claim an add-on is available before approval).
 MARKETPLACE = {
-    "label-maker": "",
+    "label-maker": "https://workspace.google.com/marketplace/app/spreadsheet_labels/1076288421936",
     "form-limits": "",
     "form-payments": "",
     "certificate-maker": "",
