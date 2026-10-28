@@ -135,7 +135,7 @@ def footer(links):
             f'<div class="foot-row"><span>© 2026 Northpine Apps</span>'
             f'<span class="foot-links"><a href="{links["apps"]}">Apps</a><a href="{links["guides"]}">Guides</a><a href="{links["support"]}">Support</a><a href="{links["privacy"]}">Privacy policy</a><a href="{links["terms"]}">Terms of service</a>'
             f'<a href="mailto:{EMAIL}">{EMAIL}</a></span></div>'
-            f'<p>Spreadsheet Labels is not affiliated with or endorsed by Avery or Google. Avery™ and Google Sheets™ are trademarks of their owners; '
+            f'<p>Northpine Apps is not affiliated with or endorsed by Google, Avery, Stripe, PayPal or LinkedIn. Google Sheets™, Google Forms™, Google Docs™, Gmail™, Avery™, Stripe™, PayPal™ and LinkedIn™ are trademarks of their owners; '
             f'product numbers are used only to describe compatible sheets.</p>'
             f'</div></footer>')
 
