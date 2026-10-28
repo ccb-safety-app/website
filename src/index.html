@@ -16,12 +16,12 @@ hero: yes
       </div>
     </div>
     <div class="showreel" aria-label="The four add-ons">
-      <div class="reel-frame">
-        <img class="on" src="{{assets}}hero/label-maker.webp" width="1600" height="1000" alt="Spreadsheet Labels: a sheet of Avery labels, the Spreadsheet Labels panel and a Your labels are ready card.">
-        <img src="{{assets}}hero/certificate-maker.webp" width="1600" height="1000" alt="Certificate Maker: a finished certificate, the Certificate Maker panel and an emailed PDF." loading="lazy">
-        <img src="{{assets}}hero/form-payments.webp" width="1600" height="1000" alt="Form Payments: a payment email, the Form Payments panel and a paid notice." loading="lazy">
-        <img src="{{assets}}hero/form-limits.webp" width="1600" height="1000" alt="Form Limits: a Google Form showing places left, the Form Limits panel and a waitlist notice." loading="lazy">
-      </div>
+      <a class="reel-frame" href="{{app:label-maker}}" aria-label="About Spreadsheet Labels">
+        <img class="on" data-href="{{app:label-maker}}" data-name="Spreadsheet Labels" src="{{assets}}hero/label-maker.webp" width="1600" height="1000" alt="Spreadsheet Labels: a sheet of Avery labels, the Spreadsheet Labels panel and a Your labels are ready card.">
+        <img data-href="{{app:certificate-maker}}" data-name="Certificate Maker" src="{{assets}}hero/certificate-maker.webp" width="1600" height="1000" alt="Certificate Maker: a finished certificate, the Certificate Maker panel and an emailed PDF." loading="lazy">
+        <img data-href="{{app:form-payments}}" data-name="Form Payments" src="{{assets}}hero/form-payments.webp" width="1600" height="1000" alt="Form Payments: a payment email, the Form Payments panel and a paid notice." loading="lazy">
+        <img data-href="{{app:form-limits}}" data-name="Form Limits" src="{{assets}}hero/form-limits.webp" width="1600" height="1000" alt="Form Limits: a Google Form showing places left, the Form Limits panel and a waitlist notice." loading="lazy">
+      </a>
       <div class="reel-tabs" role="tablist">
         <button type="button" role="tab" aria-selected="true">Spreadsheet Labels</button>
         <button type="button" role="tab" aria-selected="false">Certificate Maker</button>
@@ -46,10 +46,10 @@ hero: yes
 <div id="apps">
 <section class="showcase">
   <div class="wrap">
-    <figure class="show-img"><img src="{{assets}}hero/label-maker.webp" width="1600" height="1000" loading="lazy" alt="Spreadsheet Labels turning a sheet of addresses into Avery 5160 labels."></figure>
+    <figure class="show-img"><a href="{{app:label-maker}}" tabindex="-1"><img src="{{assets}}hero/label-maker.webp" width="1600" height="1000" loading="lazy" alt="Spreadsheet Labels turning a sheet of addresses into Avery 5160 labels."></a></figure>
     <div class="show-copy">
-      <p class="eyebrow"><img src="{{assets}}apps/icons/label-maker.svg" alt="">Spreadsheet Labels · Google Sheets</p>
-      <h2>Mailing labels from your sheet, lined up on the first try.</h2>
+      <p class="eyebrow"><a href="{{app:label-maker}}"><img src="{{assets}}apps/icons/label-maker.svg" alt="">Spreadsheet Labels · Google Sheets</a></p>
+      <h2><a href="{{app:label-maker}}">Mailing labels from your sheet, lined up on the first try.</a></h2>
       <ul class="ticks"><li>17 Avery sheets, plus your own sizes</li><li>Addresses checked before you print</li><li>QR codes, barcodes and pictures on each label</li></ul>
       <div class="show-links">{{INSTALL:label-maker:btn small}}<a class="btn small" href="{{guide:how-to-use-label-maker}}">See how it works</a><a href="{{app:label-maker}}">About Spreadsheet Labels</a></div>
     </div>
@@ -57,10 +57,10 @@ hero: yes
 </section>
 <section class="showcase flip">
   <div class="wrap">
-    <figure class="show-img"><img src="{{assets}}hero/certificate-maker.webp" width="1600" height="1000" loading="lazy" alt="Certificate Maker making a certificate of completion and emailing it."></figure>
+    <figure class="show-img"><a href="{{app:certificate-maker}}" tabindex="-1"><img src="{{assets}}hero/certificate-maker.webp" width="1600" height="1000" loading="lazy" alt="Certificate Maker making a certificate of completion and emailing it."></a></figure>
     <div class="show-copy">
-      <p class="eyebrow"><img src="{{assets}}apps/icons/certificate-maker.svg" alt="">Certificate Maker · Google Sheets</p>
-      <h2>A certificate for everyone on your list, emailed for you.</h2>
+      <p class="eyebrow"><a href="{{app:certificate-maker}}"><img src="{{assets}}apps/icons/certificate-maker.svg" alt="">Certificate Maker · Google Sheets</a></p>
+      <h2><a href="{{app:certificate-maker}}">A certificate for everyone on your list, emailed for you.</a></h2>
       <ul class="ticks"><li>51 designs, or your own Google Slides</li><li>A QR code proves each one is genuine</li><li>Names checked and fitted automatically</li></ul>
       <div class="show-links">{{INSTALL:certificate-maker:btn small}}<a class="btn small" href="{{guide:how-to-use-certificate-maker}}">See how it works</a><a href="{{app:certificate-maker}}">About Certificate Maker</a></div>
     </div>
@@ -68,10 +68,10 @@ hero: yes
 </section>
 <section class="showcase">
   <div class="wrap">
-    <figure class="show-img"><img src="{{assets}}hero/form-payments.webp" width="1600" height="1000" loading="lazy" alt="Form Payments sending a payment email and showing who has paid."></figure>
+    <figure class="show-img"><a href="{{app:form-payments}}" tabindex="-1"><img src="{{assets}}hero/form-payments.webp" width="1600" height="1000" loading="lazy" alt="Form Payments sending a payment email and showing who has paid."></a></figure>
     <div class="show-copy">
-      <p class="eyebrow"><img src="{{assets}}apps/icons/form-payments.svg" alt="">Form Payments · Google Forms</p>
-      <h2>Every response gets a bill. You see who's paid.</h2>
+      <p class="eyebrow"><a href="{{app:form-payments}}"><img src="{{assets}}apps/icons/form-payments.svg" alt="">Form Payments · Google Forms</a></p>
+      <h2><a href="{{app:form-payments}}">Every response gets a bill. You see who's paid.</a></h2>
       <ul class="ticks"><li>Stripe and PayPal, straight to your account</li><li>Prices worked out from the answers</li><li>Reminders and receipts sent for you</li></ul>
       <div class="show-links">{{INSTALL:form-payments:btn small}}<a class="btn small" href="{{guide:how-to-use-form-payments}}">See how it works</a><a href="{{app:form-payments}}">About Form Payments</a></div>
     </div>
@@ -79,10 +79,10 @@ hero: yes
 </section>
 <section class="showcase flip">
   <div class="wrap">
-    <figure class="show-img"><img src="{{assets}}hero/form-limits.webp" width="1600" height="1000" loading="lazy" alt="Form Limits showing places left on a Google Form and a waitlist."></figure>
+    <figure class="show-img"><a href="{{app:form-limits}}" tabindex="-1"><img src="{{assets}}hero/form-limits.webp" width="1600" height="1000" loading="lazy" alt="Form Limits showing places left on a Google Form and a waitlist."></a></figure>
     <div class="show-copy">
-      <p class="eyebrow"><img src="{{assets}}apps/icons/form-limits.svg" alt="">Form Limits · Google Forms</p>
-      <h2>Sign-up forms that never overbook.</h2>
+      <p class="eyebrow"><a href="{{app:form-limits}}"><img src="{{assets}}apps/icons/form-limits.svg" alt="">Form Limits · Google Forms</a></p>
+      <h2><a href="{{app:form-limits}}">Sign-up forms that never overbook.</a></h2>
       <ul class="ticks"><li>Places per choice, with "3 left" on the form</li><li>A real waitlist that fills freed places</li><li>Opens and closes on your schedule</li></ul>
       <div class="show-links">{{INSTALL:form-limits:btn small}}<a class="btn small" href="{{guide:how-to-use-form-limits}}">See how it works</a><a href="{{app:form-limits}}">About Form Limits</a></div>
     </div>
@@ -153,6 +153,7 @@ hero: yes
     i = (n + imgs.length) % imgs.length;
     imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); if (k === i) im.loading = 'eager'; });
     tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+    frame.href = imgs[i].getAttribute('data-href'); frame.setAttribute('aria-label', 'About ' + imgs[i].getAttribute('data-name'));
   }
   function play() { if (!still) { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, 4500); } }
   tabs.forEach(function (t, k) { t.addEventListener('click', function () { show(k); play(); }); });
