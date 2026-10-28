@@ -98,8 +98,8 @@ def scene(app):
     parts = ['<img class="contours" src="%s"><div class="grain"></div>' % CONTOURS]
     if app == "label-maker":
         glow = "rgba(227,179,65,.28)"
-        parts += [chip("label-maker.svg", "Label Maker", "for Google Sheets"), label_sheet(),
-                  panel("c-lm-side.png", "Label Maker", 1060, 120, 380, 3, 640),
+        parts += [chip("label-maker.svg", "Spreadsheet Labels", "for Google Sheets"), label_sheet(),
+                  panel("c-lm-side.png", "Spreadsheet Labels", 1060, 120, 380, 3, 640),
                   f'<div class="panel shadow" style="left:690px;top:600px;width:330px;transform:rotate(-1.5deg);padding:6px 0"><img src="{SRC / "c-lm-done.png"}"></div>',
                   toast(560, 128, "#1e7a4f", "&#10003;", "2 addresses fixed", "Checked with Google Maps", 2)]
     elif app == "certificate-maker":
