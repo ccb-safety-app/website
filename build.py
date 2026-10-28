@@ -8,6 +8,7 @@ Writes two folders:
 """
 import html
 import pathlib
+import re
 import shutil
 
 ROOT = pathlib.Path(__file__).parent
@@ -15,10 +16,25 @@ SRC = ROOT / "src"
 CSS = (SRC / "style.css").read_text()
 DOMAIN = "northpineapps.com"
 EMAIL = "northpineapps@gmail.com"
+# Google Workspace Marketplace listing links. Leave empty until Google approves that listing:
+# an empty link hides its Install buttons (never claim an add-on is available before approval).
+MARKETPLACE = {
+    "label-maker": "https://workspace.google.com/marketplace/app/spreadsheet_labels/1076288421936",
+    "form-limits": "",
+    "form-payments": "",
+    "certificate-maker": "",
+}
+
+
+def install_button(app, cls="btn"):
+    url = MARKETPLACE.get(app, "")
+    if not url:
+        return ""
+    return f'<a class="{cls}" href="{html.escape(url)}" rel="noopener">Install from Google Workspace Marketplace</a>'
 
 FONTS = ('<link rel="preconnect" href="https://fonts.googleapis.com">'
          '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
-         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">')
+         '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">')
 
 TREE = ('<svg viewBox="0 0 64 64" aria-hidden="true">'
         '<path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/>'
@@ -124,6 +140,8 @@ def footer(links):
             f'</div></footer>')
 
 
+import howto  # writes src/guides/how-to-use-*.html from howto.py
+howto.write()
 GUIDES = sorted((SRC / "guides").glob("*.html"))
 APPS = sorted((SRC / "apps").glob("*.html"))
 LEGAL = sorted((SRC / "legal").glob("*.html"))
@@ -165,6 +183,8 @@ def render(name, links):
                 .replace("{{ENVELOPES}}", envelopes())
                 .replace("{{CODE_DEMO}}", (SRC / "partials" / "code-demo.html").read_text())
                 .replace("{{EMAIL}}", EMAIL))
+    body = re.sub(r"\{\{INSTALL:([a-z-]+)(?::([a-z ]+))?\}\}",
+                  lambda m: install_button(m.group(1), m.group(2) or "btn"), body)
     for k, v in sorted(links.items(), key=lambda kv: -len(kv[0])):
         body = body.replace("{{" + k + "}}", v)
     meta, _, content = body.partition("\n---\n")
@@ -173,7 +193,7 @@ def render(name, links):
             f'<meta name="claude:viewport-fit-sides" content="cover">\n'
             f'<meta name="description" content="{html.escape(info["description"])}">\n'
             f'<link rel="icon" type="image/png" href="{links["assets"]}favicon.png">\n'
-            f'{FONTS}\n<style>\n{CSS}</style>\n'
+            f'{FONTS}\n<style>\n{CSS.replace("{{assets}}", links["assets"])}</style>\n'
             f'<script defer src="{links["assets"]}motion.js"></script>\n'
             f'<script defer src="{links["assets"]}seasonal.js"></script>\n')
     page = header(info["active"], links, on_hero=info.get("hero") == "yes") + content.replace("{{assets}}", links["assets"]) + footer(links)

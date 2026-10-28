@@ -1,157 +1,162 @@
-title: Spreadsheet Labels for Google Sheets
-description: Spreadsheet Labels is a Google Sheets add-on from Northpine Apps that turns a list of names and addresses into print-ready Avery labels.
+title: Northpine Apps: Spreadsheet Labels, Certificate Maker, Form Payments and Form Limits for Google Sheets and Forms
+description: Northpine Apps makes careful add-ons for Google Sheets and Google Forms: Spreadsheet Labels, Certificate Maker, Form Payments and Form Limits. Free plans, fair prices, no sign-up.
 active: home
 hero: yes
 ---
-<main>
-<section class="hero">
+<main class="home">
+<section class="hero np-hero">
   <div class="wrap">
     <div class="hero-copy">
-      <h1>Print mailing labels straight from your Google Sheet.</h1>
-      <p class="lede">Spreadsheet Labels is a Google Sheets add-on that turns a list of names and addresses into a print-ready label document in seconds. Choose your label sheet, check the preview, and print. No mail-merge setup, no copying into Word.</p>
+      <p class="eyebrow">Add-ons for Google Sheets and Forms</p>
+      <h1>Small tools. Real work done.</h1>
+      <p class="lede">Print labels, send certificates, take payments and stop overbooking, right inside the Google files you already use. No new account, nothing to install on your computer.</p>
       <div class="hero-actions">
-        <a class="btn" href="#how">See how it works</a>
+        <a class="btn" href="#apps">Explore the apps</a>
+        <a class="btn ghost" href="{{guides}}">How-to guides</a>
       </div>
     </div>
-    <div class="sheet-stage">
-      <div class="sheet-clip"><div class="sheet" role="img" aria-label="A sheet of Avery 5160 address labels printed by Spreadsheet Labels, starting at label 5.">
-{{SHEET}}
-      </div></div>
-      <p class="sheet-caption">Avery 5160, 30 address labels per sheet. This one starts at label 5 because the first four were already used.</p>
+    <div class="showreel" aria-label="The four add-ons">
+      <div class="reel-frame">
+        <img class="on" src="{{assets}}hero/label-maker.webp" width="1600" height="1000" alt="Spreadsheet Labels: a sheet of Avery labels, the Spreadsheet Labels panel and a Your labels are ready card.">
+        <img src="{{assets}}hero/certificate-maker.webp" width="1600" height="1000" alt="Certificate Maker: a finished certificate, the Certificate Maker panel and an emailed PDF." loading="lazy">
+        <img src="{{assets}}hero/form-payments.webp" width="1600" height="1000" alt="Form Payments: a payment email, the Form Payments panel and a paid notice." loading="lazy">
+        <img src="{{assets}}hero/form-limits.webp" width="1600" height="1000" alt="Form Limits: a Google Form showing places left, the Form Limits panel and a waitlist notice." loading="lazy">
+      </div>
+      <div class="reel-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true">Spreadsheet Labels</button>
+        <button type="button" role="tab" aria-selected="false">Certificate Maker</button>
+        <button type="button" role="tab" aria-selected="false">Form Payments</button>
+        <button type="button" role="tab" aria-selected="false">Form Limits</button>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="section" id="how">
+<section class="trust" aria-label="Why people trust Northpine Apps">
   <div class="wrap">
-    <div class="section-head">
-      <h2>Three steps, without leaving your sheet</h2>
-      <p>Spreadsheet Labels opens in a panel beside your spreadsheet, from the Extensions menu.</p>
+    <ul>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/></svg><span><b>Runs inside Google</b>Your data stays in your account</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0110 0v3M5 11h14v10H5z"/></svg><span><b>Least access</b>Only the file it's opened in</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12l-8 8-8-8 8-8 8 8z"/></svg><span><b>Free plan</b>That stays free</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1016 0 8 8 0 00-16 0zm4 0l3 3 5-6"/></svg><span><b>7-day refunds</b>Pay yearly or once</span></li>
+    </ul>
+  </div>
+</section>
+
+<div id="apps">
+<section class="showcase">
+  <div class="wrap">
+    <figure class="show-img"><img src="{{assets}}hero/label-maker.webp" width="1600" height="1000" loading="lazy" alt="Spreadsheet Labels turning a sheet of addresses into Avery 5160 labels."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="{{assets}}apps/icons/label-maker.svg" alt="">Spreadsheet Labels · Google Sheets</p>
+      <h2>Mailing labels from your sheet, lined up on the first try.</h2>
+      <ul class="ticks"><li>17 Avery sheets, plus your own sizes</li><li>Addresses checked before you print</li><li>QR codes, barcodes and pictures on each label</li></ul>
+      <div class="show-links">{{INSTALL:label-maker:btn small}}<a class="btn small" href="{{guide:how-to-use-label-maker}}">See how it works</a><a href="{{app:label-maker}}">About Spreadsheet Labels</a></div>
     </div>
-    <ol class="steps">
-      <li class="step">
-        <div class="step-title"><span class="num">1</span><h3>Choose your label sheet</h3></div>
-        <p>Pick the Avery number printed on your package of labels, or add your own size.</p>
-        <figure class="shot top"><img src="{{assets}}step-sheet.png" width="600" height="935" loading="lazy" alt="Spreadsheet Labels' list of label sheets, with Avery 5160 address labels selected."></figure>
-      </li>
-      <li class="step">
-        <div class="step-title"><span class="num">2</span><h3>Arrange the text</h3></div>
-        <p>Spreadsheet Labels finds the name and address columns for you. Click a column to add it to the label, and check every row in the preview.</p>
-        <figure class="shot top"><img src="{{assets}}step-text.png" width="600" height="874" loading="lazy" alt="Columns arranged into label lines."></figure>
-      </li>
-      <li class="step">
-        <div class="step-title"><span class="num">3</span><h3>Create labels and print</h3></div>
-        <p>You get a Google Doc and a PDF. Print a test page on plain paper first, then print on your labels at actual size.</p>
-        <figure class="shot"><img src="{{assets}}step-print.png" width="600" height="650" loading="lazy" alt="Your labels are ready: 5 labels on 1 page of Avery 5160, with buttons to download the PDF or open the document."></figure>
-      </li>
+  </div>
+</section>
+<section class="showcase flip">
+  <div class="wrap">
+    <figure class="show-img"><img src="{{assets}}hero/certificate-maker.webp" width="1600" height="1000" loading="lazy" alt="Certificate Maker making a certificate of completion and emailing it."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="{{assets}}apps/icons/certificate-maker.svg" alt="">Certificate Maker · Google Sheets</p>
+      <h2>A certificate for everyone on your list, emailed for you.</h2>
+      <ul class="ticks"><li>51 designs, or your own Google Slides</li><li>A QR code proves each one is genuine</li><li>Names checked and fitted automatically</li></ul>
+      <div class="show-links">{{INSTALL:certificate-maker:btn small}}<a class="btn small" href="{{guide:how-to-use-certificate-maker}}">See how it works</a><a href="{{app:certificate-maker}}">About Certificate Maker</a></div>
+    </div>
+  </div>
+</section>
+<section class="showcase">
+  <div class="wrap">
+    <figure class="show-img"><img src="{{assets}}hero/form-payments.webp" width="1600" height="1000" loading="lazy" alt="Form Payments sending a payment email and showing who has paid."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="{{assets}}apps/icons/form-payments.svg" alt="">Form Payments · Google Forms</p>
+      <h2>Every response gets a bill. You see who's paid.</h2>
+      <ul class="ticks"><li>Stripe and PayPal, straight to your account</li><li>Prices worked out from the answers</li><li>Reminders and receipts sent for you</li></ul>
+      <div class="show-links">{{INSTALL:form-payments:btn small}}<a class="btn small" href="{{guide:how-to-use-form-payments}}">See how it works</a><a href="{{app:form-payments}}">About Form Payments</a></div>
+    </div>
+  </div>
+</section>
+<section class="showcase flip">
+  <div class="wrap">
+    <figure class="show-img"><img src="{{assets}}hero/form-limits.webp" width="1600" height="1000" loading="lazy" alt="Form Limits showing places left on a Google Form and a waitlist."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="{{assets}}apps/icons/form-limits.svg" alt="">Form Limits · Google Forms</p>
+      <h2>Sign-up forms that never overbook.</h2>
+      <ul class="ticks"><li>Places per choice, with "3 left" on the form</li><li>A real waitlist that fills freed places</li><li>Opens and closes on your schedule</li></ul>
+      <div class="show-links">{{INSTALL:form-limits:btn small}}<a class="btn small" href="{{guide:how-to-use-form-limits}}">See how it works</a><a href="{{app:form-limits}}">About Form Limits</a></div>
+    </div>
+  </div>
+</section>
+</div>
+
+<section class="section band steps3">
+  <div class="wrap">
+    <div class="section-head"><h2>Up and running in a minute</h2></div>
+    <ol class="three">
+      <li><span class="big">1</span><b>Install</b><span>Add it from the Google Workspace Marketplace. One click, no sign-up.</span></li>
+      <li><span class="big">2</span><b>Open it</b><span>In your sheet or form, choose Extensions, then the add-on. It opens on the right.</span></li>
+      <li><span class="big">3</span><b>Follow the steps</b><span>The panel walks you through it. Every guide has pictures of each step.</span></li>
     </ol>
-  </div>
-</section>
-
-<section class="section band" id="sheets">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Label sheets it prints</h2>
-      <p>Each layout follows the sheet's published measurements. The same layouts work for the compatible product numbers listed under each one.</p>
-    </div>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th scope="col">Sheet</th><th scope="col">Used for</th><th scope="col">Label size</th><th scope="col" class="n">Per sheet</th></tr></thead>
-        <tbody>
-{{SHEETS_TABLE}}
-        </tbody>
-      </table>
-    </div>
-    <div class="envelopes">
-      <h3>Envelopes</h3>
-      <ul>{{ENVELOPES}}</ul>
-    </div>
-    <p class="sheets-note">Don't see your sheet? Add your own size in Spreadsheet Labels, or email us the product number.</p>
-  </div>
-</section>
-
-<section class="section" id="features">
-  <div class="wrap split">
-    <div>
-      <div class="section-head">
-        <h2>Help before you print</h2>
-      </div>
-      <ul class="extras">
-        <li><strong>Check addresses</strong><span>Looks up each address with Google Maps and suggests fixes before you print. Nothing changes unless you accept a suggestion.</span></li>
-        <li><strong>QR codes and barcodes</strong><span>Put a QR code or barcode on every label, made from a column in your sheet (a different one for each label) or the same for all: a link to your shop, an order number, an RSVP link or an asset tag. Code 128 and EAN-13 barcodes are supported, and you choose the size and position.</span></li>
-        <li><strong>Logos, pictures and a return address</strong><span>Add your logo or a picture from a link in each row, a return address in the corner, and cut lines for plain paper.</span></li>
-        <li><strong>Partly used sheets</strong><span>Start at any label on the sheet, and print several copies of each label.</span></li>
-        <li><strong>Printer alignment test page</strong><span>Print outlines on plain paper, hold them against your label sheet, and shift the layout if your printer is off.</span></li>
-      </ul>
-    </div>
-    <figure class="shot"><img src="{{assets}}check.png" width="600" height="1250" loading="lazy" alt="Address check results: two suggested fixes from Google Maps and one address that could not be found."></figure>
-  </div>
-</section>
-
-<section class="section band" id="codes">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>QR codes and barcodes on every label</h2>
-      <p>Spreadsheet Labels makes them itself, from a column in your sheet (a different code on each label) or the same code on every label. Choose the size, and whether the code sits beside or below the address.</p>
-    </div>
-    {{CODE_DEMO}}
   </div>
 </section>
 
 <section class="section" id="pricing">
   <div class="wrap">
     <div class="section-head">
-      <h2>Pricing</h2>
-      <p>Start free. Upgrade from inside Spreadsheet Labels when you need more pages.</p>
+      <h2>Simple pricing</h2>
+      <p>Each add-on is bought on its own, in US dollars. Every one has a free plan.</p>
     </div>
-    <div class="plans">
-      <div class="plan">
-        <h3>Free</h3>
-        <div class="price">$0</div>
-        <p>Documents of up to 3 pages, which is 90 labels on Avery 5160. No account needed.</p>
-      </div>
-      <div class="plan">
-        <h3>Pro yearly</h3>
-        <div class="price">$24.99 <small>per year</small></div>
-        <p>No page limit. Renews each year. Cancel anytime.</p>
-      </div>
-      <div class="plan">
-        <h3>Pro lifetime</h3>
-        <div class="price">$49.99 <small>once</small></div>
-        <p>No page limit. One payment.</p>
-      </div>
-    </div>
-    <div class="fine">
-      <p>Payments are processed by Lemon Squeezy, our reseller and merchant of record. After you buy, your license key arrives by email.</p>
-      <p>Not happy? Email us within 7 days of purchase for a full refund.</p>
+    <div class="table-wrap">
+      <table class="price-table">
+        <thead><tr><th>Add-on</th><th>Free plan</th><th>Pro yearly</th><th>Pro for life</th></tr></thead>
+        <tbody>
+          <tr><td><a class="app-cell" href="{{app:label-maker}}"><img src="{{assets}}apps/icons/label-maker.svg" alt="">Spreadsheet Labels</a></td><td>Documents up to 3 pages</td><td>$24.99</td><td>$49.99</td></tr>
+          <tr><td><a class="app-cell" href="{{app:certificate-maker}}"><img src="{{assets}}apps/icons/certificate-maker.svg" alt="">Certificate Maker</a></td><td>5 certificates a month</td><td>$39.99</td><td>$79.99</td></tr>
+          <tr><td><a class="app-cell" href="{{app:form-payments}}"><img src="{{assets}}apps/icons/form-payments.svg" alt="">Form Payments</a></td><td>10 payment requests a month</td><td>$49.99</td><td>$119.99</td></tr>
+          <tr><td><a class="app-cell" href="{{app:form-limits}}"><img src="{{assets}}apps/icons/form-limits.svg" alt="">Form Limits</a></td><td>Every feature on one form</td><td>$19.99</td><td>$39.99</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<section class="section band" id="data">
-  <div class="wrap data">
-    <h2>Your addresses stay in your Google account</h2>
-    <p>Spreadsheet Labels runs inside your own Google account. It reads only the sheet you open it in and the label documents it creates. We don't run a server that receives your sheet, and we don't copy, store, sell or share your addresses.</p>
-    <p><a href="{{privacy}}">Read the privacy policy</a></p>
-  </div>
-</section>
-
-<section class="section band" id="more">
+<section class="section band" id="guides">
   <div class="wrap">
-    <div class="section-head"><h2>More from Northpine</h2><p>The same care, for Google Forms and certificates.</p></div>
-    <ul class="more-apps">
-      <li><img src="{{assets}}apps/icons/certificate-maker.svg" width="48" height="48" alt=""><a href="{{app:certificate-maker}}">Certificate Maker</a><span>Personalized PDF certificates from a sheet or a Forms quiz, emailed for you.</span></li>
-      <li><img src="{{assets}}apps/icons/form-payments.svg" width="48" height="48" alt=""><a href="{{app:form-payments}}">Form Payments</a><span>Stripe and PayPal payments for Google Forms, with reminders and a live dashboard.</span></li>
-      <li><img src="{{assets}}apps/icons/form-limits.svg" width="48" height="48" alt=""><a href="{{app:form-limits}}">Form Limits</a><span>Places per choice, a real waitlist and opening hours for Google Forms.</span></li>
-    </ul>
+    <div class="section-head">
+      <h2>Step-by-step guides</h2>
+      <p>Every step with a picture, and what to do if something doesn't work.</p>
+    </div>
+    <div class="guide-cards">
+      <a href="{{guide:how-to-use-label-maker}}"><img src="{{assets}}apps/icons/label-maker.svg" alt=""><span><b>How to use Spreadsheet Labels</b>7 steps, about 5 minutes</span></a>
+      <a href="{{guide:how-to-use-certificate-maker}}"><img src="{{assets}}apps/icons/certificate-maker.svg" alt=""><span><b>How to use Certificate Maker</b>7 steps, about 5 minutes</span></a>
+      <a href="{{guide:how-to-use-form-payments}}"><img src="{{assets}}apps/icons/form-payments.svg" alt=""><span><b>How to use Form Payments</b>7 steps, about 10 minutes</span></a>
+      <a href="{{guide:how-to-use-form-limits}}"><img src="{{assets}}apps/icons/form-limits.svg" alt=""><span><b>How to use Form Limits</b>7 steps, about 3 minutes</span></a>
+    </div>
   </div>
 </section>
 
-<section class="section" id="contact">
-  <div class="wrap contact">
-    <h2>Questions?</h2>
-    <p>Questions, or a label size we don't support yet? Write to us. We reply within 2 business days.</p>
-    <a class="email" href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+<section class="closing">
+  <div class="wrap">
+    <h2>Questions before you install?</h2>
+    <p>Write to us. A real person answers, usually within a day.</p>
+    <a class="btn" href="mailto:{{EMAIL}}">{{EMAIL}}</a>
   </div>
 </section>
 </main>
+<script>
+(function () {
+  var frame = document.querySelector('.reel-frame'); if (!frame) return;
+  var imgs = [].slice.call(frame.querySelectorAll('img')), tabs = [].slice.call(document.querySelectorAll('.reel-tabs button'));
+  var i = 0, timer = null, still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n) {
+    i = (n + imgs.length) % imgs.length;
+    imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); if (k === i) im.loading = 'eager'; });
+    tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+  }
+  function play() { if (!still) { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, 4500); } }
+  tabs.forEach(function (t, k) { t.addEventListener('click', function () { show(k); play(); }); });
+  imgs.slice(1).forEach(function (im) { var p = new Image(); p.src = im.src; });
+  play();
+})();
+</script>

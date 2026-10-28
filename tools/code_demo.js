@@ -1,6 +1,6 @@
 /*
  * Makes src/partials/code-demo.html: example labels with real, scannable codes, drawn with
- * Label Maker's own QR and barcode encoders (Qr.gs and Barcode.gs from the label-addon repo).
+ * Spreadsheet Labels's own QR and barcode encoders (Qr.gs and Barcode.gs from the label-addon repo).
  *   node tools/code_demo.js path/to/Qr.gs path/to/Barcode.gs
  */
 const vm = require('vm'), fs = require('fs'), path = require('path');

@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link rel="canonical" href="https://northpineapps.com/">
-<title>Spreadsheet Labels for Google Sheets</title>
+<title>Northpine Apps: Spreadsheet Labels, Certificate Maker, Form Payments and Form Limits for Google Sheets and Forms</title>
 <meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Spreadsheet Labels is a Google Sheets add-on from Northpine Apps that turns a list of names and addresses into print-ready Avery labels.">
+<meta name="description" content="Northpine Apps makes careful add-ons for Google Sheets and Google Forms: Spreadsheet Labels, Certificate Maker, Form Payments and Form Limits. Free plans, fair prices, no sign-up.">
 <link rel="icon" type="image/png" href="/assets/favicon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400..700,0..100&family=Newsreader:opsz,wght@6..72,400..600&family=Figtree:wght@400;500;600;700&display=swap">
 <style>
 /* Layout: a pine-green hero holding a real Avery 5160 sheet, then quiet white sections that read like the add-on itself. */
 :root {
@@ -29,7 +29,7 @@
   --paper-ink: #1a1a1a;
   --paper-edge: #c9d6cf;
   --shot-shadow: 0 1px 2px rgba(20, 61, 48, .08), 0 8px 24px rgba(20, 61, 48, .08);
-  --font-display: "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-display: "Fraunces", "Newsreader", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
   --font-body: "Figtree", "Helvetica Neue", Arial, system-ui, sans-serif;
   --font-label: Arial, "Helvetica Neue", Helvetica, sans-serif;
   --measure: 66ch;
@@ -87,8 +87,8 @@ p { margin: 0; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--heading); }
 .on-hero .brand { color: var(--hero-fg); }
 .brand svg { width: 30px; height: 30px; flex: none; }
-.brand .word { font-family: var(--font-body); font-weight: 600; font-size: 1.15rem; letter-spacing: -.02em; }
-.brand .word span { font-weight: 400; opacity: .78; }
+.brand .word { font-family: var(--font-display); font-weight: 600; font-size: 1.32rem; letter-spacing: -.015em; font-variation-settings: "SOFT" 100, "opsz" 48; }
+.brand .word span { font-family: var(--font-body); font-weight: 700; font-size: .62rem; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); opacity: 1; margin-left: 6px; vertical-align: .32em; }
 .nav { display: flex; gap: 4px 20px; flex-wrap: wrap; font-size: .95rem; }
 .nav a { color: var(--ink); text-decoration: none; padding-block: 6px; }
 .on-hero .nav a { color: var(--hero-muted); }
@@ -360,7 +360,7 @@ html { scroll-behavior: smooth; }
 .app-top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .app-top img { width: 64px; height: 64px; }
 .app-for { font-size: .85rem; color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; white-space: nowrap; }
-.app-card h2 { font-size: 1.9rem; margin-top: 6px; }
+.app-card h2, .app-card h3 { font-size: 1.9rem; margin-top: 6px; }
 .app-line { color: var(--ink); font-size: 1.05rem; }
 .app-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; color: var(--muted); font-size: .97rem; }
 .app-points li { padding-left: 24px; position: relative; }
@@ -393,210 +393,354 @@ html { scroll-behavior: smooth; }
 .cl-body.col .hr { margin-left: 10px; }
 .code-label figcaption { color: var(--muted); font-size: .97rem; display: grid; gap: 2px; }
 .code-label figcaption strong { font-family: var(--font-display); font-size: 1.25rem; font-weight: 600; color: var(--heading); }
+
+/* ---------- How-to guides: sticky steps list on the left, one card per step ---------- */
+.howto-hero { background: var(--hero-bg); color: var(--hero-fg); padding-block: 40px 36px; }
+.howto-hero .wrap { display: grid; gap: 24px; }
+.crumbs { display: flex; gap: 8px; font-size: .9rem; color: var(--hero-muted); }
+.crumbs a { color: var(--hero-fg); }
+.howto-title { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: start; }
+.howto-title img { border-radius: 16px; box-shadow: 0 0 0 1px rgba(255,255,255,.15); }
+.howto-title h1 { color: var(--hero-fg); font-size: clamp(2rem, 4.4vw, 3.1rem); font-weight: 500; letter-spacing: -.025em; line-height: 1.05; }
+.howto-title .lede { color: var(--hero-muted); font-size: 1.1rem; margin-top: 12px; max-width: 40em; }
+.facts { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
+.facts li { display: grid; gap: 2px; padding: 10px 16px; border: 1px solid var(--hero-line); border-radius: 12px; min-width: 0; }
+.facts span { font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; color: var(--hero-muted); }
+.facts b { font-weight: 600; font-size: .98rem; }
+
+.howto-grid { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 48px; padding-block: 48px 80px; align-items: start; }
+.toc { position: sticky; top: 24px; max-height: calc(100vh - 48px); overflow: auto; }
+.toc-head { font-size: .78rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
+.toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; border-left: 2px solid var(--line); }
+.toc a { display: grid; grid-template-columns: 24px 1fr; gap: 8px; align-items: baseline; padding: 7px 10px 7px 12px; margin-left: -2px;
+  border-left: 2px solid transparent; color: var(--muted); text-decoration: none; font-size: .95rem; line-height: 1.35; }
+.toc a .n { font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+.toc a:hover { color: var(--heading); background: var(--band); }
+.toc a[aria-current] { color: var(--heading); border-left-color: var(--accent); background: var(--band); font-weight: 600; }
+.toc .toc-extra a { grid-template-columns: 1fr; }
+
+.howto-steps { display: grid; gap: 28px; min-width: 0; }
+.step { display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 32px; align-items: start; padding: 28px; border: 1px solid var(--line);
+  border-radius: 20px; background: var(--bg); scroll-margin-top: 24px; }
+.step.wide { grid-template-columns: minmax(0, 1fr); }
+.step-n { font-size: .8rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.step h2 { font-size: clamp(1.45rem, 2.4vw, 1.85rem); margin: 6px 0 10px; }
+.step-text > p { color: var(--ink); }
+.step code { font-size: .92em; background: var(--band); padding: 1px 6px; border-radius: 6px; }
+.do { margin: 16px 0 0; padding: 0; list-style: none; counter-reset: do; display: grid; gap: 10px; }
+.do li { counter-increment: do; display: grid; grid-template-columns: 28px 1fr; gap: 10px; align-items: start; }
+.do li::before { content: counter(do); display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--accent); color: var(--accent-ink); font-size: .82rem; font-weight: 700; margin-top: 1px; }
+.fix { margin-top: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--band); }
+.fix summary { cursor: pointer; padding: 12px 16px; font-weight: 600; color: var(--heading); list-style: none; display: flex; align-items: center; gap: 10px; }
+.fix summary::-webkit-details-marker { display: none; }
+.fix summary::before { content: "?"; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--accent);
+  color: var(--accent); font-size: .8rem; font-weight: 700; flex: none; }
+.fix summary::after { content: ""; margin-left: auto; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+  transform: rotate(45deg); transition: transform .2s; }
+.fix[open] summary::after { transform: rotate(-135deg); }
+.fix ul { margin: 0; padding: 0 16px 16px 48px; display: grid; gap: 10px; color: var(--ink); }
+
+.frame { margin: 0; border-radius: 16px; overflow: hidden; background: var(--paper); box-shadow: var(--shot-shadow); border: 1px solid var(--line);
+  max-height: 620px; }
+.frame img { width: 100%; height: auto; }
+.frame.low img { margin-top: -62%; }
+.step.wide .frame { max-height: none; }
+
+.help { padding: 28px; border-radius: 20px; background: var(--band); display: grid; gap: 12px; scroll-margin-top: 24px; }
+.help h2 { font-size: 1.6rem; }
+.help-links { display: flex; flex-wrap: wrap; gap: 8px 20px; }
+
+@media (max-width: 900px) {
+  .howto-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; padding-block: 24px 64px; }
+  .toc { position: static; max-height: none; }
+  .toc ol { display: flex; gap: 8px; overflow-x: auto; border-left: 0; padding-bottom: 6px; }
+  .toc a { white-space: nowrap; border: 1px solid var(--line); border-radius: 999px; margin: 0; padding: 6px 12px; grid-template-columns: auto auto; }
+  .toc a[aria-current] { border-color: var(--accent); }
+  .step { grid-template-columns: minmax(0, 1fr); padding: 20px; gap: 20px; }
+  .frame { max-width: 340px; }
+  .step.wide .frame { max-width: none; }
+  .howto-title { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* ---------- Home: Northpine cover ---------- */
+.cover .wrap { padding-block: 64px 56px; align-items: center; }
+.cover h1 { max-width: 13em; }
+.cover-icons { display: grid; grid-template-columns: repeat(2, minmax(0, 120px)); gap: 18px; justify-content: center; }
+.cover-icons img { border-radius: 26px; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.cover-icons img:nth-child(2) { transform: translateY(26px); }
+.cover-icons img:nth-child(4) { transform: translateY(26px); }
+.btn.ghost { background: transparent; color: var(--hero-fg); box-shadow: inset 0 0 0 1.5px var(--hero-line); }
+.card-links { display: flex; gap: 16px; flex-wrap: wrap; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); font-weight: 600; font-size: .95rem; }
+.price-table { width: 100%; border-collapse: collapse; font-size: 1rem; }
+.price-table th, .price-table td { text-align: left; padding: 14px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.price-table th { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); font-weight: 600; }
+.price-table td:first-child { font-weight: 600; color: var(--heading); white-space: nowrap; }
+.price-table .app-cell { display: flex; align-items: center; gap: 10px; }
+.price-table .app-cell img { width: 32px; height: 32px; border-radius: 8px; }
+.table-wrap { overflow-x: auto; }
+.promise { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+.promise div { padding: 22px; border-radius: 18px; background: var(--bg); border: 1px solid var(--line); display: grid; gap: 8px; align-content: start; }
+.promise strong { font-family: var(--font-display); font-size: 1.25rem; color: var(--heading); font-weight: 600; }
+.promise span { color: var(--muted); }
+.guide-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+.guide-cards a { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: center; padding: 18px; border: 1px solid var(--line); border-radius: 16px;
+  text-decoration: none; color: var(--ink); background: var(--bg); }
+.guide-cards a:hover { border-color: var(--accent); }
+.guide-cards img { width: 44px; height: 44px; border-radius: 10px; }
+.guide-cards b { display: block; color: var(--heading); }
+.guide-cards span { font-size: .92rem; color: var(--muted); }
+
+/* ---------- Northpine brand: signature gradient with contour lines ---------- */
+.hero, .howto-hero, .closing {
+  background:
+    radial-gradient(900px 560px at 88% 0%, rgba(227, 179, 65, .22), transparent 62%),
+    radial-gradient(800px 600px at 0% 100%, rgba(63, 163, 128, .30), transparent 60%),
+    url("/assets/brand/contours.svg") center / cover no-repeat,
+    linear-gradient(140deg, #0c251d 0%, #143a2d 42%, #1d5643 100%);
+}
+.eyebrow { display: flex; align-items: center; gap: 10px; font-size: .82rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.eyebrow img { width: 28px; height: 28px; border-radius: 8px; }
+.hero .eyebrow { color: var(--gold); }
+h1, h2 { font-variation-settings: "SOFT" 60, "opsz" 96; }
+
+/* Home hero: copy left, product showreel right */
+.np-hero .wrap { grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); align-items: center; padding-block: 72px 64px; gap: 48px; }
+.np-hero h1 { font-size: clamp(2.8rem, 5.6vw, 4.6rem); line-height: 1; letter-spacing: -.035em; font-weight: 500; }
+.showreel { display: grid; gap: 14px; min-width: 0; }
+.reel-frame { position: relative; aspect-ratio: 16 / 10; border-radius: 22px; overflow: hidden; box-shadow: 0 0 0 1px rgba(255,255,255,.10), 0 40px 80px -30px rgba(0,0,0,.6); }
+.reel-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transform: scale(1.02); transition: opacity .8s ease, transform 1.2s ease; }
+.reel-frame img.on { opacity: 1; transform: none; }
+.reel-tabs { display: flex; flex-wrap: wrap; gap: 8px; }
+.reel-tabs button { font: 600 .9rem/1 var(--font-body); color: var(--hero-muted); background: rgba(255,255,255,.06); border: 1px solid var(--hero-line);
+  border-radius: 999px; padding: 9px 14px; cursor: pointer; transition: background .2s, color .2s; }
+.reel-tabs button[aria-selected="true"] { background: var(--hero-fg); color: #143d30; border-color: transparent; }
+
+/* Trust strip */
+.trust { border-bottom: 1px solid var(--line); }
+.trust ul { list-style: none; margin: 0; padding: 22px 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.trust li { display: flex; gap: 12px; align-items: center; }
+.trust svg { width: 34px; height: 34px; flex: none; padding: 7px; border-radius: 10px; background: var(--band); fill: none; stroke: var(--accent); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.trust span { display: grid; font-size: .9rem; color: var(--muted); line-height: 1.35; }
+.trust b { color: var(--heading); font-size: .98rem; }
+
+/* App showcases: big picture, short words */
+.showcase { padding-block: 72px; }
+.showcase + .showcase { padding-top: 24px; }
+.showcase .wrap { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 56px; align-items: center; }
+.showcase.flip .wrap { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
+.showcase.flip .show-img { order: 2; }
+.show-img { margin: 0; border-radius: 24px; overflow: hidden; box-shadow: 0 1px 2px rgba(20,61,48,.1), 0 36px 70px -34px rgba(12,37,29,.55); }
+.show-img img { width: 100%; transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.show-img:hover img { transform: scale(1.025); }
+.show-copy { display: grid; gap: 18px; align-content: center; }
+.show-copy h2 { font-size: clamp(1.9rem, 3.2vw, 2.6rem); }
+.ticks { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.ticks li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; }
+.ticks li::before { content: ""; width: 22px; height: 22px; margin-top: 2px; border-radius: 50%; background: var(--band) no-repeat center / 12px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M2 6.5l2.5 2.5L10 3.5' fill='none' stroke='%231e5a45' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"); }
+.show-links { display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center; font-weight: 600; }
+.btn.small { padding: 10px 18px; font-size: .95rem; }
+
+/* Three steps */
+.three { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+.three li { display: grid; gap: 8px; padding: 26px; border-radius: 20px; background: var(--bg); border: 1px solid var(--line); align-content: start; }
+.three .big { font-family: var(--font-display); font-size: 3rem; line-height: 1; color: var(--gold); font-weight: 600; }
+.three b { font-family: var(--font-display); font-size: 1.35rem; color: var(--heading); font-weight: 600; }
+.three li > span:last-child { color: var(--muted); }
+
+/* Closing band */
+.closing { color: var(--hero-fg); text-align: center; }
+.closing .wrap { display: grid; gap: 16px; justify-items: center; padding-block: 80px; }
+.closing h2 { color: var(--hero-fg); }
+.closing p { color: var(--hero-muted); font-size: 1.1rem; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .reel-frame { animation: np-float 9s ease-in-out infinite; }
+}
+@keyframes np-float { 50% { transform: translateY(-6px); } }
+
+@media (max-width: 960px) {
+  .np-hero .wrap, .showcase .wrap, .showcase.flip .wrap { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .showcase.flip .show-img { order: 0; }
+  .trust ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .three { grid-template-columns: minmax(0, 1fr); }
+  .np-hero .wrap { padding-block: 40px 48px; }
+}
+@media (max-width: 520px) {
+  .trust ul { grid-template-columns: minmax(0, 1fr); }
+  .reel-tabs button { padding: 8px 11px; font-size: .82rem; }
+}
+@media (max-width: 960px) {
+  .hero, .howto-hero, .closing {
+    background:
+      radial-gradient(600px 400px at 100% 0%, rgba(227, 179, 65, .20), transparent 62%),
+      url("/assets/brand/contours.svg") 70% 0 / 1500px auto no-repeat,
+      linear-gradient(160deg, #0c251d 0%, #143a2d 50%, #1d5643 100%);
+  }
+}
 </style>
 <script defer src="/assets/motion.js"></script>
 <script defer src="/assets/seasonal.js"></script>
 </head>
 <body>
-<header class="site-head on-hero"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/><path d="M28 6 L38 19 H33.5 L42 31 H36.5 L46 44 H39.5 L49 56 H7 L16.5 44 H10 L19.5 31 H14 L22.5 19 H18 Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="25.5" y="55" width="5" height="6" rx="1.2" fill="currentColor"/></svg><span class="word">Northpine <span>Apps</span></span></a><nav class="nav" aria-label="Site"><a href="/apps/">Apps</a><a href="/#pricing">Pricing</a><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></header><main>
-<section class="hero">
+<header class="site-head on-hero"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" aria-hidden="true"><path d="M50 4 L51.6 9.4 L57 11 L51.6 12.6 L50 18 L48.4 12.6 L43 11 L48.4 9.4 Z" fill="var(--gold)"/><path d="M28 6 L38 19 H33.5 L42 31 H36.5 L46 44 H39.5 L49 56 H7 L16.5 44 H10 L19.5 31 H14 L22.5 19 H18 Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><rect x="25.5" y="55" width="5" height="6" rx="1.2" fill="currentColor"/></svg><span class="word">Northpine <span>Apps</span></span></a><nav class="nav" aria-label="Site"><a href="/apps/">Apps</a><a href="/#pricing">Pricing</a><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a></nav></div></header><main class="home">
+<section class="hero np-hero">
   <div class="wrap">
     <div class="hero-copy">
-      <h1>Print mailing labels straight from your Google Sheet.</h1>
-      <p class="lede">Spreadsheet Labels is a Google Sheets add-on that turns a list of names and addresses into a print-ready label document in seconds. Choose your label sheet, check the preview, and print. No mail-merge setup, no copying into Word.</p>
+      <p class="eyebrow">Add-ons for Google Sheets and Forms</p>
+      <h1>Small tools. Real work done.</h1>
+      <p class="lede">Print labels, send certificates, take payments and stop overbooking, right inside the Google files you already use. No new account, nothing to install on your computer.</p>
       <div class="hero-actions">
-        <a class="btn" href="#how">See how it works</a>
+        <a class="btn" href="#apps">Explore the apps</a>
+        <a class="btn ghost" href="/guides/">How-to guides</a>
       </div>
     </div>
-    <div class="sheet-stage">
-      <div class="sheet-clip"><div class="sheet" role="img" aria-label="A sheet of Avery 5160 address labels printed by Spreadsheet Labels, starting at label 5.">
-<div class="lbl used"></div>
-<div class="lbl used"></div>
-<div class="lbl used"></div>
-<div class="lbl used"></div>
-<div class="lbl next"><b>Priya Raman</b><span>218 Alder Street, Unit 4B</span><span>Portland, OR 97214</span></div>
-<div class="lbl"><b>Marcus Whitfield</b><span>1905 N Lake Shore Dr</span><span>Chicago, IL 60614</span></div>
-<div class="lbl"><b>Hannah O&#x27;Connell</b><span>12 Maple Court</span><span>Burlington, VT 05401</span></div>
-<div class="lbl"><b>Diego Alvarez</b><span>480 Mission Bay Blvd</span><span>San Francisco, CA 94158</span></div>
-<div class="lbl"><b>Grace Liu</b><span>77 Orchard Lane</span><span>Ithaca, NY 14850</span></div>
-<div class="lbl"><b>Samuel Okafor</b><span>3301 Elm Avenue</span><span>Dallas, TX 75226</span></div>
-<div class="lbl"><b>Ruth Bergstrom</b><span>9 Harbor View Rd</span><span>Duluth, MN 55802</span></div>
-<div class="lbl"><b>Tomás Ferreira</b><span>1420 Ocean Pkwy, Apt 2</span><span>Brooklyn, NY 11230</span></div>
-<div class="lbl"><b>Aisha Karim</b><span>56 Willow Bend</span><span>Ann Arbor, MI 48104</span></div>
-<div class="lbl"><b>Ben Takahashi</b><span>2207 Pine Ridge Dr</span><span>Boulder, CO 80302</span></div>
-<div class="lbl"><b>Clara Novak</b><span>814 Chestnut St</span><span>Philadelphia, PA 19107</span></div>
-<div class="lbl"><b>Owen Gallagher</b><span>45 Birch Hollow</span><span>Asheville, NC 28801</span></div>
-<div class="lbl"><b>Mei Chen</b><span>600 Cedar Lane</span><span>Madison, WI 53703</span></div>
-<div class="lbl"><b>Luis Romero</b><span>1018 Desert Sage Way</span><span>Tucson, AZ 85719</span></div>
-<div class="lbl"><b>Fatima Haddad</b><span>33 Spruce Terrace</span><span>Seattle, WA 98103</span></div>
-<div class="lbl"><b>Jonah Weiss</b><span>250 Riverside Dr</span><span>Austin, TX 78704</span></div>
-<div class="lbl"><b>Elena Petrova</b><span>71 Magnolia Ave</span><span>Savannah, GA 31401</span></div>
-<div class="lbl"><b>Kwame Mensah</b><span>1500 Prairie St</span><span>Omaha, NE 68102</span></div>
-<div class="lbl"><b>Sofia Rossi</b><span>8 Lighthouse Way</span><span>Portland, ME 04101</span></div>
-<div class="lbl"><b>Noah Bennett</b><span>402 Aspen Circle</span><span>Salt Lake City, UT 84102</span></div>
-<div class="lbl"><b>Yuki Tanaka</b><span>19 Juniper Row</span><span>Honolulu, HI 96813</span></div>
-<div class="lbl"><b>Amara Diallo</b><span>620 Linden Blvd</span><span>St. Louis, MO 63108</span></div>
-<div class="lbl"><b>Henry Lowell</b><span>5 Cranberry Rd</span><span>Plymouth, MA 02360</span></div>
-<div class="lbl"><b>Isabel Moreno</b><span>2900 Redwood Hwy</span><span>Eureka, CA 95501</span></div>
-<div class="lbl"><b>Arjun Mehta</b><span>140 Laurel St</span><span>Raleigh, NC 27601</span></div>
-<div class="lbl"><b>Nora Fitzgerald</b><span>36 Hemlock Path</span><span>Bend, OR 97701</span></div>
-      </div></div>
-      <p class="sheet-caption">Avery 5160, 30 address labels per sheet. This one starts at label 5 because the first four were already used.</p>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="how">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Three steps, without leaving your sheet</h2>
-      <p>Spreadsheet Labels opens in a panel beside your spreadsheet, from the Extensions menu.</p>
-    </div>
-    <ol class="steps">
-      <li class="step">
-        <div class="step-title"><span class="num">1</span><h3>Choose your label sheet</h3></div>
-        <p>Pick the Avery number printed on your package of labels, or add your own size.</p>
-        <figure class="shot top"><img src="/assets/step-sheet.png" width="600" height="935" loading="lazy" alt="Spreadsheet Labels' list of label sheets, with Avery 5160 address labels selected."></figure>
-      </li>
-      <li class="step">
-        <div class="step-title"><span class="num">2</span><h3>Arrange the text</h3></div>
-        <p>Spreadsheet Labels finds the name and address columns for you. Click a column to add it to the label, and check every row in the preview.</p>
-        <figure class="shot top"><img src="/assets/step-text.png" width="600" height="874" loading="lazy" alt="Columns arranged into label lines."></figure>
-      </li>
-      <li class="step">
-        <div class="step-title"><span class="num">3</span><h3>Create labels and print</h3></div>
-        <p>You get a Google Doc and a PDF. Print a test page on plain paper first, then print on your labels at actual size.</p>
-        <figure class="shot"><img src="/assets/step-print.png" width="600" height="650" loading="lazy" alt="Your labels are ready: 5 labels on 1 page of Avery 5160, with buttons to download the PDF or open the document."></figure>
-      </li>
-    </ol>
-  </div>
-</section>
-
-<section class="section band" id="sheets">
-  <div class="wrap">
-    <div class="section-head">
-      <h2>Label sheets it prints</h2>
-      <p>Each layout follows the sheet's published measurements. The same layouts work for the compatible product numbers listed under each one.</p>
-    </div>
-    <div class="table-scroll">
-      <table>
-        <thead><tr><th scope="col">Sheet</th><th scope="col">Used for</th><th scope="col">Label size</th><th scope="col" class="n">Per sheet</th></tr></thead>
-        <tbody>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(10,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5160<span class="also">also 8160, 5260, 18160</span></td><td>Address</td><td>2-5/8" × 1"</td><td class="n">30</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(10,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5161<span class="also">also 8161, 5261</span></td><td>Address</td><td>4" × 1"</td><td class="n">20</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(7,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5162<span class="also">also 8162, 5262</span></td><td>Address</td><td>4" × 1-1/3"</td><td class="n">14</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5163<span class="also">also 8163, 5263</span></td><td>Shipping</td><td>4" × 2"</td><td class="n">10</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5164<span class="also">also 8164, 5264</span></td><td>Large shipping</td><td>4" × 3-1/3"</td><td class="n">6</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i></span>Avery 5168<span class="also">also 8168</span></td><td>Large shipping</td><td>3-1/2" × 5"</td><td class="n">4</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(20,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5167<span class="also">also 8167, 5267</span></td><td>Return address</td><td>1-3/4" × 1/2"</td><td class="n">80</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(15,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5195<span class="also">also 8195</span></td><td>Return address</td><td>1-3/4" × 2/3"</td><td class="n">60</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(15,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5366<span class="also">also 8366</span></td><td>File folder</td><td>3-7/16" × 2/3"</td><td class="n">30</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(5,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5371<span class="also">also 8371</span></td><td>Business card</td><td>3-1/2" × 2"</td><td class="n">10</td></tr>
-<tr><td class="code"><span class="mini" style="grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(4,1fr)" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Avery 5395<span class="also">also 8395</span></td><td>Name badge</td><td>3-3/8" × 2-1/3"</td><td class="n">8</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="envelopes">
-      <h3>Envelopes</h3>
-      <ul><li>#10 <span>9-1/2" × 4-1/8"</span></li><li>#9 <span>8-7/8" × 3-7/8"</span></li><li>A7 <span>7-1/4" × 5-1/4"</span></li><li>DL <span>220 × 110 mm</span></li><li>C5 <span>229 × 162 mm</span></li><li>C6 <span>162 × 114 mm</span></li></ul>
-    </div>
-    <p class="sheets-note">Don't see your sheet? Add your own size in Spreadsheet Labels, or email us the product number.</p>
-  </div>
-</section>
-
-<section class="section" id="features">
-  <div class="wrap split">
-    <div>
-      <div class="section-head">
-        <h2>Help before you print</h2>
+    <div class="showreel" aria-label="The four add-ons">
+      <div class="reel-frame">
+        <img class="on" src="/assets/hero/label-maker.webp" width="1600" height="1000" alt="Spreadsheet Labels: a sheet of Avery labels, the Spreadsheet Labels panel and a Your labels are ready card.">
+        <img src="/assets/hero/certificate-maker.webp" width="1600" height="1000" alt="Certificate Maker: a finished certificate, the Certificate Maker panel and an emailed PDF." loading="lazy">
+        <img src="/assets/hero/form-payments.webp" width="1600" height="1000" alt="Form Payments: a payment email, the Form Payments panel and a paid notice." loading="lazy">
+        <img src="/assets/hero/form-limits.webp" width="1600" height="1000" alt="Form Limits: a Google Form showing places left, the Form Limits panel and a waitlist notice." loading="lazy">
       </div>
-      <ul class="extras">
-        <li><strong>Check addresses</strong><span>Looks up each address with Google Maps and suggests fixes before you print. Nothing changes unless you accept a suggestion.</span></li>
-        <li><strong>QR codes and barcodes</strong><span>Put a QR code or barcode on every label, made from a column in your sheet (a different one for each label) or the same for all: a link to your shop, an order number, an RSVP link or an asset tag. Code 128 and EAN-13 barcodes are supported, and you choose the size and position.</span></li>
-        <li><strong>Logos, pictures and a return address</strong><span>Add your logo or a picture from a link in each row, a return address in the corner, and cut lines for plain paper.</span></li>
-        <li><strong>Partly used sheets</strong><span>Start at any label on the sheet, and print several copies of each label.</span></li>
-        <li><strong>Printer alignment test page</strong><span>Print outlines on plain paper, hold them against your label sheet, and shift the layout if your printer is off.</span></li>
-      </ul>
+      <div class="reel-tabs" role="tablist">
+        <button type="button" role="tab" aria-selected="true">Spreadsheet Labels</button>
+        <button type="button" role="tab" aria-selected="false">Certificate Maker</button>
+        <button type="button" role="tab" aria-selected="false">Form Payments</button>
+        <button type="button" role="tab" aria-selected="false">Form Limits</button>
+      </div>
     </div>
-    <figure class="shot"><img src="/assets/check.png" width="600" height="1250" loading="lazy" alt="Address check results: two suggested fixes from Google Maps and one address that could not be found."></figure>
   </div>
 </section>
 
-<section class="section band" id="codes">
+<section class="trust" aria-label="Why people trust Northpine Apps">
   <div class="wrap">
-    <div class="section-head">
-      <h2>QR codes and barcodes on every label</h2>
-      <p>Spreadsheet Labels makes them itself, from a column in your sheet (a different code on each label) or the same code on every label. Choose the size, and whether the code sits beside or below the address.</p>
+    <ul>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8.3-7 10-4-1.7-7-5.5-7-10V6l7-3z"/></svg><span><b>Runs inside Google</b>Your data stays in your account</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 11V8a5 5 0 0110 0v3M5 11h14v10H5z"/></svg><span><b>Least access</b>Only the file it's opened in</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12l-8 8-8-8 8-8 8 8z"/></svg><span><b>Free plan</b>That stays free</span></li>
+      <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1016 0 8 8 0 00-16 0zm4 0l3 3 5-6"/></svg><span><b>7-day refunds</b>Pay yearly or once</span></li>
+    </ul>
+  </div>
+</section>
+
+<div id="apps">
+<section class="showcase">
+  <div class="wrap">
+    <figure class="show-img"><img src="/assets/hero/label-maker.webp" width="1600" height="1000" loading="lazy" alt="Spreadsheet Labels turning a sheet of addresses into Avery 5160 labels."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="/assets/apps/icons/label-maker.svg" alt="">Spreadsheet Labels · Google Sheets</p>
+      <h2>Mailing labels from your sheet, lined up on the first try.</h2>
+      <ul class="ticks"><li>17 Avery sheets, plus your own sizes</li><li>Addresses checked before you print</li><li>QR codes, barcodes and pictures on each label</li></ul>
+      <div class="show-links"><a class="btn small" href="https://workspace.google.com/marketplace/app/spreadsheet_labels/1076288421936" rel="noopener">Install from Google Workspace Marketplace</a><a class="btn small" href="/guides/how-to-use-label-maker">See how it works</a><a href="/apps/label-maker">About Spreadsheet Labels</a></div>
     </div>
-    <div class="code-demo">
-  <figure class="code-label wide"><div class="cl-body"><div class="cl-text"><b>Priya Raman</b><span>218 Alder Street, Unit 4B</span><span>Portland, OR 97214</span></div><svg class="qr" viewBox="0 0 29 29" width="64" height="64" shape-rendering="crispEdges" role="img" aria-label="QR code for https://northpineapps.com/"><rect width="29" height="29" fill="#fff"/><path d="M2 2h1v1h-1zM3 2h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM7 2h1v1h-1zM8 2h1v1h-1zM10 2h1v1h-1zM12 2h1v1h-1zM13 2h1v1h-1zM15 2h1v1h-1zM16 2h1v1h-1zM20 2h1v1h-1zM21 2h1v1h-1zM22 2h1v1h-1zM23 2h1v1h-1zM24 2h1v1h-1zM25 2h1v1h-1zM26 2h1v1h-1zM2 3h1v1h-1zM8 3h1v1h-1zM10 3h1v1h-1zM12 3h1v1h-1zM13 3h1v1h-1zM14 3h1v1h-1zM15 3h1v1h-1zM16 3h1v1h-1zM18 3h1v1h-1zM20 3h1v1h-1zM26 3h1v1h-1zM2 4h1v1h-1zM4 4h1v1h-1zM5 4h1v1h-1zM6 4h1v1h-1zM8 4h1v1h-1zM10 4h1v1h-1zM12 4h1v1h-1zM14 4h1v1h-1zM15 4h1v1h-1zM16 4h1v1h-1zM17 4h1v1h-1zM20 4h1v1h-1zM22 4h1v1h-1zM23 4h1v1h-1zM24 4h1v1h-1zM26 4h1v1h-1zM2 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM8 5h1v1h-1zM11 5h1v1h-1zM12 5h1v1h-1zM13 5h1v1h-1zM15 5h1v1h-1zM18 5h1v1h-1zM20 5h1v1h-1zM22 5h1v1h-1zM23 5h1v1h-1zM24 5h1v1h-1zM26 5h1v1h-1zM2 6h1v1h-1zM4 6h1v1h-1zM5 6h1v1h-1zM6 6h1v1h-1zM8 6h1v1h-1zM10 6h1v1h-1zM14 6h1v1h-1zM18 6h1v1h-1zM20 6h1v1h-1zM22 6h1v1h-1zM23 6h1v1h-1zM24 6h1v1h-1zM26 6h1v1h-1zM2 7h1v1h-1zM8 7h1v1h-1zM11 7h1v1h-1zM13 7h1v1h-1zM18 7h1v1h-1zM20 7h1v1h-1zM26 7h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM4 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM7 8h1v1h-1zM8 8h1v1h-1zM10 8h1v1h-1zM12 8h1v1h-1zM14 8h1v1h-1zM16 8h1v1h-1zM18 8h1v1h-1zM20 8h1v1h-1zM21 8h1v1h-1zM22 8h1v1h-1zM23 8h1v1h-1zM24 8h1v1h-1zM25 8h1v1h-1zM26 8h1v1h-1zM12 9h1v1h-1zM13 9h1v1h-1zM15 9h1v1h-1zM16 9h1v1h-1zM17 9h1v1h-1zM18 9h1v1h-1zM2 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM7 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1zM12 10h1v1h-1zM13 10h1v1h-1zM14 10h1v1h-1zM16 10h1v1h-1zM18 10h1v1h-1zM19 10h1v1h-1zM22 10h1v1h-1zM24 10h1v1h-1zM25 10h1v1h-1zM26 10h1v1h-1zM4 11h1v1h-1zM9 11h1v1h-1zM11 11h1v1h-1zM17 11h1v1h-1zM21 11h1v1h-1zM22 11h1v1h-1zM23 11h1v1h-1zM24 11h1v1h-1zM25 11h1v1h-1zM2 12h1v1h-1zM4 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM10 12h1v1h-1zM11 12h1v1h-1zM12 12h1v1h-1zM13 12h1v1h-1zM16 12h1v1h-1zM17 12h1v1h-1zM18 12h1v1h-1zM23 12h1v1h-1zM26 12h1v1h-1zM2 13h1v1h-1zM3 13h1v1h-1zM5 13h1v1h-1zM10 13h1v1h-1zM14 13h1v1h-1zM18 13h1v1h-1zM21 13h1v1h-1zM22 13h1v1h-1zM23 13h1v1h-1zM24 13h1v1h-1zM25 13h1v1h-1zM26 13h1v1h-1zM4 14h1v1h-1zM5 14h1v1h-1zM7 14h1v1h-1zM8 14h1v1h-1zM11 14h1v1h-1zM13 14h1v1h-1zM14 14h1v1h-1zM18 14h1v1h-1zM20 14h1v1h-1zM21 14h1v1h-1zM26 14h1v1h-1zM2 15h1v1h-1zM4 15h1v1h-1zM7 15h1v1h-1zM12 15h1v1h-1zM14 15h1v1h-1zM15 15h1v1h-1zM17 15h1v1h-1zM18 15h1v1h-1zM19 15h1v1h-1zM22 15h1v1h-1zM25 15h1v1h-1zM2 16h1v1h-1zM3 16h1v1h-1zM8 16h1v1h-1zM12 16h1v1h-1zM17 16h1v1h-1zM18 16h1v1h-1zM20 16h1v1h-1zM22 16h1v1h-1zM23 16h1v1h-1zM24 16h1v1h-1zM25 16h1v1h-1zM26 16h1v1h-1zM2 17h1v1h-1zM4 17h1v1h-1zM12 17h1v1h-1zM13 17h1v1h-1zM18 17h1v1h-1zM21 17h1v1h-1zM23 17h1v1h-1zM24 17h1v1h-1zM26 17h1v1h-1zM2 18h1v1h-1zM4 18h1v1h-1zM6 18h1v1h-1zM7 18h1v1h-1zM8 18h1v1h-1zM9 18h1v1h-1zM11 18h1v1h-1zM14 18h1v1h-1zM15 18h1v1h-1zM16 18h1v1h-1zM17 18h1v1h-1zM18 18h1v1h-1zM19 18h1v1h-1zM20 18h1v1h-1zM21 18h1v1h-1zM22 18h1v1h-1zM24 18h1v1h-1zM25 18h1v1h-1zM10 19h1v1h-1zM14 19h1v1h-1zM15 19h1v1h-1zM17 19h1v1h-1zM18 19h1v1h-1zM22 19h1v1h-1zM24 19h1v1h-1zM25 19h1v1h-1zM2 20h1v1h-1zM3 20h1v1h-1zM4 20h1v1h-1zM5 20h1v1h-1zM6 20h1v1h-1zM7 20h1v1h-1zM8 20h1v1h-1zM10 20h1v1h-1zM12 20h1v1h-1zM13 20h1v1h-1zM18 20h1v1h-1zM20 20h1v1h-1zM22 20h1v1h-1zM26 20h1v1h-1zM2 21h1v1h-1zM8 21h1v1h-1zM10 21h1v1h-1zM15 21h1v1h-1zM16 21h1v1h-1zM17 21h1v1h-1zM18 21h1v1h-1zM22 21h1v1h-1zM2 22h1v1h-1zM4 22h1v1h-1zM5 22h1v1h-1zM6 22h1v1h-1zM8 22h1v1h-1zM10 22h1v1h-1zM12 22h1v1h-1zM13 22h1v1h-1zM14 22h1v1h-1zM16 22h1v1h-1zM17 22h1v1h-1zM18 22h1v1h-1zM19 22h1v1h-1zM20 22h1v1h-1zM21 22h1v1h-1zM22 22h1v1h-1zM2 23h1v1h-1zM4 23h1v1h-1zM5 23h1v1h-1zM6 23h1v1h-1zM8 23h1v1h-1zM10 23h1v1h-1zM11 23h1v1h-1zM13 23h1v1h-1zM16 23h1v1h-1zM18 23h1v1h-1zM19 23h1v1h-1zM20 23h1v1h-1zM25 23h1v1h-1zM26 23h1v1h-1zM2 24h1v1h-1zM4 24h1v1h-1zM5 24h1v1h-1zM6 24h1v1h-1zM8 24h1v1h-1zM11 24h1v1h-1zM12 24h1v1h-1zM13 24h1v1h-1zM15 24h1v1h-1zM16 24h1v1h-1zM17 24h1v1h-1zM18 24h1v1h-1zM22 24h1v1h-1zM23 24h1v1h-1zM24 24h1v1h-1zM25 24h1v1h-1zM26 24h1v1h-1zM2 25h1v1h-1zM8 25h1v1h-1zM11 25h1v1h-1zM12 25h1v1h-1zM16 25h1v1h-1zM20 25h1v1h-1zM21 25h1v1h-1zM22 25h1v1h-1zM24 25h1v1h-1zM25 25h1v1h-1zM26 25h1v1h-1zM2 26h1v1h-1zM3 26h1v1h-1zM4 26h1v1h-1zM5 26h1v1h-1zM6 26h1v1h-1zM7 26h1v1h-1zM8 26h1v1h-1zM10 26h1v1h-1zM14 26h1v1h-1zM18 26h1v1h-1zM19 26h1v1h-1zM20 26h1v1h-1zM23 26h1v1h-1zM26 26h1v1h-1z" fill="#111"/></svg></div>
-    <figcaption><strong>QR code from a column</strong>Each label gets its own link, such as a guest's RSVP page. Try scanning this one.</figcaption></figure>
-  <figure class="code-label wide"><div class="cl-body col"><div class="cl-text"><b>Ship to: Marcus Whitfield</b><span>1905 N Lake Shore Dr, Chicago, IL 60614</span></div><svg class="bar" viewBox="0 0 154 40" width="210" height="55" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Barcode ORD-20417"><rect width="154" height="40" fill="#fff"/><path d="M10 0h1v40h-1zM11 0h1v40h-1zM13 0h1v40h-1zM16 0h1v40h-1zM21 0h1v40h-1zM25 0h1v40h-1zM26 0h1v40h-1zM27 0h1v40h-1zM29 0h1v40h-1zM30 0h1v40h-1zM32 0h1v40h-1zM33 0h1v40h-1zM37 0h1v40h-1zM39 0h1v40h-1zM40 0h1v40h-1zM41 0h1v40h-1zM43 0h1v40h-1zM45 0h1v40h-1zM46 0h1v40h-1zM50 0h1v40h-1zM54 0h1v40h-1zM57 0h1v40h-1zM58 0h1v40h-1zM60 0h1v40h-1zM61 0h1v40h-1zM62 0h1v40h-1zM65 0h1v40h-1zM67 0h1v40h-1zM68 0h1v40h-1zM69 0h1v40h-1zM71 0h1v40h-1zM72 0h1v40h-1zM73 0h1v40h-1zM74 0h1v40h-1zM76 0h1v40h-1zM77 0h1v40h-1zM80 0h1v40h-1zM83 0h1v40h-1zM84 0h1v40h-1zM85 0h1v40h-1zM87 0h1v40h-1zM88 0h1v40h-1zM92 0h1v40h-1zM96 0h1v40h-1zM98 0h1v40h-1zM100 0h1v40h-1zM101 0h1v40h-1zM102 0h1v40h-1zM103 0h1v40h-1zM105 0h1v40h-1zM106 0h1v40h-1zM107 0h1v40h-1zM109 0h1v40h-1zM110 0h1v40h-1zM111 0h1v40h-1zM113 0h1v40h-1zM114 0h1v40h-1zM116 0h1v40h-1zM117 0h1v40h-1zM118 0h1v40h-1zM120 0h1v40h-1zM121 0h1v40h-1zM122 0h1v40h-1zM124 0h1v40h-1zM126 0h1v40h-1zM127 0h1v40h-1zM131 0h1v40h-1zM132 0h1v40h-1zM136 0h1v40h-1zM137 0h1v40h-1zM138 0h1v40h-1zM140 0h1v40h-1zM142 0h1v40h-1zM143 0h1v40h-1z" fill="#111"/></svg><span class="hr">ORD-20417</span></div>
-    <figcaption><strong>Code 128 barcode</strong>Order numbers, member IDs, asset tags. Any letters and numbers.</figcaption></figure>
-  <figure class="code-label wide"><div class="cl-body"><div class="cl-text"><b>Hand-poured candle</b><span>Pine and cedar, 8 oz</span><span>Northside Candle Co.</span></div><div class="ean"><svg class="bar" viewBox="0 0 115 60" width="104" height="54" preserveAspectRatio="none" shape-rendering="crispEdges" role="img" aria-label="Barcode 4006381333931"><rect width="115" height="60" fill="#fff"/><path d="M10 0h1v60h-1zM12 0h1v60h-1zM16 0h1v60h-1zM17 0h1v60h-1zM19 0h1v60h-1zM21 0h1v60h-1zM24 0h1v60h-1zM25 0h1v60h-1zM26 0h1v60h-1zM28 0h1v60h-1zM30 0h1v60h-1zM31 0h1v60h-1zM32 0h1v60h-1zM33 0h1v60h-1zM35 0h1v60h-1zM36 0h1v60h-1zM37 0h1v60h-1zM38 0h1v60h-1zM40 0h1v60h-1zM44 0h1v60h-1zM47 0h1v60h-1zM49 0h1v60h-1zM50 0h1v60h-1zM53 0h1v60h-1zM54 0h1v60h-1zM56 0h1v60h-1zM58 0h1v60h-1zM60 0h1v60h-1zM65 0h1v60h-1zM67 0h1v60h-1zM72 0h1v60h-1zM74 0h1v60h-1zM79 0h1v60h-1zM81 0h1v60h-1zM82 0h1v60h-1zM83 0h1v60h-1zM85 0h1v60h-1zM88 0h1v60h-1zM93 0h1v60h-1zM95 0h1v60h-1zM96 0h1v60h-1zM99 0h1v60h-1zM100 0h1v60h-1zM102 0h1v60h-1zM104 0h1v60h-1z" fill="#111"/></svg><span class="hr">4 006381 333931</span></div></div>
-    <figcaption><strong>EAN-13 product barcode</strong>The standard shop barcode, from a 12 or 13 digit number.</figcaption></figure>
+  </div>
+</section>
+<section class="showcase flip">
+  <div class="wrap">
+    <figure class="show-img"><img src="/assets/hero/certificate-maker.webp" width="1600" height="1000" loading="lazy" alt="Certificate Maker making a certificate of completion and emailing it."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="/assets/apps/icons/certificate-maker.svg" alt="">Certificate Maker · Google Sheets</p>
+      <h2>A certificate for everyone on your list, emailed for you.</h2>
+      <ul class="ticks"><li>51 designs, or your own Google Slides</li><li>A QR code proves each one is genuine</li><li>Names checked and fitted automatically</li></ul>
+      <div class="show-links"><a class="btn small" href="/guides/how-to-use-certificate-maker">See how it works</a><a href="/apps/certificate-maker">About Certificate Maker</a></div>
+    </div>
+  </div>
+</section>
+<section class="showcase">
+  <div class="wrap">
+    <figure class="show-img"><img src="/assets/hero/form-payments.webp" width="1600" height="1000" loading="lazy" alt="Form Payments sending a payment email and showing who has paid."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="/assets/apps/icons/form-payments.svg" alt="">Form Payments · Google Forms</p>
+      <h2>Every response gets a bill. You see who's paid.</h2>
+      <ul class="ticks"><li>Stripe and PayPal, straight to your account</li><li>Prices worked out from the answers</li><li>Reminders and receipts sent for you</li></ul>
+      <div class="show-links"><a class="btn small" href="/guides/how-to-use-form-payments">See how it works</a><a href="/apps/form-payments">About Form Payments</a></div>
+    </div>
+  </div>
+</section>
+<section class="showcase flip">
+  <div class="wrap">
+    <figure class="show-img"><img src="/assets/hero/form-limits.webp" width="1600" height="1000" loading="lazy" alt="Form Limits showing places left on a Google Form and a waitlist."></figure>
+    <div class="show-copy">
+      <p class="eyebrow"><img src="/assets/apps/icons/form-limits.svg" alt="">Form Limits · Google Forms</p>
+      <h2>Sign-up forms that never overbook.</h2>
+      <ul class="ticks"><li>Places per choice, with "3 left" on the form</li><li>A real waitlist that fills freed places</li><li>Opens and closes on your schedule</li></ul>
+      <div class="show-links"><a class="btn small" href="/guides/how-to-use-form-limits">See how it works</a><a href="/apps/form-limits">About Form Limits</a></div>
+    </div>
+  </div>
+</section>
 </div>
 
+<section class="section band steps3">
+  <div class="wrap">
+    <div class="section-head"><h2>Up and running in a minute</h2></div>
+    <ol class="three">
+      <li><span class="big">1</span><b>Install</b><span>Add it from the Google Workspace Marketplace. One click, no sign-up.</span></li>
+      <li><span class="big">2</span><b>Open it</b><span>In your sheet or form, choose Extensions, then the add-on. It opens on the right.</span></li>
+      <li><span class="big">3</span><b>Follow the steps</b><span>The panel walks you through it. Every guide has pictures of each step.</span></li>
+    </ol>
   </div>
 </section>
 
 <section class="section" id="pricing">
   <div class="wrap">
     <div class="section-head">
-      <h2>Pricing</h2>
-      <p>Start free. Upgrade from inside Spreadsheet Labels when you need more pages.</p>
+      <h2>Simple pricing</h2>
+      <p>Each add-on is bought on its own, in US dollars. Every one has a free plan.</p>
     </div>
-    <div class="plans">
-      <div class="plan">
-        <h3>Free</h3>
-        <div class="price">$0</div>
-        <p>Documents of up to 3 pages, which is 90 labels on Avery 5160. No account needed.</p>
-      </div>
-      <div class="plan">
-        <h3>Pro yearly</h3>
-        <div class="price">$24.99 <small>per year</small></div>
-        <p>No page limit. Renews each year. Cancel anytime.</p>
-      </div>
-      <div class="plan">
-        <h3>Pro lifetime</h3>
-        <div class="price">$49.99 <small>once</small></div>
-        <p>No page limit. One payment.</p>
-      </div>
-    </div>
-    <div class="fine">
-      <p>Payments are processed by Lemon Squeezy, our reseller and merchant of record. After you buy, your license key arrives by email.</p>
-      <p>Not happy? Email us within 7 days of purchase for a full refund.</p>
+    <div class="table-wrap">
+      <table class="price-table">
+        <thead><tr><th>Add-on</th><th>Free plan</th><th>Pro yearly</th><th>Pro for life</th></tr></thead>
+        <tbody>
+          <tr><td><a class="app-cell" href="/apps/label-maker"><img src="/assets/apps/icons/label-maker.svg" alt="">Spreadsheet Labels</a></td><td>Documents up to 3 pages</td><td>$24.99</td><td>$49.99</td></tr>
+          <tr><td><a class="app-cell" href="/apps/certificate-maker"><img src="/assets/apps/icons/certificate-maker.svg" alt="">Certificate Maker</a></td><td>5 certificates a month</td><td>$39.99</td><td>$79.99</td></tr>
+          <tr><td><a class="app-cell" href="/apps/form-payments"><img src="/assets/apps/icons/form-payments.svg" alt="">Form Payments</a></td><td>10 payment requests a month</td><td>$49.99</td><td>$119.99</td></tr>
+          <tr><td><a class="app-cell" href="/apps/form-limits"><img src="/assets/apps/icons/form-limits.svg" alt="">Form Limits</a></td><td>Every feature on one form</td><td>$19.99</td><td>$39.99</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </section>
 
-<section class="section band" id="data">
-  <div class="wrap data">
-    <h2>Your addresses stay in your Google account</h2>
-    <p>Spreadsheet Labels runs inside your own Google account. It reads only the sheet you open it in and the label documents it creates. We don't run a server that receives your sheet, and we don't copy, store, sell or share your addresses.</p>
-    <p><a href="/privacy">Read the privacy policy</a></p>
-  </div>
-</section>
-
-<section class="section band" id="more">
+<section class="section band" id="guides">
   <div class="wrap">
-    <div class="section-head"><h2>More from Northpine</h2><p>The same care, for Google Forms and certificates.</p></div>
-    <ul class="more-apps">
-      <li><img src="/assets/apps/icons/certificate-maker.svg" width="48" height="48" alt=""><a href="/apps/certificate-maker">Certificate Maker</a><span>Personalized PDF certificates from a sheet or a Forms quiz, emailed for you.</span></li>
-      <li><img src="/assets/apps/icons/form-payments.svg" width="48" height="48" alt=""><a href="/apps/form-payments">Form Payments</a><span>Stripe and PayPal payments for Google Forms, with reminders and a live dashboard.</span></li>
-      <li><img src="/assets/apps/icons/form-limits.svg" width="48" height="48" alt=""><a href="/apps/form-limits">Form Limits</a><span>Places per choice, a real waitlist and opening hours for Google Forms.</span></li>
-    </ul>
+    <div class="section-head">
+      <h2>Step-by-step guides</h2>
+      <p>Every step with a picture, and what to do if something doesn't work.</p>
+    </div>
+    <div class="guide-cards">
+      <a href="/guides/how-to-use-label-maker"><img src="/assets/apps/icons/label-maker.svg" alt=""><span><b>How to use Spreadsheet Labels</b>7 steps, about 5 minutes</span></a>
+      <a href="/guides/how-to-use-certificate-maker"><img src="/assets/apps/icons/certificate-maker.svg" alt=""><span><b>How to use Certificate Maker</b>7 steps, about 5 minutes</span></a>
+      <a href="/guides/how-to-use-form-payments"><img src="/assets/apps/icons/form-payments.svg" alt=""><span><b>How to use Form Payments</b>7 steps, about 10 minutes</span></a>
+      <a href="/guides/how-to-use-form-limits"><img src="/assets/apps/icons/form-limits.svg" alt=""><span><b>How to use Form Limits</b>7 steps, about 3 minutes</span></a>
+    </div>
   </div>
 </section>
 
-<section class="section" id="contact">
-  <div class="wrap contact">
-    <h2>Questions?</h2>
-    <p>Questions, or a label size we don't support yet? Write to us. We reply within 2 business days.</p>
-    <a class="email" href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a>
+<section class="closing">
+  <div class="wrap">
+    <h2>Questions before you install?</h2>
+    <p>Write to us. A real person answers, usually within a day.</p>
+    <a class="btn" href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a>
   </div>
 </section>
 </main>
+<script>
+(function () {
+  var frame = document.querySelector('.reel-frame'); if (!frame) return;
+  var imgs = [].slice.call(frame.querySelectorAll('img')), tabs = [].slice.call(document.querySelectorAll('.reel-tabs button'));
+  var i = 0, timer = null, still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function show(n) {
+    i = (n + imgs.length) % imgs.length;
+    imgs.forEach(function (im, k) { im.classList.toggle('on', k === i); if (k === i) im.loading = 'eager'; });
+    tabs.forEach(function (t, k) { t.setAttribute('aria-selected', k === i ? 'true' : 'false'); });
+  }
+  function play() { if (!still) { clearInterval(timer); timer = setInterval(function () { show(i + 1); }, 4500); } }
+  tabs.forEach(function (t, k) { t.addEventListener('click', function () { show(k); play(); }); });
+  imgs.slice(1).forEach(function (im) { var p = new Image(); p.src = im.src; });
+  play();
+})();
+</script>
 <footer class="site-foot"><div class="wrap"><div class="foot-row"><span>© 2026 Northpine Apps</span><span class="foot-links"><a href="/apps/">Apps</a><a href="/guides/">Guides</a><a href="/support">Support</a><a href="/privacy">Privacy policy</a><a href="/terms">Terms of service</a><a href="mailto:northpineapps@gmail.com">northpineapps@gmail.com</a></span></div><p>Northpine Apps is not affiliated with or endorsed by Google, Avery, Stripe, PayPal or LinkedIn. Google Sheets™, Google Forms™, Google Docs™, Gmail™, Avery™, Stripe™, PayPal™ and LinkedIn™ are trademarks of their owners; product numbers are used only to describe compatible sheets.</p></div></footer>
 </body>
 </html>
