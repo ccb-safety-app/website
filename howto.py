@@ -10,9 +10,9 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).parent
 
-ONE_ACCOUNT = ("<b>The panel says \"Signed in to more than one Google account?\"</b> Google add-ons can mix up accounts when "
-               "several are signed in to the same browser. Open the file in a private window signed in to only one account, "
-               "or sign out of the others, then open the add-on again.")
+ONE_ACCOUNT = ("<b>The panel says it could not read your sheet or form.</b> Google add-ons only work in the account you "
+               "signed in to first in this browser. Use a separate Chrome profile for this account, or sign out of all accounts "
+               "and sign in to this one first. <a href=\"{{support}}#several-accounts\">How to fix it</a>.")
 
 APPS = [
     {
